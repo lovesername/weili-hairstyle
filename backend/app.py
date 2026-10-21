@@ -47,6 +47,40 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 2) ADMIN_TOKEN 不再用 dev-token 兜底，没配就谁都过不了
 DEPLOY = os.environ.get("DEPLOY", "") in ("1", "true", "yes")
 
+# 运行时可写目录。容器里设 WEILI_RUNTIME_DIR=/app/storage（挂持久卷）就能把
+# 发型库改动 / 参考图 / 收款码 / 站点设置 跟代码镜像解耦，重新部署不丢。
+# 本地不设 → _rt() 落回 data/，行为跟以前一模一样。
+RUNTIME_DIR = os.environ.get("WEILI_RUNTIME_DIR", "").strip()
+
+
+def _rt(*parts):
+    """运行时可写路径：容器里统一收进 WEILI_RUNTIME_DIR 指向的持久卷。"""
+    if RUNTIME_DIR:
+        return os.path.join(RUNTIME_DIR, *parts)
+    return os.path.join(ROOT, "data", *parts)
+
+
+def _seed_runtime():
+    """容器首次挂上空卷时，把镜像里的种子文件（发型库 json / 站点设置 / 支付配置）
+    和实拍图目录拷进持久卷，之后代码重新部署就不再动它们。"""
+    if not RUNTIME_DIR:
+        return
+    import shutil
+    for name in ("styles.json", "site.json", "pay.json"):
+        dst, src = os.path.join(RUNTIME_DIR, name), os.path.join(ROOT, "data", name)
+        if not os.path.exists(dst) and os.path.exists(src):
+            try:
+                shutil.copyfile(src, dst)
+            except Exception:
+                pass
+    gsrc = os.path.join(ROOT, "data", "gallery")
+    gdst = os.path.join(RUNTIME_DIR, "gallery")
+    if os.path.isdir(gsrc) and not os.path.exists(gdst):
+        try:
+            shutil.copytree(gsrc, gdst)
+        except Exception:
+            pass
+
 
 def _load_env():
     """读项目根目录 .env（uvicorn 自己不加载）。已存在的环境变量优先。"""
@@ -72,6 +106,7 @@ RES = os.path.join(ROOT, "storage", "results")
 DBG = os.path.join(ROOT, "storage", "debug")
 for d in (UP, RES, DBG):
     os.makedirs(d, exist_ok=True)
+_seed_runtime()          # 必须在 StaticFiles 挂载之前：挂载时目录得存在
 
 PROVIDERS = build_registry()
 # 这几个是"整头重画"型后端（云端图像大模型）：不遮 mask、不做几何、
@@ -125,13 +160,13 @@ for _sub in ("uploads", "results", "candidates"):
     app.mount("/files/" + _sub, StaticFiles(directory=_d), name="files_" + _sub)
 app.mount("/static", StaticFiles(directory=os.path.join(ROOT, "frontend")), name="static")
 app.mount("/covers", StaticFiles(directory=os.path.join(ROOT, "data", "covers")), name="covers")
-app.mount("/gallery", StaticFiles(directory=os.path.join(ROOT, "data", "gallery")), name="gallery")
+app.mount("/gallery", StaticFiles(directory=_rt("gallery")), name="gallery")
 # 收款码（后台老板上传的微信 / 支付宝经营码）—— 公开只读，里面只有一张二维码图片
-PAYQR = os.path.join(ROOT, "data", "payqr")
+PAYQR = _rt("payqr")
 os.makedirs(PAYQR, exist_ok=True)
 app.mount("/payqr", StaticFiles(directory=PAYQR), name="payqr")
 # 用户上传的发型参考图：按 uid 分目录存，只有本人接口会读
-REFS = os.path.join(ROOT, "data", "refs")
+REFS = _rt("refs")
 os.makedirs(REFS, exist_ok=True)
 
 
@@ -278,7 +313,7 @@ def api_config_set(payload: dict, request: Request, x_admin_token: str = Header(
 
 
 # ---------------- 站点设置（客服微信 / 版权 / 收款码）：后台可改，前台公开读 ----------------
-SITE_FILE = os.path.join(ROOT, "data", "site.json")
+SITE_FILE = _rt("site.json")
 _SITE_DEFAULT = {"kf_wechat": "", "copyright": "© 2026 微粒 · WEILI",
                  "notice": "", "wxpay_qr": "", "alipay_qr": ""}
 
@@ -463,7 +498,7 @@ def api_styles(tag: str = "", q: str = ""):
 # ---------------- 后台：加/删发型（发型库怎么上新，见 README） ----------------
 ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "" if DEPLOY else "dev-token")
 COVERS = os.path.join(ROOT, "data", "covers")
-GALLERY = os.path.join(ROOT, "data", "gallery")
+GALLERY = _rt("gallery")
 
 
 def _is_local(request) -> bool:
@@ -558,7 +593,24 @@ def admin_add(payload: dict, request: Request, x_admin_token: str = Header(defau
 
 
 # ---------------- 后台：改款 / 换封面 / 加删实拍图 ----------------
-EXT_JSON = os.path.join(ROOT, "data", "styles.json")
+EXT_JSON = _rt("styles.json")
+
+
+def _seed_runtime():
+    """容器首次挂载空卷时，把镜像里的种子文件（发型库等）拷进持久卷。"""
+    if not RUNTIME_DIR:
+        return
+    for name in ("styles.json", "site.json", "pay.json"):
+        dst = os.path.join(RUNTIME_DIR, name)
+        src = os.path.join(ROOT, "data", name)
+        if not os.path.exists(dst) and os.path.exists(src):
+            try:
+                open(dst, "wb").write(open(src, "rb").read())
+            except Exception:
+                pass
+
+
+_seed_runtime()
 
 
 def _ext_items():
@@ -647,7 +699,7 @@ def admin_add_image(sid: str, payload: dict, request: Request,
     import base64
     import io as _io
     from PIL import Image as _Image
-    folder = os.path.join(ROOT, "data", "gallery", sid)
+    folder = os.path.join(GALLERY, sid)
     os.makedirs(folder, exist_ok=True)
     n = 1
     while os.path.exists(os.path.join(folder, "extra%d.jpg" % n)):
@@ -681,7 +733,7 @@ def admin_del_image(sid: str, fname: str, request: Request,
                    if (x.get("file") if isinstance(x, dict) else x) != fname]
     items[i] = e
     _ext_save(items)
-    p = os.path.join(ROOT, "data", "gallery", sid, fname)
+    p = os.path.join(GALLERY, sid, fname)
     if os.path.exists(p):
         os.remove(p)
     return {"ok": True, "style": stylelib.BY_ID.get(sid)}
@@ -725,7 +777,7 @@ def admin_del(sid: str, request: Request, x_admin_token: str = Header(default=""
     stylelib.del_external(sid)
     # 实拍图 / 封面一起清掉，别在磁盘上留孤儿文件
     import shutil
-    g = os.path.join(ROOT, "data", "gallery", sid)
+    g = os.path.join(GALLERY, sid)
     if os.path.isdir(g):
         shutil.rmtree(g, ignore_errors=True)
     c = os.path.join(COVERS, sid + ".jpg")

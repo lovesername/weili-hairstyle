@@ -1,0 +1,36 @@
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    image: weili-api:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DEPLOY: "1"
+      PORT: "8899"
+      WEILI_RUNTIME_DIR: /app/storage
+    volumes:
+      - ./runtime:/app/storage      # SQLite / 上传 / 结果 / 参考图 / 站点设置 全在这，重新部署不丢
+    expose:
+      - "8899"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
+volumes:
+  caddy_data:
+  caddy_config:

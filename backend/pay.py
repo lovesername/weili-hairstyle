@@ -29,7 +29,9 @@ from Crypto.PublicKey import RSA
 from Crypto.Signature import pkcs1_15
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAY_FILE = os.path.join(ROOT, "data", "pay.json")
+# 跟 app.py 同一个开关：容器里把运行时配置落到持久卷，重新部署不丢。
+_RT = os.environ.get("WEILI_RUNTIME_DIR", "").strip()
+PAY_FILE = os.path.join(_RT, "pay.json") if _RT else os.path.join(ROOT, "data", "pay.json")
 QR_DIR = os.path.join(ROOT, "storage", "qr")
 os.makedirs(QR_DIR, exist_ok=True)
 

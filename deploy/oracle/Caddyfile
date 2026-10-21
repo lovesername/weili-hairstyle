@@ -1,0 +1,27 @@
+{$DOMAIN} {
+	encode gzip
+
+	# 出图一趟要 30~60 秒，默认超时会掐断
+	reverse_proxy api:8899 {
+		flush_interval -1
+		transport http {
+			dial_timeout 30s
+			read_timeout 300s
+			write_timeout 300s
+		}
+	}
+
+	request_body {
+		max_size 20MB
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000;"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	log {
+		output stdout
+	}
+}
