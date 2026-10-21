@@ -956,6 +956,9 @@ function authHeaders() {
 let API = (typeof window.API_BASE === 'string' && !window.API_BASE.startsWith('__'))
   ? window.API_BASE.replace(/\/+$/, '')
   : '';
+// 图片地址：存在 Supabase 上的是完整 https 外链，不能再拼 API 前缀；
+// 本地/没配对象存储的是 /files/... 这种相对路径，要拼。
+const IMG = u => (!u ? '' : (/^https?:|^data:|^\/\//.test(u) ? u : API + u));
 // 候选顺序：config.js 指定的 → 同源 → 本机两个端口。''（同源）必须保留，过滤掉就退回不了本地了。
 const CANDS = [...new Set([API, '', 'http://127.0.0.1:8899', 'http://localhost:8899', 'http://127.0.0.1:8897'])];
 async function pickBase() {
@@ -1412,7 +1415,7 @@ function renderRefs() {
     <div class="rrow">${REFS.map(r => `
       <div class="refit ${REF && REF.id === r.id ? 'on' : ''}" data-id="${r.id}" title="${esc(r.name || '')}">
         <span class="rtag">参考</span>
-        <img src="${API}${r.url}" loading="lazy">
+        <img src="${IMG(r.url)}" loading="lazy">
         <span class="rdel" data-del="${r.id}" title="删除">×</span>
       </div>`).join('')}</div>`;
   $$('#refBox .refit').forEach(el => el.onclick = e => {
@@ -1556,7 +1559,7 @@ function renderPicked() {
   if (REF) {
     box.innerHTML = `
       <div class="phead">
-        <div class="pthumb"><img src="${REF.url.startsWith('http') ? REF.url : API + REF.url}" alt=""></div>
+        <div class="pthumb"><img src="${IMG(REF.url)}" alt=""></div>
         <div class="pbody">
           <div class="ptitle">${esc(REF.name || '我的参考图')}<span class="pcodepill" style="background:rgba(227,193,100,.15);color:var(--gold)">我的参考</span></div>
           <div class="pcode">上传的参考图 · 生成时模型照着这张图重画发型</div>
@@ -1636,7 +1639,7 @@ function openPrev(id, startAt) {
   $('#pvMeta').innerHTML = metaHTML(s);
   const at = Math.max(0, Math.min(imgs.length - 1, startAt || 0));
   $('#pvSide').innerHTML = imgs.map((x, i) =>
-    `<div class="pvth ${i === at ? 'on' : ''}" data-i="${i}"><img src="${API + x.url}" loading="lazy"><span>${x.label}</span></div>`
+    `<div class="pvth ${i === at ? 'on' : ''}" data-i="${i}"><img src="${IMG(x.url)}" loading="lazy"><span>${x.label}</span></div>`
   ).join('');
   if (!imgs.length) {
     $('#pvMain').innerHTML = `<div class="pvnone">这款是内置样款，没有实拍图。<br>官网那批款式带「主图 / 正面 / 侧面 / 背面」。</div>`;
@@ -1652,7 +1655,7 @@ function showPrevImg(i) {
   const imgs = (PVCUR && PVCUR.images) || [];
   if (!imgs.length) return;
   PVI = (i + imgs.length) % imgs.length;
-  $('#pvMain').innerHTML = `<img src="${API + imgs[PVI].url}" alt="${imgs[PVI].label}">`;
+  $('#pvMain').innerHTML = `<img src="${IMG(imgs[PVI].url)}" alt="${imgs[PVI].label}">`;
   $$('.pvth').forEach(el => el.classList.toggle('on', +el.dataset.i === PVI));
 }
 
@@ -2014,8 +2017,8 @@ function renderCands(d) {
     ' 张 · 已选第 ' + (c.selected + 1) + ' 张（★）· 分数 = 脸部保护 / 身份相似 / 发际线</div>' +
     '<div class="crow">' + c.candidates.map(x => {
       const s = x.score || {};
-      return `<div class="ct ${x.selected ? 'on' : ''}" data-url="${API + x.url}">
-        <img src="${API + x.url}" loading="lazy">
+      return `<div class="ct ${x.selected ? 'on' : ''}" data-url="${IMG(x.url)}">
+        <img src="${IMG(x.url)}" loading="lazy">
         <div class="cs">${x.selected ? '★ ' : ''}${pct(s.keep)} / ${pct(s.sim)} / ${pct(s.hair)}</div>
         <div class="cn">#${x.index + 1} ${s.ok ? '' : '✕'}</div>
       </div>`;
@@ -2039,10 +2042,10 @@ function poll() {
         setConsole('完成 · ' + (PNAME[d.provider] || d.provider) +
                    (d.spent && d.spent.credits ? ` · 已扣 ${d.spent.credits} 积分` : ''));
         $('#before').src = $('#prev').src; $('#before').classList.remove('hidden');
-        $('#after').src = API + d.url + '?t=' + Date.now(); $('#after').classList.remove('hidden');
+        $('#after').src = IMG(d.url) + '?t=' + Date.now(); $('#after').classList.remove('hidden');
         $('#tip').classList.add('hidden'); $('#slider').classList.remove('hidden');
-        $('#dl').href = API + d.url; $('#dl').classList.remove('hidden');
-        RESULT_URL = API + d.url;
+        $('#dl').href = IMG(d.url); $('#dl').classList.remove('hidden');
+        RESULT_URL = IMG(d.url);
         $('#shareBtn').classList.remove('hidden');
         $('#saveBtn').classList.remove('hidden');
         $('#saveHint').classList.remove('hidden');
@@ -2075,7 +2078,7 @@ async function loadHistory() {
     $('#hist').innerHTML = items.length
       ? items.map(x => {
           const t = (x.style_id || '').startsWith('custom:') ? '我的参考图' : (x.style_id || '');
-          return `<a href="${API + x.url}" target="_blank" title="${esc(t)}"><img src="${API + x.url}" loading="lazy"></a>`;
+          return `<a href="${IMG(x.url)}" target="_blank" title="${esc(t)}"><img src="${IMG(x.url)}" loading="lazy"></a>`;
         }).join('')
       : '<span class="muted">还没有记录 · 生成一次这里就会有</span>';
   } catch {}

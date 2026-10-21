@@ -35,6 +35,7 @@ import auth
 import billing
 import prompts
 import pay
+import store
 import styles as stylelib
 from pipeline import compose, mask as maskmod, preprocess, updo
 from pipeline import select as picker
@@ -1423,6 +1424,32 @@ def _edit_ref_bytes(style_row):
     return None, ""
 
 
+def _save_result(job_id, img, quality=94):
+    """存结果图：本地留一份（离线/调试），配了 Supabase 再传一份拿永久外链。
+    返回值直接写进 jobs.result_path —— 可能是文件名，也可能是 https 外链。"""
+    name = f"{job_id}.jpg"
+    p = os.path.join(RES, name)
+    img.save(p, quality=quality)
+    try:
+        if store.ON:
+            with open(p, "rb") as f:
+                u = store.put("results", name, f.read())
+            if u:
+                return u
+    except Exception as e:
+        print("结果图上传 Supabase 失败，继续用本地地址:", e)
+    return name
+
+
+def _result_url(v):
+    """jobs.result_path 可能是本地文件名，也可能是 Supabase 外链。"""
+    if not v:
+        return None
+    if store.is_remote(v):
+        return v
+    return f"/files/results/{v}"
+
+
 def _run_job(job_id, photo_row, style_row, provider_name, n=1, model=None, color=None):
     try:
         db.update_job(job_id, status=1)
@@ -1590,8 +1617,7 @@ def _run_job(job_id, photo_row, style_row, provider_name, n=1, model=None, color
 
         gen = gens[idx]
         out = outs[idx]
-        name = f"{job_id}.jpg"
-        out.save(os.path.join(RES, name), quality=94)
+        name = _save_result(job_id, out)
 
         # 同时存一张 gen 原图，方便调参对比
         gen.save(os.path.join(DBG, f"{job_id}_raw.jpg"), quality=92)
@@ -1707,7 +1733,7 @@ def api_job(job_id: str):
         except Exception:
             meta = None
     return {"id": j["id"], "status": j["status"],
-            "url": f"/files/results/{j['result_path']}" if j["result_path"] else None,
+            "url": _result_url(j["result_path"]),
             "err": j["err"], "style_id": j["style_id"], "provider": j["provider"],
             "candidates": meta, "spent": {"credits": j["credits_spent"] or 0,
                                           "free": j["free_spent"] or 0},
@@ -1729,7 +1755,7 @@ def api_history(request: Request, openid: str = Header(default=""), all: str = "
         items = db.history(m["uid"])
     for it in items:
         if it.get("result_path"):
-            it["url"] = f"/files/results/{it['result_path']}"
+            it["url"] = _result_url(it["result_path"])
     return {"items": items}
 
 
@@ -1738,7 +1764,14 @@ def _job_file_paths(j):
     """一条任务占用的所有文件：结果图 + 候选图 + 候选清单 json。"""
     paths = []
     if j.get("result_path"):
-        paths.append(os.path.join(RES, j["result_path"]))
+        # 存在 Supabase 上的，本地没有这个文件，删远端对象
+        if store.is_remote(j["result_path"]):
+            try:
+                store.del_obj("results", os.path.basename(j["result_path"]))
+            except Exception as e:
+                print("删除远端结果图失败:", e)
+        else:
+            paths.append(os.path.join(RES, j["result_path"]))
     mp = os.path.join(CAND, f"{j['id']}.json")
     if os.path.exists(mp):
         paths.append(mp)
@@ -1764,7 +1797,7 @@ def api_admin_jobs(request: Request, x_admin_token: str = Header(default="")):
     for r in rows:
         j = dict(r)
         j.pop("photo_id", None)
-        j["url"] = f"/files/results/{j['result_path']}" if j.get("result_path") else None
+        j["url"] = _result_url(j.get("result_path"))
         items.append(j)
     return {"items": items,
             "disk": {"results": len(os.listdir(RES)) if os.path.isdir(RES) else 0,
