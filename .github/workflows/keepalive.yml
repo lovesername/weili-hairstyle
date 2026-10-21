@@ -1,0 +1,34 @@
+# 保活：Render 免费层 15 分钟没人访问就睡（醒来要 30~60 秒），
+# Supabase 免费项目连续 7 天没查询会被暂停。
+# 这里每 10 分钟打一次 /api/health（该接口会真的查一次库），一次解决两边。
+#
+# 启用方法：仓库 Settings → Secrets and variables → Actions → New repository secret
+#   名字：API_BASE
+#   值  ：https://weili-api.onrender.com   （换成 Render 给你的真实域名）
+# 不配这个 secret 的话，本工作流会自动跳过，不会报错。
+name: keepalive
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping 后端
+        env:
+          API_BASE: ${{ secrets.API_BASE }}
+        run: |
+          if [ -z "$API_BASE" ]; then
+            echo "未设置 secret API_BASE，跳过（后端域名定下来后去 Settings 里加）"
+            exit 0
+          fi
+          code=$(curl -sS -o resp.json -w '%{http_code}' --max-time 60 "$API_BASE/api/health")
+          echo "HTTP $code"
+          cat resp.json
+          echo
+          if [ "$code" != "200" ]; then
+            echo "::warning::后端健康检查返回 $code"
+          fi

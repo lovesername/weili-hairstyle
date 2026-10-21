@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-"""SQLite 存储：用户 / 照片 / 任务 / 每日额度。单文件，零运维。"""
+"""存储层：本地 SQLite（零运维）或云端 Postgres（配了 DATABASE_URL 就走它）。
+
+云端（Render 免费层）磁盘是易失的，容器一休眠重启账号/订单/积分就没了，
+所以上线必须配 DATABASE_URL（Supabase 免费 Postgres 就够）。
+本地不配这个变量，行为跟以前完全一样，还是 SQLite。
+"""
 import os
 import sqlite3
 import threading
@@ -7,7 +12,16 @@ import time
 import uuid
 
 DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "storage", "app.db")
-_lock = threading.Lock()
+DATABASE_URL = os.environ.get("DATABASE_URL", "").strip()
+PG = bool(DATABASE_URL)
+_lock = threading.RLock()
+
+if PG:
+    import psycopg2
+    import psycopg2.extras
+    # Supabase 强制 SSL，连接串里没写就补上
+    if "sslmode" not in DATABASE_URL:
+        DATABASE_URL += ("&" if "?" in DATABASE_URL else "?") + "sslmode=require"
 
 SCHEMA = """
 create table if not exists users(
@@ -89,6 +103,117 @@ JOB_EXTRA_COLUMNS = (("credits_spent", "integer default 0"),
                      ("cost_usd", "real default 0"))
 
 
+# ---------------------------------------------------------------- Postgres
+# 全部业务代码都按 SQLite 写（? 占位、insert or ignore）。这里做一层翻译，
+# 免得为了上云把 45 处 ? 全改一遍。
+def _pg_ddl(ddl):
+    return ddl.replace("integer primary key autoincrement", "bigserial primary key")
+
+
+def _pg_sql(sql):
+    s = sql.strip()
+    low = s.lower()
+    # pragma table_info(t) -> information_schema
+    if low.startswith("pragma table_info"):
+        t = s[s.find("(") + 1:s.rfind(")")].strip().strip("'\"")
+        return ("select column_name as name from information_schema.columns "
+                "where table_name='%s' order by ordinal_position" % t)
+    # % 先转义（psycopg2 的参数占位就是 %s），再把 ? 换成 %s
+    s = s.replace("%", "%%").replace("?", "%s")
+    if low.startswith("insert or ignore"):
+        # 留着空格：s[16:] 是 " into ..."，写成 len+1 会拼成 "insertinto"
+        s = "insert" + s[len("insert or ignore"):]
+        if s.rstrip().endswith(";"):
+            s = s.rstrip()[:-1]
+        s += " on conflict do nothing"
+    return s
+
+
+class _PgConn(object):
+    """一条长连接 + 一把锁。Supabase 免费档连接数有限，绝不能每次查询都新建。"""
+
+    def __init__(self):
+        self.conn = None
+        self._open()
+
+    def _open(self):
+        self.conn = psycopg2.connect(DATABASE_URL, connect_timeout=15)
+        self.conn.autocommit = False
+
+    def _reset(self):
+        try:
+            if self.conn is not None:
+                self.conn.close()
+        except Exception:
+            pass
+        self.conn = None
+        self._open()
+
+    def execute(self, sql, params=None):
+        sql2 = _pg_sql(sql)
+        try:
+            cur = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cur.execute(sql2, params)
+            return cur
+        except (psycopg2.OperationalError, psycopg2.InterfaceError):
+            # Supabase 免费项目闲置 7 天会暂停，连接会断 —— 重连一次再试
+            self._reset()
+            cur = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cur.execute(sql2, params)
+            return cur
+
+    def executescript(self, script):
+        for stmt in script.split(";"):
+            # 只去掉开头的注释行；建表语句后面还挂着中文注释，不能整段丢掉
+            lines = stmt.strip().splitlines()
+            while lines and (not lines[0].strip() or lines[0].strip().startswith("--")):
+                lines.pop(0)
+            s = "\n".join(lines).strip()
+            if not s:
+                continue
+            self.execute(s)
+
+    def commit(self):
+        try:
+            self.conn.commit()
+        except Exception:
+            pass
+
+    def rollback(self):
+        try:
+            self.conn.rollback()
+        except Exception:
+            pass
+
+    def __enter__(self):
+        _lock.acquire()
+        return self
+
+    def __exit__(self, *exc):
+        try:
+            if exc[0] is None:
+                self.commit()
+            else:
+                self.rollback()
+        finally:
+            _lock.release()
+        return False
+
+
+_pg_singleton = None
+
+
+def _pg():
+    global _pg_singleton
+    if _pg_singleton is None:
+        _pg_singleton = _PgConn()
+    return _pg_singleton
+
+
+# ---------------------------------------------------------------- 建表 / 连接
+SCHEMA_PG = _pg_ddl(SCHEMA)
+
+
 def migrate():
     with _lock, conn() as c:
         cols = [r["name"] for r in c.execute("pragma table_info(jobs)")]
@@ -111,13 +236,27 @@ def unlimited():
 
 
 def conn():
+    if PG:
+        return _pg()
     os.makedirs(os.path.dirname(DB), exist_ok=True)
     c = sqlite3.connect(DB, timeout=15)
     c.row_factory = sqlite3.Row
     return c
 
 
+def ping():
+    """给健康检查/保活用：真的打一次库，顺带让 Supabase 不至于被判闲置。"""
+    with conn() as c:
+        c.execute("select 1 as ok").fetchone()
+    return True
+
+
 def init():
+    if PG:
+        with conn() as c:
+            c.executescript(SCHEMA_PG)
+        migrate()
+        return
     with _lock, conn() as c:
         c.executescript(SCHEMA)
     migrate()

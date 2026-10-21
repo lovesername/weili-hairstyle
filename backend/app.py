@@ -788,7 +788,16 @@ def admin_del(sid: str, request: Request, x_admin_token: str = Header(default=""
 
 @app.get("/api/health")
 def api_health():
-    return {"ok": True, "default": default_provider(),
+    # 这个地址给保活定时任务打：Render 免费层 15 分钟没人访问就睡，
+    # Supabase 免费项目 7 天没查询会暂停。顺手把库也 ping 一下，一次解决两边。
+    dbok = True
+    try:
+        db.ping()
+    except Exception as e:
+        dbok = False
+        print("health: 数据库不通 ->", e)
+    return {"ok": dbok, "db": "postgres" if db.PG else "sqlite",
+            "default": default_provider(),
             "providers": {k: prov_available(k) for k in PROVIDERS}}
 
 

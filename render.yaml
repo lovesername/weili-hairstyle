@@ -1,10 +1,15 @@
 # Render Blueprint（后端）。前端走 GitHub Pages，不用管这里。
+#
+# 用免费层：不要信用卡，但容器 15 分钟没人访问就睡、磁盘易失。
+# 两个坑都已处理：
+#   1) 账号/订单/积分  -> 全部落到 Supabase Postgres（DATABASE_URL），重启不丢
+#   2) 15 分钟休眠     -> .github/workflows/keepalive.yml 每 10 分钟打一次 /api/health
 services:
   - type: web
     name: weili-api
     runtime: docker
     dockerfilePath: ./Dockerfile
-    plan: starter          # 免费层磁盘是易失的，账号/订单会丢；要持久盘至少 starter
+    plan: free
     region: singapore
     healthCheckPath: /api/health
     envVars:
@@ -14,8 +19,12 @@ services:
         value: apimart
       - key: APIMART_IMAGE_MODEL
         value: gpt-image-2
+      - key: WEILI_RUNTIME_DIR
+        value: /app/storage
       - key: APIMART_API_KEY
         sync: false        # 去 Render 面板手填，别写进仓库
+      - key: DATABASE_URL
+        sync: false        # Supabase → Project Settings → Database → URI（用 6543 那个连接池地址）
       - key: ADMIN_USER
         value: admin
       - key: ADMIN_PASS
@@ -28,7 +37,3 @@ services:
         value: "3"
       - key: USER_MAX_N
         value: "2"
-    disk:
-      name: weili-storage
-      mountPath: /app/storage
-      sizeGB: 1

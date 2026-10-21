@@ -9,3 +9,4 @@ qrcode>=7.4                       # 自动到账：收款二维码
 pycryptodome>=3.20                # 自动到账：微信支付 v3 回调验签 + AES-256-GCM
 requests>=2.31                    # 支付网关 / 回调
 socksio>=1.0                      # 仅本地走梯子时需要；云上部署可删
+psycopg2-binary>=2.9            # 云端用 Supabase Postgres（本地 SQLite 不需要，装了也不影响）
