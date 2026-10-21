@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Ping 后端
         env:
-          API_BASE: ${{ secrets.API_BASE }}
+          API_BASE: ${{ vars.API_BASE || secrets.API_BASE }}
         run: |
           if [ -z "$API_BASE" ]; then
             echo "未设置 secret API_BASE，跳过（后端域名定下来后去 Settings 里加）"
