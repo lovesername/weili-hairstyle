@@ -1,0 +1,19 @@
+{
+ "added": [],
+ "skipped": [
+  {
+   "src": "data/covers/01_french_bob.jpg",
+   "reason": "重复图"
+  },
+  {
+   "src": "data/covers/02_lob.jpg",
+   "reason": "重复图"
+  }
+ ],
+ "rejected": [
+  {
+   "src": "data/covers/03_wool.jpg",
+   "reason": "文件不存在"
+  }
+ ]
+}

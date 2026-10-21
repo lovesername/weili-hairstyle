@@ -1,0 +1,13 @@
+.git
+.gitignore
+__pycache__/
+**/__pycache__/
+storage/
+data/gallery_html/
+data/candidates/
+*.log
+.venv/
+venv/
+tools/
+*.bat
+node_modules/

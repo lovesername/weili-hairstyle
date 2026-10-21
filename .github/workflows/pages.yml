@@ -1,0 +1,49 @@
+name: deploy-pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 前端在 GitHub Pages（*.github.io），后端在别处，必须把后端地址写进来。
+      # 去仓库 Settings → Secrets and variables → Actions → Variables 加一个
+      # 变量 API_BASE = https://你的后端域名 （不要把密钥放这里）
+      - name: 注入后端地址
+        run: |
+          API="${{ vars.API_BASE }}"
+          if [ -z "$API" ]; then
+            echo "::warning::仓库变量 API_BASE 没设置，前端会退化成同源请求（本地开发模式）"
+            API=""
+          fi
+          sed -i "s|__API_BASE__|${API}|g" frontend/config.js
+          cat frontend/config.js
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

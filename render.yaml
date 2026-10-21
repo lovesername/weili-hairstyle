@@ -1,0 +1,34 @@
+# Render Blueprint（后端）。前端走 GitHub Pages，不用管这里。
+services:
+  - type: web
+    name: weili-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter          # 免费层磁盘是易失的，账号/订单会丢；要持久盘至少 starter
+    region: singapore
+    healthCheckPath: /api/health
+    envVars:
+      - key: DEPLOY
+        value: "1"
+      - key: PROVIDER
+        value: apimart
+      - key: APIMART_IMAGE_MODEL
+        value: gpt-image-2
+      - key: APIMART_API_KEY
+        sync: false        # 去 Render 面板手填，别写进仓库
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASS
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: GEN_CREDITS
+        value: "8"
+      - key: FREE_GENS
+        value: "3"
+      - key: USER_MAX_N
+        value: "2"
+    disk:
+      name: weili-storage
+      mountPath: /app/storage
+      sizeGB: 1

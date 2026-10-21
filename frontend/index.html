@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>微粒 WEILI · AI 一键换发型</title>
+<meta name="description" content="微粒 AI 发型实验室：上传一张照片，试试 259 款真人发型在自己脸上是什么效果，可换发色、存相册、分享。">
+<meta name="theme-color" content="#07090e">
+<meta property="og:title" content="微粒 WEILI · AI 一键换发型">
+<meta property="og:description" content="上传一张照片，30 秒看看自己换这个发型长什么样。注册即赠 AI 换发体验。">
+<style>
+  :root{
+    --bg:#07090e; --panel:#0d1119; --panel2:#111722; --line:#1c2431; --line2:#27344a;
+    --fg:#e6ecf5; --sub:#7c8a9e; --dim:#55637a;
+    --cy:#31e1cf; --cy2:#0fb3a4; --gold:#e3c164; --err:#ff6b6b;
+    --mono:ui-monospace,"JetBrains Mono","Cascadia Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;color:var(--fg);font:14px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:
+      radial-gradient(900px 480px at 12% -12%, rgba(49,225,207,.10), transparent 62%),
+      radial-gradient(760px 420px at 96% 4%, rgba(227,193,100,.07), transparent 60%),
+      linear-gradient(180deg,#07090e,#05070a 60%,#07090e);
+    background-attachment:fixed;
+    min-height:100%;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:linear-gradient(rgba(49,225,207,.045) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(49,225,207,.045) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(circle at 50% 0,#000 0,transparent 78%);
+    -webkit-mask-image:radial-gradient(circle at 50% 0,#000 0,transparent 78%);
+  }
+  ::selection{background:rgba(49,225,207,.28)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:#1e2937;border-radius:99px;border:3px solid transparent;background-clip:content-box}
+  ::-webkit-scrollbar-thumb:hover{background:#2b3a4f;background-clip:content-box}
+
+  /* ---------- 顶栏 ---------- */
+  header{
+    position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);
+    background:rgba(7,9,14,.82);backdrop-filter:blur(14px) saturate(140%);
+  }
+  header::after{content:"";display:block;height:1px;background:linear-gradient(90deg,transparent,var(--cy),transparent);opacity:.55}
+  .hwrap{max-width:1240px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{
+    width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:15px;
+    background:linear-gradient(140deg,rgba(49,225,207,.22),rgba(227,193,100,.16));
+    border:1px solid rgba(49,225,207,.42);color:var(--cy);box-shadow:0 0 22px rgba(49,225,207,.18) inset;
+  }
+  .brand b{font-size:15px;letter-spacing:2.4px;font-weight:700}
+  .brand small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:2.2px;color:var(--dim);margin-top:-2px}
+  .hbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pill{
+    font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--sub);
+    border:1px solid var(--line2);background:rgba(17,23,34,.7);padding:6px 11px;border-radius:8px;white-space:nowrap;
+  }
+  .pill.ok{border-color:rgba(49,225,207,.4);color:var(--cy)}
+  .pill.gold{border-color:rgba(227,193,100,.42);color:var(--gold);text-decoration:none;transition:.16s}
+  .pill.gold:hover{background:rgba(227,193,100,.1)}
+  .pill.click{cursor:pointer}
+  .pill.click:hover{border-color:var(--cy);color:var(--cy)}
+
+  main{max-width:1240px;margin:0 auto;padding:20px 20px 64px;position:relative;z-index:1}
+
+  /* ---------- 卡片 ---------- */
+  .card{
+    background:linear-gradient(180deg,rgba(17,23,34,.92),rgba(11,15,22,.92));
+    border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;overflow:hidden;
+    box-shadow:0 1px 0 rgba(255,255,255,.02) inset;
+    display:flex;flex-direction:column;
+  }
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(49,225,207,.42),transparent);opacity:.5}
+  /* 访客遮罩：登录前盖住发型库 / 生成记录 */
+  .gate{
+    position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:9px;text-align:center;padding:20px;
+    background:rgba(8,11,17,.58);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+    border-radius:14px;
+  }
+  .gate .gi{font-size:30px;color:var(--cy);opacity:.85;text-shadow:0 0 18px rgba(49,225,207,.5)}
+  .gate .gt{font-size:14.5px;font-weight:600}
+  .gate .gt b{color:var(--cy);font-family:var(--mono)}
+  .gate .gs{font-size:12px;color:var(--sub);margin-bottom:4px}
+  .gate .btn{padding:8px 22px}
+  .chead{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .idx{
+    font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--cy);
+    border:1px solid rgba(49,225,207,.34);background:rgba(49,225,207,.08);
+    padding:2px 7px;border-radius:6px;
+  }
+  .chead b{font-size:14px;font-weight:600;letter-spacing:.4px}
+  .chead em{font-style:normal;font-size:11.5px;color:var(--dim);font-weight:400}
+  .chead .right{margin-left:auto;display:flex;align-items:center;gap:8px}
+
+  /* ---------- 工作区 ---------- */
+  .work{display:grid;grid-template-columns:390px minmax(0,1fr);gap:16px;margin-bottom:16px}
+  @media(max-width:900px){.work{grid-template-columns:1fr}}
+
+  .drop{
+    border:1px dashed #2b3a51;border-radius:12px;min-height:300px;display:flex;align-items:center;
+    justify-content:center;flex-direction:column;gap:10px;cursor:pointer;overflow:hidden;position:relative;
+    flex:1;
+    color:var(--dim);background:radial-gradient(420px 260px at 50% 0,rgba(49,225,207,.06),transparent 70%);
+    transition:.18s;
+  }
+  .drop:hover{border-color:rgba(49,225,207,.55);color:var(--sub)}
+  .drop .up{font-size:26px;color:var(--cy);opacity:.75;line-height:1}
+  .drop .t1{font-size:13px;color:var(--sub)}
+  .drop .t2{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;color:var(--dim)}
+  .drop img{max-width:100%;max-height:420px;display:block}
+
+  .cmp{
+    position:relative;overflow:hidden;border-radius:12px;user-select:none;min-height:300px;
+    background:#080b11;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;flex:1;
+  }
+  .cmp img{display:block;max-width:100%}
+  .cmp .after{position:absolute;inset:0;object-fit:contain;width:100%;height:100%;clip-path:inset(0 0 0 50%)}
+  .cmp input[type=range]{position:absolute;inset:auto 12px 10px;width:calc(100% - 24px);margin:0;accent-color:var(--cy)}
+
+  /* ---------- 进度：弧形光轨 + 扫描光束 + 刻度 ---------- */
+  .prog{margin-top:14px;position:relative}
+  .pgh{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:8px}
+  .pstage{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9.5px;
+    letter-spacing:1.5px;color:var(--dim);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pstage em{width:6px;height:6px;border-radius:99px;background:#2b394b;flex:none}
+  .pnum{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:23px;line-height:.9;
+    color:#232e3d;letter-spacing:-.5px;flex:none;transition:color .25s,text-shadow .25s}
+  .pnum i{font-style:normal;font-size:12px;margin-left:3px;opacity:.9;letter-spacing:0}
+  .pstage .ptime{font-weight:400;font-size:9.5px;color:#3a4a5f;letter-spacing:1.4px}
+  .prog.run .pstage .ptime{color:rgba(49,225,207,.8)}
+  .prog.done .pstage .ptime{color:rgba(227,193,100,.85)}
+  .prog.run .pstage{color:var(--cy)}
+  .prog.run .pstage em{background:var(--cy);box-shadow:0 0 10px var(--cy);animation:dotPulse 1.05s ease-in-out infinite}
+  .prog.run .pnum{color:var(--cy);text-shadow:0 0 20px rgba(49,225,207,.6)}
+  .prog.done .pnum{color:#e3c164;text-shadow:0 0 20px rgba(227,193,100,.55)}
+  .prog.done .pstage{color:#e3c164}
+  .prog.done .pstage em{background:#e3c164;box-shadow:0 0 10px #e3c164}
+  @keyframes dotPulse{0%,100%{opacity:.35;transform:scale(.75)}50%{opacity:1;transform:scale(1.2)}}
+
+  .bar{
+    height:13px;border-radius:4px;overflow:hidden;position:relative;
+    background:linear-gradient(180deg,#0a1017,#060a0f);
+    border:1px solid rgba(49,225,207,.14);
+    box-shadow:inset 0 2px 9px rgba(0,0,0,.98),inset 0 -1px 0 rgba(255,255,255,.03);
+    transition:box-shadow .3s;
+  }
+  .prog.run .bar{box-shadow:inset 0 2px 9px rgba(0,0,0,.98),0 0 26px -8px rgba(49,225,207,.75)}
+  .bar::before{content:"";position:absolute;inset:0 0 auto;height:1px;z-index:4;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)}
+  .bar>i{
+    display:block;height:100%;width:0;position:relative;border-radius:3px;overflow:hidden;
+    background:
+      repeating-linear-gradient(115deg,rgba(255,255,255,.085) 0 2px,transparent 2px 12px),
+      linear-gradient(90deg,#0a5f5a,#22c8b6 55%,#31e1cf 82%,#8ef8ea);
+    background-size:26px 100%,100% 100%;
+    box-shadow:0 0 16px rgba(49,225,207,.55),inset 0 1px 0 rgba(255,255,255,.35),
+               inset 0 -2px 7px rgba(0,0,0,.45);
+    transition:width .55s cubic-bezier(.22,.61,.36,1);
+  }
+  /* 头部那一点高光：像焊枪的亮点，比一条纯色块有质感得多 */
+  .bar>i::after{
+    content:"";position:absolute;right:0;top:0;bottom:0;width:11px;border-radius:99px;
+    background:radial-gradient(circle at 50% 50%,#ffffff,rgba(154,247,236,.65) 40%,transparent 72%);
+    filter:blur(1.5px);opacity:0;transition:opacity .2s;
+  }
+  .prog.run .bar>i::after{opacity:1}
+  /* 只让斜纹动，颜色不动：整条渐变跟着跑会一段时间亮成白条，像加载失败 */
+  .prog.run .bar>i{animation:progStripe 1.15s linear infinite}
+  @keyframes progStripe{to{background-position:26px 0,0 0}}
+  .prog.done .bar>i{
+    background:linear-gradient(90deg,#8a6b1f,#e3c164 55%,#fff2c8);
+    background-size:100% 100%;
+    box-shadow:0 0 24px rgba(227,193,100,.65),inset 0 1px 0 rgba(255,255,255,.55);
+  }
+  /* 掠过整条的光束：进度条"活着"的关键，不加就是一格死色块。
+     必须放在填充条**内部**（overflow:hidden），放到外面会在空槽上拉出一道灰雾，像脏了。 */
+  .bar>i .sweep{
+    position:absolute;top:0;bottom:0;left:-64px;width:52px;opacity:0;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+    filter:blur(1px);mix-blend-mode:screen;
+  }
+  .prog.run .bar>i .sweep{opacity:.85;animation:sweepX 1.7s cubic-bezier(.4,0,.6,1) infinite}
+  @keyframes sweepX{0%{left:-64px}100%{left:100%}}
+  .pticks{
+    height:6px;margin-top:4px;opacity:.4;transition:opacity .3s;
+    background:repeating-linear-gradient(90deg,rgba(49,225,207,.42) 0 1px,transparent 1px 18px);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  }
+  .prog.run .pticks{opacity:.85}
+  .prog.done .pticks{background:repeating-linear-gradient(90deg,rgba(227,193,100,.45) 0 1px,transparent 1px 18px)}
+
+  /* 生成中在整块控制台打一层极淡的呼吸光，静止时完全看不出来 */
+  .console:has(.prog.run){border-color:rgba(49,225,207,.22)}
+  @keyframes barBreathe{0%,100%{opacity:.25}50%{opacity:.6}}
+  .prog.run::after{
+    content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(49,225,207,.55),transparent);
+    animation:barBreathe 2.4s ease-in-out infinite;
+  }
+  .rowline{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;min-height:24px}
+  .muted{color:var(--sub);font-size:12px}
+  .err{color:var(--err)}
+  .mono{font-family:var(--mono);font-size:11.5px}
+  a.dl{color:var(--cy);font-size:12.5px;text-decoration:none;border-bottom:1px dashed rgba(49,225,207,.45)}
+  a.dl:hover{color:#9af7ec}
+
+  /* ---------- 发型库 ---------- */
+  .search{
+    background:#0a0f16;border:1px solid var(--line2);border-radius:8px;color:var(--fg);
+    padding:7px 11px;font-size:12.5px;outline:none;width:200px;transition:.15s;
+  }
+  .search:focus{border-color:rgba(49,225,207,.6);box-shadow:0 0 0 3px rgba(49,225,207,.09)}
+  .search::placeholder{color:#465268}
+  .tags{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 12px}
+  .tag{
+    font-size:12px;padding:5px 12px;border-radius:99px;border:1px solid var(--line2);
+    cursor:pointer;color:var(--sub);background:rgba(10,15,22,.6);transition:.15s;user-select:none;
+  }
+  .tag:hover{border-color:#3b4c66;color:var(--fg)}
+  .tag.on{background:rgba(49,225,207,.1);border-color:rgba(49,225,207,.6);color:var(--cy)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px;max-height:460px;overflow:auto;padding:2px 4px 2px 2px}
+  .item{
+    background:#0a0e15;border:1px solid var(--line);border-radius:11px;padding:8px;text-align:center;
+    cursor:pointer;font-size:12px;color:var(--sub);transition:.16s;position:relative;
+  }
+  .item:hover{border-color:#33425a;transform:translateY(-1px)}
+  .item.on{border-color:rgba(49,225,207,.75);background:rgba(49,225,207,.06);color:var(--fg);
+    box-shadow:0 0 0 1px rgba(49,225,207,.18),0 8px 22px -12px rgba(49,225,207,.5)}
+  .item.on::after{content:"";position:absolute;right:6px;top:6px;width:7px;height:7px;border-radius:99px;
+    background:var(--cy);box-shadow:0 0 8px var(--cy)}
+  .item .cv{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:7px;margin-bottom:6px;display:block;background:#0d1219}
+  .item .dot{
+    width:100%;aspect-ratio:1/1;border-radius:7px;margin-bottom:6px;display:grid;place-items:center;
+    background:
+      repeating-linear-gradient(45deg,rgba(49,225,207,.055) 0 5px,transparent 5px 11px),
+      linear-gradient(135deg,#141d29,#0a0f16);
+    border:1px solid rgba(49,225,207,.09);
+    font-family:var(--mono);font-size:8.5px;letter-spacing:1.1px;color:#3d4d63;
+  }
+  .item .nm{font-size:12px;line-height:1.35;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .item .pv{position:absolute;top:6px;left:6px;background:rgba(7,9,14,.82);color:var(--cy);
+    font-family:var(--mono);font-size:9.5px;border:1px solid rgba(49,225,207,.4);border-radius:6px;padding:1px 5px;line-height:1.6}
+  .cardinfo{font-size:10.5px;color:var(--dim);line-height:1.45;margin-top:3px;font-family:var(--mono);letter-spacing:.1px}
+  .cardinfo em{font-style:normal;color:#a99653}
+
+  /* ---------- 控制台 ---------- */
+  .console{margin-bottom:16px}
+  .picked{
+    display:block;padding:14px;border-radius:12px;
+    background:linear-gradient(100deg,rgba(49,225,207,.055),rgba(227,193,100,.035),transparent);
+    border:1px solid var(--line);min-height:86px;
+  }
+  .picked .phead{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .picked .pthumb{width:74px;height:74px;border-radius:10px;overflow:hidden;flex:none;
+    border:1px solid var(--line2);background:#0a0e15}
+  .picked .pthumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .picked .pbody{min-width:0;flex:1}
+  .picked .ptitle{font-size:14.5px;font-weight:600;letter-spacing:.3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .picked .pcodepill{font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;padding:1px 7px;border-radius:5px;
+    border:1px solid rgba(227,193,100,.42);color:#dcc37f;background:rgba(227,193,100,.07);white-space:nowrap}
+  .picked .pcode{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:4px;letter-spacing:.5px}
+  .picked .pacts{display:flex;gap:8px;flex-wrap:wrap}
+  .picked .pempty{color:var(--dim);font-size:12.5px;font-family:var(--mono);letter-spacing:.3px}
+  /* 规格表：产品编号 / 款式编号 / 分类 / 长度 / 卷度 / 发量 / 主色 / 可选色 / 实拍图 */
+  .picked .spec{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:6px;
+    margin-top:13px;padding-top:12px;border-top:1px dashed rgba(49,225,207,.14);
+  }
+  .picked .spec i{
+    font-style:normal;display:flex;flex-direction:column;gap:3px;
+    background:rgba(8,11,17,.55);border:1px solid var(--line);border-radius:7px;padding:5px 8px;min-width:0;
+  }
+  .picked .spec i u{text-decoration:none;font-family:var(--mono);font-size:9px;letter-spacing:1px;color:#4d5a70}
+  .picked .spec i b{font-size:11.5px;font-weight:600;color:var(--fg);word-break:break-word;line-height:1.4}
+  .picked .spec i b.mono{font-family:var(--mono);letter-spacing:.6px;color:#a9dcd6}
+  .picked .spec i.w2{grid-column:span 2}
+  .picked .spec i.wide{grid-column:1/-1}
+  .picked .spec i b .shot{
+    display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:500;color:var(--sub);
+    border:1px solid var(--line2);border-radius:5px;padding:1px 6px;margin:1px 4px 1px 0;cursor:pointer;
+  }
+  .picked .spec i b .shot:hover{border-color:rgba(49,225,207,.6);color:var(--cy)}
+  .picked .spec i b .shot s{width:5px;height:5px;border-radius:99px;background:var(--cy);opacity:.75;text-decoration:none}
+
+  .ctrlgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.4fr);gap:14px;margin-top:14px}
+  @media(max-width:860px){.ctrlgrid{grid-template-columns:1fr}}
+  .field label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;color:var(--dim);margin-bottom:7px}
+  .field label span{color:var(--cy);letter-spacing:1.2px}
+  .hint{font-size:10.5px;color:var(--dim);margin-top:6px;line-height:1.5}
+  .hint a{color:var(--cy);text-decoration:none}
+
+  select.sel{
+    width:100%;background:#0a0f16;color:var(--fg);border:1px solid var(--line2);border-radius:9px;
+    padding:10px 11px;font-size:12.5px;font-family:var(--mono);outline:none;appearance:none;
+    background-image:linear-gradient(45deg,transparent 50%,var(--sub) 50%),linear-gradient(135deg,var(--sub) 50%,transparent 50%);
+    background-position:calc(100% - 16px) 18px,calc(100% - 11px) 18px;
+    background-size:5px 5px,5px 5px;background-repeat:no-repeat;cursor:pointer;transition:.15s;
+  }
+  select.sel:focus{border-color:rgba(49,225,207,.6);box-shadow:0 0 0 3px rgba(49,225,207,.09)}
+  select.sel option{background:#0d1119;color:var(--fg)}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{
+    flex:1;min-width:64px;text-align:center;font-family:var(--mono);font-size:12.5px;padding:9px 6px;
+    border-radius:9px;border:1px solid var(--line2);background:#0a0f16;color:var(--sub);cursor:pointer;
+    transition:.15s;user-select:none;
+  }
+  .chip:hover{border-color:#3b4c66;color:var(--fg)}
+  .chip.on{border-color:rgba(49,225,207,.7);background:rgba(49,225,207,.1);color:var(--cy);font-weight:600}
+
+  .prov{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  #prov .pchip:last-child:nth-child(odd){grid-column:span 2}
+  .pchip{
+    min-width:0;font-size:12px;padding:9px 11px;border-radius:9px;border:1px solid var(--line2);
+    cursor:pointer;color:var(--sub);background:#0a0f16;transition:.15s;text-align:left;
+  }
+  .pchip:hover{border-color:#3b4c66;color:var(--fg)}
+  .pchip.on{border-color:rgba(227,193,100,.65);background:rgba(227,193,100,.09);color:var(--gold)}
+  .pchip small{display:block;font-family:var(--mono);font-size:9.5px;opacity:.8;font-weight:400;margin-top:1px;letter-spacing:.2px}
+  .pchip.off{opacity:.55;border-style:dashed}
+  .pchip.off:hover{opacity:.8;border-color:var(--err);color:var(--err)}
+
+  /* ---------- 换发色 ---------- */
+  .colorrow{
+    display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-top:14px;
+    padding:12px;border-radius:11px;border:1px solid var(--line);
+    background:linear-gradient(100deg,rgba(227,193,100,.05),transparent 60%);
+  }
+  .colorrow .cl{flex:none;min-width:112px}
+  .colorrow .cl label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;color:var(--dim);margin-bottom:4px}
+  .colorrow .cl label span{color:var(--gold);letter-spacing:1.2px}
+  .colorrow .cl .hint{margin-top:0}
+  .colorrow .chips{flex:1;min-width:0;gap:7px}
+  .cchip{
+    display:inline-flex;align-items:center;gap:6px;flex:none;min-width:0;
+    font-family:var(--mono);font-size:11.5px;padding:6px 10px;border-radius:99px;
+    border:1px solid var(--line2);background:#0a0f16;color:var(--sub);cursor:pointer;
+    transition:.15s;user-select:none;
+  }
+  .cchip:hover{border-color:#3b4c66;color:var(--fg)}
+  .cchip s{width:11px;height:11px;border-radius:99px;flex:none;text-decoration:none;
+    border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 0 4px rgba(0,0,0,.7)}
+  .cchip.on{border-color:rgba(227,193,100,.7);background:rgba(227,193,100,.1);color:var(--gold);font-weight:600}
+  .cchip.on s{box-shadow:0 0 0 2px rgba(227,193,100,.35),inset 0 0 4px rgba(0,0,0,.6)}
+
+  .gobar{display:flex;align-items:center;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .stdout{
+    flex:1;min-width:200px;font-family:var(--mono);font-size:11.5px;color:var(--sub);
+    background:#080b11;border:1px solid var(--line);border-radius:9px;padding:10px 12px;min-height:42px;
+    display:flex;align-items:center;gap:8px;overflow:hidden;
+  }
+  .stdout::before{content:">";color:var(--cy);opacity:.8;flex:none}
+  .btn{
+    background:linear-gradient(100deg,var(--cy2),var(--cy));color:#04140f;border:0;border-radius:10px;
+    padding:12px 26px;font-weight:800;cursor:pointer;font-size:14px;letter-spacing:.6px;
+    box-shadow:0 8px 24px -12px rgba(49,225,207,.85);transition:.16s;white-space:nowrap;
+  }
+  .btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn:active{transform:translateY(0)}
+  .btn[disabled]{
+    background:#182131;color:#59677d;box-shadow:none;cursor:not-allowed;transform:none;filter:none;
+    border:1px dashed #2a374a;
+  }
+  .btn.ghost{
+    background:transparent;border:1px solid var(--line2);color:var(--sub);box-shadow:none;
+    padding:8px 14px;font-size:12px;font-weight:600;letter-spacing:.2px;
+  }
+  .btn.ghost:hover{color:var(--cy);border-color:rgba(49,225,207,.5);filter:none}
+
+  /* ---------- 候选 ---------- */
+  .cands{margin-top:12px}
+  .crow{display:flex;gap:8px;flex-wrap:wrap}
+  .ct{width:104px;border:1px solid var(--line);border-radius:10px;padding:4px;cursor:pointer;background:#080b11;transition:.15s}
+  .ct:hover{border-color:#33425a}
+  .ct.on{border-color:rgba(49,225,207,.7);box-shadow:0 0 0 1px rgba(49,225,207,.2)}
+  .ct img{width:100%;height:100px;object-fit:cover;border-radius:7px;display:block}
+  .cs{font-family:var(--mono);font-size:9.5px;color:#8b9bb0;margin-top:3px;text-align:center}
+  .cn{font-family:var(--mono);font-size:9.5px;color:var(--dim);text-align:center}
+
+  /* ---------- 历史 ---------- */
+  .hist{display:flex;gap:8px;flex-wrap:wrap}
+  .hist a{display:block;border:1px solid var(--line);border-radius:9px;overflow:hidden;transition:.15s}
+  .hist a:hover{border-color:rgba(49,225,207,.55)}
+  .hist img{width:68px;height:68px;object-fit:cover;display:block}
+
+  /* ---------- 实拍弹窗 ---------- */
+  #pv{position:fixed;inset:0;background:rgba(3,5,8,.9);backdrop-filter:blur(10px);z-index:99;
+    display:none;align-items:center;justify-content:center;padding:18px}
+  #pv.on{display:flex}
+  .pvbox{background:linear-gradient(180deg,#111722,#0b0f16);border:1px solid var(--line2);border-radius:16px;
+    max-width:940px;width:100%;max-height:94vh;display:flex;flex-direction:column;overflow:hidden;
+    box-shadow:0 40px 120px -30px rgba(0,0,0,.9)}
+  .pvhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .pvhead b{font-size:14px;letter-spacing:.3px}
+  .pvhead .x{cursor:pointer;color:var(--sub);font-size:18px;line-height:1;padding:2px 6px;border-radius:7px}
+  .pvhead .x:hover{color:var(--cy);background:rgba(49,225,207,.08)}
+  .pvbody{display:flex;gap:14px;padding:14px 16px;overflow:auto;flex:1;min-height:0}
+  .pvleft{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+  .pvmain{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;background:#06090d;
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;min-height:240px}
+  .pvmain img{max-width:100%;max-height:50vh;display:block}
+  .pvmeta{display:flex;gap:7px;flex-wrap:wrap}
+  .pvmeta i{font-style:normal;font-size:11px;color:var(--sub);border:1px solid var(--line2);
+    border-radius:7px;padding:4px 9px;background:rgba(10,15,22,.7)}
+  .pvmeta i b{color:var(--fg);font-weight:600;margin-left:5px;font-family:var(--mono)}
+  .pvside{width:118px;display:flex;flex-direction:column;gap:8px;overflow:auto}
+  .pvth{border:1px solid var(--line);border-radius:9px;padding:3px;cursor:pointer;background:#080b11;transition:.15s}
+  .pvth:hover{border-color:#33425a}
+  .pvth.on{border-color:rgba(49,225,207,.7)}
+  .pvth img{width:100%;height:82px;object-fit:cover;border-radius:6px;display:block}
+  .pvth span{display:block;text-align:center;font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-top:3px}
+  .pvfoot{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;
+    border-top:1px solid var(--line);flex-wrap:wrap}
+  .pvact{display:flex;gap:8px;flex-wrap:wrap}
+  /* 选中后控制台那块闪一下：点完弹窗关掉，眼睛能立刻找到"已经同步到哪儿了" */
+  @keyframes pickedFlash{
+    0%{box-shadow:0 0 0 0 rgba(49,225,207,.55),inset 0 0 0 1px rgba(49,225,207,.6)}
+    100%{box-shadow:0 0 0 16px rgba(49,225,207,0),inset 0 0 0 1px rgba(49,225,207,.12)}
+  }
+  .picked.flash{animation:pickedFlash .85s ease-out 2}
+  .toast{
+    position:fixed;right:20px;bottom:20px;z-index:130;display:none;align-items:center;gap:10px;
+    background:rgba(10,15,22,.97);border:1px solid rgba(49,225,207,.45);border-radius:11px;
+    padding:11px 15px;font-size:12.5px;color:var(--fg);cursor:pointer;
+    box-shadow:0 22px 60px -24px rgba(0,0,0,.95),0 0 0 1px rgba(49,225,207,.08);
+  }
+  .toast.on{display:flex;animation:toastIn .2s ease-out}
+  .toast b{color:var(--cy);font-weight:600;font-family:var(--mono);font-size:11px;letter-spacing:.5px;white-space:nowrap}
+  @keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media(max-width:640px){.toast{left:12px;right:12px;bottom:84px;justify-content:space-between}}
+  .pvnone{padding:46px 16px;text-align:center;color:var(--sub);font-size:13px;line-height:1.8}
+  @media(max-width:640px){
+    .pvbody{flex-direction:column-reverse}.pvside{width:auto;flex-direction:row}.pvth{flex:1}
+    main{padding:14px 12px 48px}.hwrap{padding:10px 12px}
+    .search{width:100%}
+  }
+  .hidden{display:none!important}
+
+  /* ---------- 品牌头 / 账号区 ---------- */
+  .brand .mark{
+    width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+    background:linear-gradient(140deg,rgba(49,225,207,.9),rgba(227,193,100,.85));
+    color:#06110f;font-weight:800;font-size:15px;letter-spacing:0;
+    box-shadow:0 0 18px rgba(49,225,207,.35);
+  }
+  .acct{display:flex;align-items:center;gap:7px}
+  .acct .who{font-family:var(--mono);font-size:11px;color:var(--sub);max-width:110px;overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap}
+  .acct .who b{color:var(--fg);font-weight:600}
+  .pill.credit{border-color:rgba(227,193,100,.5);color:var(--gold);background:rgba(227,193,100,.08)}
+  .pill.credit b{font-size:13px;font-weight:700;margin-right:2px}
+  .pill.credit.click{cursor:pointer}
+  .pill.credit.click:hover{background:rgba(227,193,100,.16)}
+  .pill.admin{border-color:rgba(49,225,207,.55);color:var(--cy);background:rgba(49,225,207,.08)}
+
+  /* ---------- 首屏 ---------- */
+  .hero{
+    display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:20px;align-items:center;
+    padding:26px 4px 8px;margin-bottom:16px;
+  }
+  @media(max-width:860px){.hero{grid-template-columns:1fr;padding:16px 0 4px}}
+  .hero h1{
+    font-size:30px;line-height:1.25;margin:0 0 12px;letter-spacing:.5px;font-weight:800;
+    background:linear-gradient(96deg,#eaf6f4,#31e1cf 42%,#e3c164);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--sub);font-size:13.5px;line-height:1.9;margin:0 0 16px;max-width:52ch}
+  .hero .feat{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .hero .feat i{font-style:normal;font-size:11.5px;color:var(--sub);border:1px solid var(--line2);
+    border-radius:99px;padding:4px 11px;background:rgba(10,15,22,.6)}
+  .hero .feat i b{color:var(--cy);font-family:var(--mono);font-weight:600;margin-right:4px}
+  .hero .cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctanote{margin-top:10px;font-size:12px;color:var(--sub);letter-spacing:.4px}
+  .ctanote b{color:var(--gold);font-family:var(--mono)}
+  /* ---- 我的参考图（与发型库隔离，金色系区分） ---- */
+  #refBox{margin:10px 0 4px;border:1px solid rgba(227,193,100,.35);border-radius:12px;
+          padding:10px 12px;background:rgba(227,193,100,.05)}
+  #refBox .rhead{font-size:11px;letter-spacing:1.2px;color:var(--gold);margin-bottom:8px;
+                 display:flex;justify-content:space-between;align-items:center}
+  #refBox .rhead .rh2{color:var(--sub);letter-spacing:.4px}
+  #refBox .rrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+  .refit{position:relative;width:84px;flex:0 0 84px;cursor:pointer;border:1px solid var(--line);
+         border-radius:10px;overflow:hidden;background:#080b11;transition:.15s}
+  .refit img{width:100%;height:104px;object-fit:cover;display:block}
+  .refit:hover{border-color:var(--gold)}
+  .refit.on{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+  .refit .rtag{position:absolute;left:0;top:0;font-size:9px;background:rgba(227,193,100,.92);
+               color:#241b04;padding:1px 5px;border-radius:0 0 6px 0;font-weight:700}
+  .refit .rdel{position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;
+               background:rgba(0,0,0,.65);color:#fff;font-size:10px;line-height:16px;text-align:center;
+               display:none}
+  .refit:hover .rdel{display:block}
+  /* ---- 收款视图 ---- */
+  .paytabs{display:flex;gap:8px;margin-bottom:10px}
+  .paytabs span{flex:1;text-align:center;padding:9px 0;border:1px solid var(--line);border-radius:10px;
+                cursor:pointer;font-size:13px;color:var(--sub)}
+  .paytabs span.on{border-color:var(--cy);color:var(--cy);background:rgba(49,225,207,.08)}
+  .qrbox{text-align:center;padding:6px 0 2px}
+  .qrbox img{width:190px;height:190px;object-fit:contain;border-radius:12px;border:1px solid var(--line);
+             background:#fff;padding:6px}
+  .qrbox .qrhint{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.7}
+  .qrbox .qrhint b{color:var(--gold)}
+  .paymeta{font-size:11.5px;color:var(--sub);margin-top:8px;text-align:center}
+  .paymeta b{color:var(--cy)}
+  .ordrow{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--sub);
+          padding:5px 0;border-top:1px dashed var(--line)}
+  .ordrow b{color:var(--fg)}
+  .shotcard{
+    position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    background:linear-gradient(160deg,rgba(49,225,207,.08),rgba(227,193,100,.05));
+    aspect-ratio:4/3;display:grid;place-items:center;
+  }
+  .shotcard .ph{
+    font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--dim);text-align:center;line-height:2;
+  }
+  .shotcard .ph b{display:block;color:var(--cy);font-size:13px;letter-spacing:4px}
+
+  /* ---------- 套餐 ---------- */
+  .pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin-top:4px}
+  .pkg{
+    position:relative;border:1px solid var(--line);border-radius:13px;padding:14px;cursor:pointer;
+    background:linear-gradient(180deg,rgba(17,23,34,.9),rgba(10,14,21,.9));transition:.16s;text-align:left;
+  }
+  .pkg:hover{border-color:rgba(49,225,207,.5);transform:translateY(-2px)}
+  .pkg.on{border-color:rgba(227,193,100,.7);box-shadow:0 0 0 1px rgba(227,193,100,.2)}
+  .pkg .pn{font-size:13px;font-weight:700;letter-spacing:.4px;display:flex;align-items:center;gap:7px}
+  .pkg .pn s{text-decoration:none;font-family:var(--mono);font-size:9px;letter-spacing:.6px;
+    border:1px solid rgba(227,193,100,.5);color:var(--gold);border-radius:5px;padding:1px 6px}
+  .pkg .pp{font-family:var(--mono);font-size:26px;color:var(--gold);line-height:1.2;margin:8px 0 2px}
+  .pkg .pp i{font-style:normal;font-size:13px;opacity:.8;margin-right:1px}
+  .pkg .pc{font-family:var(--mono);font-size:11.5px;color:var(--cy)}
+  .pkg .pd{font-size:11.5px;color:var(--dim);margin-top:7px;line-height:1.6}
+  .pkg .pb{margin-top:10px;font-size:11.5px;color:var(--sub)}
+  .paynote{font-size:12px;color:var(--sub);line-height:1.8;margin-top:12px}
+  .paynote b{color:var(--gold)}
+
+  /* 预览区里的迷你进度（和控制台那条同步，眼睛不用往下找） */
+  .prog.mini{margin-top:10px}
+  .prog.mini .bar{height:9px}
+  .prog.mini .pnum{font-size:17px}
+  .prog.mini .pticks{height:4px}
+  .cmp .wait{
+    position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;
+    gap:10px;background:rgba(4,7,11,.72);backdrop-filter:blur(2px);z-index:3;
+  }
+  .cmp.run .wait{display:flex}
+  .cmp .wait .ring{
+    width:42px;height:42px;border-radius:99px;border:2px solid rgba(49,225,207,.18);
+    border-top-color:var(--cy);animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .cmp .wait .wt{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;color:var(--cy)}
+
+  /* 分享 / 保存 */
+  .acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+  .acts .btn.ghost{padding:7px 12px;font-size:12px}
+  .sharemenu{
+    position:absolute;right:0;top:calc(100% + 6px);z-index:40;min-width:168px;display:none;
+    background:rgba(12,17,25,.98);border:1px solid var(--line2);border-radius:11px;padding:6px;
+    box-shadow:0 24px 60px -24px #000;
+  }
+  .sharemenu.on{display:block}
+  .sharemenu a,.sharemenu div{
+    display:block;padding:8px 10px;border-radius:8px;color:var(--sub);font-size:12.5px;
+    text-decoration:none;cursor:pointer;
+  }
+  .sharemenu a:hover,.sharemenu div:hover{background:rgba(49,225,207,.09);color:var(--cy)}
+  .savehint{font-size:11px;color:var(--dim);line-height:1.6}
+
+  /* ---------- 登录 / 充值弹窗 ---------- */
+  .modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;
+    background:rgba(3,5,8,.9);backdrop-filter:blur(8px);padding:18px}
+  .modal.on{display:flex}
+  .mbox{width:100%;max-width:420px;max-height:92vh;overflow:auto;
+    background:linear-gradient(180deg,#111722,#0b0f16);border:1px solid var(--line2);
+    border-radius:16px;padding:20px;box-shadow:0 40px 120px -30px #000}
+  .mbox h3{margin:0 0 4px;font-size:16px;letter-spacing:.4px}
+  .mbox .sub{color:var(--sub);font-size:12px;line-height:1.7;margin:0 0 16px}
+  .mbox label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:1.6px;
+    color:var(--dim);margin:12px 0 6px}
+  .mbox input{width:100%;background:#0a0f16;border:1px solid var(--line2);border-radius:9px;
+    color:var(--fg);padding:11px 12px;font:inherit;font-size:13.5px;outline:none}
+  .mbox input:focus{border-color:rgba(49,225,207,.6);box-shadow:0 0 0 3px rgba(49,225,207,.08)}
+  .mbox .errline{color:var(--err);font-size:12px;min-height:18px;margin-top:10px}
+  .mbox .foot{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}
+  .mbox .foot .btn{flex:1}
+  .tabs{display:flex;gap:6px;background:#0a0f16;border:1px solid var(--line);border-radius:99px;padding:4px;margin-bottom:6px}
+  .tabs div{flex:1;text-align:center;font-size:12.5px;padding:7px;border-radius:99px;cursor:pointer;color:var(--sub)}
+  .tabs div.on{background:rgba(49,225,207,.12);color:var(--cy);font-weight:600}
+
+  /* ---------- 页脚 ---------- */
+  footer{
+    max-width:1240px;margin:0 auto;padding:26px 20px 40px;color:var(--dim);font-size:12px;line-height:1.9;
+    border-top:1px solid var(--line);position:relative;z-index:1;
+  }
+  footer .fl{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  footer a{color:var(--sub);text-decoration:none}
+  footer a:hover{color:var(--cy)}
+  footer .fl b{color:var(--cy);font-weight:600}
+
+  /* ---------- 移动端 ---------- */
+  @media(max-width:640px){
+    .hero h1{font-size:23px}
+    .hero p{font-size:12.5px}
+    .hwrap{gap:8px;padding:10px 12px}
+    .brand b{font-size:14px;letter-spacing:1.6px}
+    .brand small{font-size:8.5px}
+    .hbar{gap:6px;width:100%}
+    .pill{font-size:10px;padding:5px 9px}
+    .drop{min-height:230px}
+    .cmp{min-height:230px}
+    .gobar{flex-direction:column;align-items:stretch}
+    .gobar .btn{width:100%;padding:14px}
+    .gobar .btn.ghost{width:100%}
+    .stdout{min-width:0}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;max-height:none}
+    .picked .spec{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .picked .spec i.w2,.picked .spec i.wide{grid-column:span 2}
+    .picked .pthumb{width:58px;height:58px}
+    .ct{width:86px}.ct img{height:82px}
+    .hist img{width:56px;height:56px}
+    .pkgs{grid-template-columns:1fr 1fr}
+    .pkg .pp{font-size:22px}
+    .prog.mini .pnum{font-size:15px}
+    .pvfoot{padding:10px 12px}
+    .pvact{width:100%}
+    .pvact .btn{flex:1;padding:11px 8px;font-size:12px}
+    main{padding-bottom:96px}
+    footer{padding:20px 12px 34px}
+  }
+  /* 手机底部常驻的开始按钮：滑到下面选发型时不用滚回去 */
+  #mbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;align-items:center;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(8,11,17,.96);border-top:1px solid var(--line);backdrop-filter:blur(10px);
+  }
+  #mbar.on{display:flex}
+  #mbar .mtxt{flex:1;min-width:0;font-size:11.5px;color:var(--sub);line-height:1.5}
+  #mbar .mtxt b{color:var(--cy);font-family:var(--mono)}
+  #mbar .btn{padding:11px 18px;font-size:13.5px}
+  @media(min-width:641px){#mbar{display:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <div class="mark">微</div>
+      <div>
+        <b>微粒 · WEILI</b>
+        <small>AI HAIRSTYLE ENGINE</small>
+      </div>
+    </div>
+    <div class="hbar">
+      <span class="pill" id="api">CONNECTING…</span>
+      <span class="pill credit click hidden" id="credit" title="点一下去充值">◈ <b>0</b> 积分</span>
+      <span class="pill hidden" id="quota" title="剩余免费次数">免费 0 次</span>
+      <span class="acct" id="acct"></span>
+      <span class="pill click hidden" id="resetq" title="本地自用：今天所有人次数清零">重置额度 ↺</span>
+      <a class="pill gold hidden" id="adminLink" href="/admin">⚙ 后台</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ 首屏 ============ -->
+  <div class="hero">
+    <div>
+      <h1>上传一张照片，<br>先看看自己换这个发型长什么样</h1>
+      <p>微粒 AI 发型实验室：真人发型库（含产品编号 / 长度 / 卷度 / 发量 / 实拍图），
+         云端图像大模型整头重画，脸还是你的脸，发型换成选中的那一款。可换发色、可存相册、可一键分享。</p>
+      <div class="feat">
+        <i><b id="featCnt">259</b>款真人发型</i>
+        <i><b>AI</b>整头重画</i>
+        <i><b>换发色</b>随心配</i>
+        <i><b>手机</b>也能用</i>
+      </div>
+      <div class="cta">
+        <button class="btn" id="heroGo">立即体验 →</button>
+        <button class="btn ghost" id="heroPkg">会员与积分</button>
+      </div>
+      <div class="ctanote">注册即赠 <b>3</b> 次 AI 换发体验 · 不满意不扣积分</div>
+    </div>
+    <div class="shotcard">
+      <div class="ph">
+        <b>WEILI AI</b>
+        上传 · 选款 · 换发色 · 出图<br>
+        <span style="opacity:.6">RESULT PREVIEW</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="work">
+    <section class="card">
+      <div class="chead">
+        <span class="idx">01</span><b>本人照片</b><em>正脸 · 光线均匀 · 头发不挡脸</em>
+      </div>
+      <div class="drop" id="drop">
+        <div class="up">＋</div>
+        <div class="t1" id="ph">点击选择 / 拖入图片</div>
+        <div class="t2">JPG · PNG · WEBP</div>
+        <img id="prev" class="hidden">
+      </div>
+      <input type="file" id="file" accept="image/*" class="hidden">
+      <div class="rowline"><span class="hint" id="faceInfo"></span></div>
+    </section>
+
+    <section class="card">
+      <div class="chead">
+        <span class="idx">02</span><b>效果预览</b><em>拖动分割线对比原图</em>
+        <div class="right" style="position:relative">
+          <a id="dl" class="dl hidden" download>下载 ↓</a>
+          <button class="btn ghost hidden" id="shareBtn" style="padding:4px 10px;font-size:11.5px">分享</button>
+          <button class="btn ghost hidden" id="saveBtn" style="padding:4px 10px;font-size:11.5px">存相册</button>
+          <div class="sharemenu" id="shareMenu">
+            <div data-s="sys">系统分享（微信 / 微博 / 相册）</div>
+            <a data-s="weibo" target="_blank" rel="noopener">微博</a>
+            <a data-s="qzone" target="_blank" rel="noopener">QQ 空间</a>
+            <a data-s="x" target="_blank" rel="noopener">X / Twitter</a>
+            <div data-s="copy">复制图片链接</div>
+            <div data-s="wx">微信：存图后发</div>
+          </div>
+        </div>
+      </div>
+      <div class="cmp" id="cmp">
+        <img id="before" class="hidden"><img id="after" class="after hidden">
+        <div id="tip" class="muted" style="text-align:center;padding:60px 20px;line-height:2">
+          生成结果会出现在这里<br>
+          <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;opacity:.7">SELECT A STYLE · RUN</span>
+        </div>
+        <input type="range" min="0" max="100" value="50" id="slider" class="hidden">
+        <div class="wait"><div class="ring"></div><div class="wt" id="wt">RENDERING</div></div>
+      </div>
+      <!-- 预览区里也放一条进度：生成时眼睛在这一块，不用往下找 -->
+      <div class="prog mini" id="progbox2">
+        <div class="pgh">
+          <span class="pstage"><em></em><span id="pstage2">STANDBY · 待命</span><b class="ptime" id="ptime2"></b></span>
+          <span class="pnum"><b id="pnum2">0</b><i>%</i></span>
+        </div>
+        <div class="bar"><i id="prog2"><span class="sweep"></span></i></div>
+        <div class="pticks"></div>
+      </div>
+      <div class="rowline"><span class="hint" id="status">就绪</span></div>
+      <div class="acts"><span class="savehint hidden" id="saveHint">手机上：长按效果图 →「存储到照片 / 保存图片」；电脑点「下载 ↓」</span></div>
+      <div id="cands" class="cands"></div>
+    </section>
+  </div>
+
+  <section class="card console">
+    <div class="chead"><span class="idx">03</span><b>生成控制台</b><em>选中的款式 / 模型 / 张数</em></div>
+
+    <div class="picked" id="picked">
+      <div class="pempty">还没选发型 · 点上面任意一款（会同时弹出实拍图）</div>
+    </div>
+
+    <div class="ctrlgrid">
+      <div class="field adminonly hidden" id="fModel">
+        <label>MODEL <span>生图模型（管理员）</span></label>
+        <select class="sel" id="model"></select>
+        <div class="hint" id="modelHint"></div>
+      </div>
+      <div class="field">
+        <label>BATCH <span>一次出几张</span></label>
+        <div class="chips" id="ncand"></div>
+        <div class="hint" id="nHint">多张会自动挑脸最像、发际线最自然的一张</div>
+      </div>
+      <div class="field adminonly hidden" id="fProv">
+        <label>ENGINE <span>出图后端（管理员）</span></label>
+        <div class="prov" id="prov"></div>
+      </div>
+    </div>
+
+    <div class="colorrow">
+      <div class="cl">
+        <label>HAIR COLOR <span>换发色</span></label>
+        <div class="hint" id="colorHint">默认跟随款式主色</div>
+      </div>
+      <div class="chips" id="colors"></div>
+    </div>
+
+    <div class="hint adminonly hidden" id="provOff" style="margin-top:10px"></div>
+
+    <!-- 进度条就放在「开始换发」上面：点完按钮眼睛不用往别处找 -->
+    <div class="prog" id="progbox">
+      <div class="pgh">
+        <span class="pstage"><em></em><span id="pstage">STANDBY · 待命</span><b class="ptime" id="ptime"></b></span>
+        <span class="pnum"><b id="pnum">0</b><i>%</i></span>
+      </div>
+      <div class="bar"><i id="prog"><span class="sweep"></span></i></div>
+      <div class="pticks"></div>
+    </div>
+
+    <div class="gobar">
+      <div class="stdout" id="console">SYSTEM READY</div>
+      <button class="btn ghost" id="pvOpen" disabled>看实拍</button>
+      <button class="btn" id="go" disabled>先上传照片</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="chead">
+      <span class="idx">04</span><b>发型库</b><em id="cnt"></em>
+      <div class="right">
+        <input class="search" id="q" placeholder="搜编号 / 名称…" autocomplete="off">
+        <button class="btn ghost" id="refBtn" style="padding:5px 10px;font-size:11.5px;white-space:nowrap">＋ 我的参考图</button>
+        <input type="file" id="refFile" accept="image/*" class="hidden">
+      </div>
+    </div>
+    <div class="tags" id="tags"></div>
+    <div id="refBox" class="hidden"></div>
+    <div class="grid" id="grid"></div>
+    <div class="gate hidden" id="gateLib">
+      <div class="gi">◈</div>
+      <div class="gt">发型库共 <b id="gateCnt">259</b> 款真人发型</div>
+      <div class="gs">登录后解锁全部款式与实拍图</div>
+      <button class="btn" data-openauth>登录 / 注册</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="histCard" style="margin-top:16px">
+    <div class="chead">
+      <span class="idx">05</span><b>最近生成</b><em id="histTip" class="hidden"></em>
+      <div class="right"><button class="btn ghost" id="histRefresh" style="padding:5px 10px;font-size:11.5px">刷新</button></div>
+    </div>
+    <div class="hist" id="hist"><span class="muted">还没有记录</span></div>
+  </section>
+</main>
+
+<footer>
+  <div><b style="color:var(--cy)">微粒 · WEILI</b> · AI 发型预演 · 结果仅供参考，实际效果以发型师沟通为准</div>
+  <div class="fl">
+    <a href="#" id="fPkg">会员与积分</a><span>·</span>
+    <a href="#" id="fGo">开始使用</a><span>·</span>
+    <span id="ftKf"></span><span>·</span>
+    <span id="ftCopy">© 2026 微粒</span>
+  </div>
+  <div>上传的照片仅用于本次生成，30 天后自动清理；不会用于任何其他用途。</div>
+</footer>
+
+<!-- 手机底部常驻按钮 -->
+<div id="mbar">
+  <div class="mtxt" id="mbarTxt">选一款发型就能开始</div>
+  <button class="btn" id="mgo" disabled>开始换发</button>
+</div>
+
+<div class="toast" id="toast"><span id="toastText"></span><b id="toastAct">去控制台 ↑</b></div>
+
+<!-- 登录 / 注册 -->
+<div class="modal" id="authModal">
+  <div class="mbox">
+    <h3 id="authTitle">登录微粒</h3>
+    <p class="sub">注册即赠 <b style="color:var(--gold)">3 次</b> AI 换发体验，手机号可选填。</p>
+    <div class="tabs">
+      <div class="on" data-t="login">登录</div>
+      <div data-t="reg">注册</div>
+    </div>
+    <label>账号</label>
+    <input id="au" placeholder="手机号 / 用户名" autocomplete="username">
+    <label>密码</label>
+    <input id="ap" type="password" placeholder="至少 6 位" autocomplete="current-password">
+    <div class="errline" id="authErr"></div>
+    <div class="foot">
+      <button class="btn" id="authOk">登录</button>
+      <button class="btn ghost" id="authClose">先随便看看</button>
+    </div>
+  </div>
+</div>
+
+<!-- 会员与积分 -->
+<div class="modal" id="payModal">
+  <div class="mbox" style="max-width:600px">
+    <h3>会员与积分</h3>
+    <p class="sub">1 元 = 10 积分 · 生成一次 <b style="color:var(--gold)" id="payPer">8</b> 积分（可换发色，出多张按张计）。</p>
+    <div class="pkgs" id="payPkgs"></div>
+    <div id="payView" class="hidden" style="margin-top:14px">
+      <div class="paytabs">
+        <span class="on" data-w="wx">微信支付</span><span data-w="ali">支付宝</span>
+      </div>
+      <div class="qrbox">
+        <img id="payQr" alt="收款码">
+        <div class="qrhint" id="payHint"></div>
+      </div>
+      <div class="paymeta">订单号 <span class="mono" id="payOid"></span> · 客服微信 <b id="payKf"></b></div>
+    </div>
+    <div class="errline" id="payErr"></div>
+    <div class="foot">
+      <button class="btn" id="payOk">去支付 →</button>
+      <button class="btn ghost hidden" id="payClaim">我已完成转账</button>
+      <button class="btn ghost" id="payClose">关闭</button>
+    </div>
+    <div class="paynote" id="payNote">转账后点「我已完成转账」，客服核对收款后积分自动到账，一般几分钟内。</div>
+    <div id="myOrders"></div>
+  </div>
+</div>
+
+<div id="pv">
+  <div class="pvbox">
+    <div class="pvhead">
+      <b id="pvTitle">发型实拍</b>
+      <span class="x" id="pvClose">✕</span>
+    </div>
+    <div class="pvbody">
+      <div class="pvleft">
+        <div class="pvmain" id="pvMain"></div>
+        <div class="pvmeta" id="pvMeta"></div>
+      </div>
+      <div class="pvside" id="pvSide"></div>
+    </div>
+    <div class="pvfoot">
+      <span class="muted" id="pvInfo"></span>
+      <div class="pvact">
+        <button class="btn ghost" id="pvPrev" title="上一款（← 也能翻图）">‹ 上一款</button>
+        <button class="btn ghost" id="pvNext" title="下一款">下一款 ›</button>
+        <button class="btn ghost" id="pvUse">用这款 · 关闭</button>
+        <button class="btn" id="pvGo">用这款并生成 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const OA = localStorage.getItem('openid') || (() => {
+  const v = 'demo_' + Math.random().toString(36).slice(2, 10);
+  localStorage.setItem('openid', v); return v;
+})();
+const H = {'openid': OA};
+// 登录态：token 存本地，所有请求都带上；没登录也能浏览，点生成时才要求登录
+let TOKEN = localStorage.getItem('token') || '';
+let USER = null, IS_ADMIN = false, BILL = null, PKGS = [];
+
+function setToken(t, u) {
+  TOKEN = t || ''; USER = u || null;
+  if (t) localStorage.setItem('token', t); else localStorage.removeItem('token');
+  IS_ADMIN = !!USER && USER.role === 'admin';
+  renderAcct();
+}
+
+function authHeaders() {
+  return TOKEN ? {'Authorization': 'Bearer ' + TOKEN} : {};
+}
+
+// ---- 后端地址：config.js → 同源 → 本机 8899 → 8897 ----
+// GitHub Pages 和后端不同域，必须靠 config.js 指过去；本地留空自动探测。
+let API = (typeof window.API_BASE === 'string' && !window.API_BASE.startsWith('__'))
+  ? window.API_BASE.replace(/\/+$/, '')
+  : '';
+// 候选顺序：config.js 指定的 → 同源 → 本机两个端口。''（同源）必须保留，过滤掉就退回不了本地了。
+const CANDS = [...new Set([API, '', 'http://127.0.0.1:8899', 'http://localhost:8899', 'http://127.0.0.1:8897'])];
+async function pickBase() {
+  for (const b of CANDS) {
+    try {
+      const r = await fetch(b + '/api/health', {cache: 'no-store'});
+      if (r.ok) { API = b; $('#api').textContent = 'ONLINE'; $('#api').classList.add('ok'); return true; }
+    } catch (e) {}
+  }
+  $('#api').textContent = 'OFFLINE';
+  $('#api').classList.add('err');
+  return false;
+}
+
+async function j(url, opt = {}) {
+  opt.headers = Object.assign({}, H, authHeaders(), opt.headers || {});
+  if (opt.body && !(opt.body instanceof FormData)) {
+    opt.headers['Content-Type'] = 'application/json';
+    opt.body = JSON.stringify(opt.body);
+  }
+  let r;
+  try {
+    r = await fetch(API + url, opt);
+  } catch (e) {
+    throw new Error('连不上后端 ' + (API || location.origin) + '，先跑 start.bat（默认 8899）');
+  }
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw Object.assign(new Error(d.error || d.detail || ('HTTP ' + r.status)),
+                                 {data: d, status: r.status});
+  return d;
+}
+
+const PNAME = {mock: '占位渲染', apimart: '云端 APIMart', gemini: '云端 Gemini', openai: '云端 OpenAI', comfy: '本地 ComfyUI'};
+
+/* ================= 账号 / 登录 / 积分 ================= */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+function renderAcct() {
+  const box = $('#acct');
+  if (USER) {
+    box.innerHTML = `<span class="pill admin ${IS_ADMIN ? '' : 'hidden'}">管理员</span>` +
+      `<span class="who">hi <b>${esc(USER.username)}</b></span>` +
+      `<button class="btn ghost" id="logoutBtn" style="padding:5px 10px;font-size:11.5px">退出</button>`;
+    $('#logoutBtn').onclick = () => { setToken('', null); location.reload(); };
+  } else {
+    box.innerHTML = `<button class="btn ghost" id="loginBtn" style="padding:6px 14px;font-size:12px">登录 / 注册</button>`;
+    $('#loginBtn').onclick = () => openAuth('login');
+  }
+  // 普通用户只看得到：选款 / 发色 / 出几张 / 生成；模型和后端是管理员的
+  $$('.adminonly').forEach(el => el.classList.toggle('hidden', !IS_ADMIN));
+  $('#adminLink').classList.toggle('hidden', !IS_ADMIN);
+  $('#resetq').classList.toggle('hidden', !IS_ADMIN);
+  $('#histTip').textContent = IS_ADMIN ? '全部用户记录' : '';
+  $('#histTip').classList.toggle('hidden', !IS_ADMIN);
+  renderBal();
+  renderGates();
+}
+
+/* 访客：发型库加遮罩，生成记录整块隐藏；登录后都出现 */
+function renderGates() {
+  const on = !USER;
+  $('#gateLib').classList.toggle('hidden', !on);
+  $('#histCard').classList.toggle('hidden', on);
+  $('#gateCnt').textContent = STYLES.length || 259;
+}
+$$('.gate [data-openauth]').forEach(b => b.onclick = () => openAuth('login'));
+
+function renderBal() {
+  const c = USER ? USER.credits : 0, f = USER ? USER.free_left : 0;
+  const per = (BILL && BILL.gen_credits) || 8;
+  $('#credit').classList.toggle('hidden', !USER);
+  $('#credit').innerHTML = `◈ <b>${c}</b> 积分${f ? ` <span style="opacity:.75">+ 免费${f}次</span>` : ''}`;
+  $('#quota').classList.toggle('hidden', !USER || !f);
+  $('#quota').textContent = `免费 ${f} 次`;
+  $('#quota').classList.toggle('ok', f > 0);
+  $('#payPer').textContent = per;
+}
+
+async function loadMe() {
+  try {
+    const d = await j('/api/auth/me');
+    if (TOKEN && d.user) { USER = d.user; IS_ADMIN = USER.role === 'admin'; }
+    else { USER = null; IS_ADMIN = false; if (TOKEN) setToken('', null); }
+    BILL = d.billing || BILL;
+    PKGS = (d.billing && d.billing.packages) || PKGS;
+  } catch (e) { /* 后端没开：就当游客 */ }
+  if (!IS_ADMIN) {
+    try {
+      const q = await j('/api/quota');
+      if (q.unlimited) { $('#quota').classList.remove('hidden'); $('#quota').textContent = 'UNLIMITED（本机）'; }
+    } catch (e) {}
+  }
+  renderAcct(); renderPkgs(); renderN();
+}
+
+/* ---- 登录 / 注册弹窗 ---- */
+function openAuth(tab) {
+  $('#authModal').classList.add('on');
+  switchAuth(tab || 'login');
+}
+function switchAuth(tab) {
+  $$('#authModal .tabs div').forEach(d => d.classList.toggle('on', d.dataset.t === tab));
+  $('#authTitle').textContent = tab === 'reg' ? '注册微粒' : '登录微粒';
+  $('#authOk').textContent = tab === 'reg' ? '注册并送 3 次' : '登录';
+  $('#authErr').textContent = '';
+}
+$$('#authModal .tabs div').forEach(d => d.onclick = () => switchAuth(d.dataset.t));
+$('#authClose').onclick = () => $('#authModal').classList.remove('on');
+$('#authModal').onclick = e => { if (e.target.id === 'authModal') $('#authModal').classList.remove('on'); };
+
+async function doAuth() {
+  const tab = ($$('#authModal .tabs div').find(d => d.classList.contains('on')) || {}).dataset || {t: 'login'};
+  const u = $('#au').value.trim(), p = $('#ap').value;
+  if (!u) return $('#authErr').textContent = '填一下账号';
+  if (p.length < 6) return $('#authErr').textContent = '密码至少 6 位';
+  $('#authOk').disabled = true;
+  try {
+    const d = await j(tab.t === 'reg' ? '/api/auth/register' : '/api/auth/login',
+                      {method: 'POST', body: {username: u, password: p}});
+    setToken(d.token, d.user); BILL = d.billing || BILL;
+    PKGS = (d.billing && d.billing.packages) || PKGS;
+    $('#authModal').classList.remove('on');
+    $('#ap').value = '';
+    renderPkgs(); renderN();
+    setConsole(`已登录：${esc(d.user.username)} · 免费 ${d.user.free_left} 次 + ${d.user.credits} 积分`);
+    loadHistory();
+  } catch (e) { $('#authErr').textContent = e.message; }
+  $('#authOk').disabled = false;
+}
+$('#authOk').onclick = doAuth;
+$('#ap').onkeydown = e => { if (e.key === 'Enter') doAuth(); };
+
+/* ---- 套餐 / 充值 ---- */
+function renderPkgs() {
+  const list = PKGS || [];
+  const one = p => `<div class="pkg" data-id="${p.id}">
+      <div class="pn">${esc(p.name)}${p.tag ? `<s>${esc(p.tag)}</s>` : ''}</div>
+      <div class="pp"><i>¥</i>${p.price}</div>
+      <div class="pc">${p.credits} 积分 · 约 ${p.gens} 次</div>
+      <div class="pd">${esc(p.desc || '')}</div>
+      <div class="pb">均价 <b style="color:var(--cy)">¥${p.per}</b>/次${p.per < ((BILL && BILL.gen_credits || 8) / 10) ? ' · 比单买省' : ''}</div>
+    </div>`;
+  $('#payPkgs').innerHTML = list.length ? list.map(one).join('') : '';
+  $$('#payPkgs .pkg').forEach(el => el.onclick = () => {
+    $$('#payPkgs .pkg').forEach(o => o.classList.remove('on'));
+    el.classList.add('on'); PAY_PKG = el.dataset.id;
+  });
+}
+
+$('#heroPkg').onclick = () => { openPay(); };
+$('#heroGo').onclick = () => {
+  if (!USER) return openAuth('reg');
+  $('#drop').scrollIntoView({behavior: 'smooth', block: 'center'});
+};
+$('#fPkg').onclick = e => { e.preventDefault(); USER ? openPay() : openAuth('login'); };
+$('#fGo').onclick = e => { e.preventDefault(); $('#heroGo').click(); };
+
+/* ---------------- 会员与积分：经营码收款 ----------------
+   微信/支付宝经营码没有回调，流程：选套餐 → 下单 → 弹收款码 →
+   用户扫码转账 → 点「我已完成转账」→ 老板在后台核对后确认到账。 */
+let PAY_PKG = null, PAY_ORDER = null, PAY_WAY = 'wx', SITE = {};
+function payQrUrl() {
+  const s = SITE || {};
+  return PAY_WAY === 'wx' ? (s.wxpay_qr || '') : (s.alipay_qr || '');
+}
+let PAY_POLL = null;
+function stopPayPoll() { if (PAY_POLL) { clearInterval(PAY_POLL); PAY_POLL = null; } }
+function startPayPoll(oid) {
+  stopPayPoll();
+  let n = 0;
+  PAY_POLL = setInterval(async () => {
+    n++;
+    try {
+      const d = await j('/api/billing/order/' + oid);
+      if (d.paid) {
+        stopPayPoll();
+        if (d.user) { USER = d.user; renderBal(); renderAcct(); }
+        $('#payErr').style.color = 'var(--cy)';
+        $('#payErr').textContent = '支付成功，积分已到账！';
+        loadMyOrders(); refreshQuota();
+        setTimeout(() => {
+          $('#payModal').classList.remove('on');
+          resetPayView();
+          $('#payErr').style.color = '';
+          $('#payErr').textContent = '';
+        }, 1600);
+      } else if (n % 10 === 0) {
+        $('#payErr').textContent = '还在等支付结果…（已等 ' + n * 3 + ' 秒，付款后会自动到账）';
+      }
+    } catch {}
+  }, 3000);
+}
+function showPayView() {
+  const p = PAY_ORDER && PAY_ORDER.pay || {};
+  $('#payView').classList.remove('hidden');
+  $('#payOid').textContent = PAY_ORDER && PAY_ORDER.order ? PAY_ORDER.order.id : '';
+  $('#payKf').textContent = p.kf_wechat || SITE.kf_wechat || '（后台未填）';
+  const img = $('#payQr'), hint = $('#payHint');
+  if (p.mode === 'auto') {
+    // 真支付：后端已把 qr 画成图，扫码付完 notify 一到账前端自动收到
+    $$('#payModal .paytabs').forEach(el => el.style.display = p.kind === 'epay' ? '' : 'none');
+    img.style.display = '';
+    img.src = API + p.qr_url + '?t=' + Date.now();
+    hint.innerHTML = '打开' + (p.kind === 'wechat' ? '微信' : '支付宝') + '扫一扫 → 支付 <b>' +
+      p.amount + '</b> 元<br><span style="color:var(--cy)">付完自动到账，不用等客服确认</span>';
+    $('#payOk').classList.add('hidden');
+    $('#payClaim').classList.add('hidden');
+    $('#payErr').textContent = '';
+    if (PAY_ORDER.order) startPayPoll(PAY_ORDER.order.id);
+    return;
+  }
+  $$('#payModal .paytabs').forEach(el => el.style.display = '');
+  const qr = payQrUrl();
+  if (qr) {
+    img.src = API + qr + '?t=' + Date.now(); img.style.display = '';
+    hint.innerHTML = '截图保存二维码 → 打开' + (PAY_WAY === 'wx' ? '微信' : '支付宝') +
+      '「扫一扫」→ 相册识别 → 转账 <b>' + (p.amount != null ? p.amount : '') + '</b> 元';
+  } else {
+    img.style.display = 'none';
+    hint.innerHTML = '还没有收款码';
+    $('#payErr').textContent = '老板还没上传' + (PAY_WAY === 'wx' ? '微信' : '支付宝') +
+      '收款码，请加客服微信 ' + (p.kf_wechat || SITE.kf_wechat || '') + ' 人工充值';
+  }
+  $('#payOk').classList.add('hidden');
+  $('#payClaim').classList.remove('hidden');
+}
+function resetPayView() {
+  stopPayPoll();
+  $('#payView').classList.add('hidden');
+  $('#payOk').classList.remove('hidden');
+  $('#payClaim').classList.add('hidden');
+  $('#payErr').textContent = '';
+}
+async function loadMyOrders() {
+  if (!USER) { $('#myOrders').innerHTML = ''; return; }
+  try {
+    const d = await j('/api/billing/orders');
+    const rows = (d.orders || []).slice(0, 5).map(o => {
+      const st = {created: '待支付', checking: '确认中', paid: '<b style="color:var(--cy)">已到账</b>',
+                  closed: '已关闭'}[o.status] || o.status;
+      return `<div class="ordrow"><span>${o.id}</span><span>¥${(o.amount_cents / 100).toFixed(2)} · ${o.credits} 积分</span><span>${st}</span></div>`;
+    }).join('');
+    const led = (d.ledger || []).slice(0, 4).map(l =>
+      `<div class="ordrow"><span>${esc(l.reason || '')}</span><span>${l.delta > 0 ? '+' : ''}${l.delta}</span>` +
+      `<span>余 ${l.credits_after}</span></div>`).join('');
+    $('#myOrders').innerHTML = (rows ? '<div class="rhead" style="color:var(--sub);font-size:11px;margin:6px 0 2px">最近订单</div>' + rows : '') +
+      (led ? '<div class="rhead" style="color:var(--sub);font-size:11px;margin:8px 0 2px">积分明细</div>' + led : '');
+  } catch {}
+}
+function openPay(pkgId) {
+  if (!USER) return openAuth('login');
+  PAY_PKG = pkgId || (PKGS[0] && PKGS[0].id);
+  $$('#payPkgs .pkg').forEach(o => o.classList.toggle('on', o.dataset.id === PAY_PKG));
+  resetPayView();
+  $('#payModal').classList.add('on');
+  loadMyOrders();
+}
+$('#payClose').onclick = () => { stopPayPoll(); $('#payModal').classList.remove('on'); };
+$('#payModal').onclick = e => { if (e.target.id === 'payModal') { stopPayPoll(); $('#payModal').classList.remove('on'); } };
+$('#credit').onclick = () => openPay();
+$$('#payModal .paytabs span').forEach(el => el.onclick = async () => {
+  $$('#payModal .paytabs span').forEach(o => o.classList.remove('on'));
+  el.classList.add('on'); PAY_WAY = el.dataset.w;
+  // 易支付可以用户自选微信/支付宝：换通道要重新下单，不然二维码是上一个通道的
+  if (PAY_ORDER && PAY_ORDER.pay && PAY_ORDER.pay.mode === 'auto' && PAY_ORDER.pay.kind === 'epay') {
+    try {
+      PAY_ORDER = await j('/api/billing/order', {method: 'POST',
+        body: {package_id: PAY_PKG, channel: PAY_WAY === 'wx' ? 'wxpay' : 'alipay'}});
+      showPayView();
+    } catch (e) { $('#payErr').textContent = e.message; }
+    return;
+  }
+  if (PAY_ORDER) showPayView();
+});
+$('#payOk').onclick = async () => {
+  if (!PAY_PKG) return $('#payErr').textContent = '选一个套餐';
+  $('#payOk').disabled = true;
+  try {
+    PAY_ORDER = await j('/api/billing/order', {method: 'POST',
+      body: {package_id: PAY_PKG, channel: PAY_WAY === 'wx' ? 'wxpay' : 'alipay'}});
+    showPayView();
+    loadMyOrders();
+  } catch (e) { $('#payErr').textContent = e.message; }
+  $('#payOk').disabled = false;
+};
+$('#payClaim').onclick = async () => {
+  if (!PAY_ORDER || !PAY_ORDER.order) return;
+  $('#payClaim').disabled = true;
+  try {
+    await j(`/api/billing/order/${PAY_ORDER.order.id}/claim`, {method: 'POST', body: {}});
+    resetPayView();
+    $('#payErr').style.color = 'var(--cy)';
+    $('#payErr').textContent = '已提交！客服核对收款后积分自动到账，可加微信催单。';
+    setTimeout(() => { $('#payErr').textContent = ''; $('#payErr').style.color = ''; }, 6000);
+    loadMyOrders();
+  } catch (e) { $('#payErr').textContent = e.message; }
+  $('#payClaim').disabled = false;
+};
+
+/* ---------------- 站点信息（客服微信 / 版权）：后台可改 ---------------- */
+async function loadSite() {
+  try {
+    SITE = await j('/api/site');
+    $('#ftKf').textContent = SITE.kf_wechat ? '客服微信：' + SITE.kf_wechat : '';
+    $('#ftCopy').textContent = SITE.copyright || '© 2026 微粒';
+    document.title = document.title;     // 占位：品牌名后续也可走配置
+  } catch {}
+}
+let STYLES = [], TAG = '全部', Q = '', PICK = null, PHOTO = null, JOB = null, TIMER = null;
+let REF = null, REFS = [];      // 用户上传的参考图：选中后走 custom 分支，与发型库互不影响
+let RUNNING = false;            // 有任务在跑：stdout 留给进度，别被别的提示盖掉
+let COLOR = localStorage.getItem('color') || '';   // 换发色（空 = 跟随款式原色）
+let PALETTE = [];               // /api/styles 给的通用色号，和 backend prompts 同一份
+let PROVIDER = localStorage.getItem('provider') || '';
+let MODEL = localStorage.getItem('model') || '';
+let MODELS = [], MCACHE = false;
+let PINFO = {};
+let RESULT_URL = null;          // 当前结果图（分享 / 存相册用）
+
+/* ---------------- 额度 / 余额 ---------------- */
+function quotaBar(u) {
+  if (u) { USER = u; renderBal(); return; }
+  if (!USER) {
+    $('#quota').classList.remove('hidden');
+    $('#quota').textContent = '未登录';
+    return;
+  }
+  renderBal();
+}
+
+$('#resetq').onclick = async () => {
+  try {
+    const r = await j('/api/admin/quota', {method: 'POST',
+      headers: {'X-Admin-Token': 'dev-token'}, body: {all: true, reset: true}});
+    await refreshQuota();
+    setConsole('额度已重置（' + r.day + '）');
+  } catch (e) { setConsole('重置失败：' + e.message, true); }
+};
+
+/* ---------------- 后端 ---------------- */
+async function loadProviders() {
+  // 后端接了哪家云、缺哪个 KEY，这是老板的私事：只有管理员才拉这个接口，
+  // 普通用户连请求都不发（返回里带 reason，会泄露「未配置 XX_KEY」这类信息）。
+  if (!IS_ADMIN) return;
+  const d = await j('/api/providers');
+  PINFO = d.items;
+  if (!PROVIDER || !PINFO[PROVIDER] || !PINFO[PROVIDER].available) PROVIDER = d.default;
+  renderProviders();
+}
+
+function renderProviders() {
+  const on = Object.entries(PINFO).filter(([, v]) => v.available)
+    .sort((a, b) => (b[0] === PROVIDER ? 1 : 0) - (a[0] === PROVIDER ? 1 : 0));
+  const off = Object.entries(PINFO).filter(([, v]) => !v.available);
+  $('#prov').innerHTML = on.map(([k]) => {
+    const cls = k === PROVIDER ? ' on' : '';
+    return `<div class="pchip${cls}" data-k="${k}">${PNAME[k] || k}<small>READY</small></div>`;
+  }).join('') || '<div class="hint">没有可用的后端，先去后台填 KEY</div>';
+  // 不可用的后端不做成按钮：之前一排灰按钮点了没反应，容易误以为是坏的。
+  // 这里只留一行说明，指个路。
+  $('#provOff').innerHTML = off.length
+    ? '未接通：' + off.map(([k, v]) => `${PNAME[k] || k}（${v.reason || '缺 key'}）`).join(' · ') +
+      ' → <a href="/admin">后台填 KEY</a>'
+    : '';
+  // 只绑 #prov 里的 chip：之前是全页 .pchip，把「出几张」的点击也改成了 provider 逻辑，
+  // 点 1/2/4 张时 dataset.k 是 undefined → 抛错 → 看起来"点了没反应"。
+  $$('#prov .pchip').forEach(el => el.onclick = () => {
+    const k = el.dataset.k;
+    if (!PINFO[k] || !PINFO[k].available) return;
+    PROVIDER = k; localStorage.setItem('provider', k); renderProviders(); sync();
+  });
+}
+
+/* ---------------- 模型选择 ---------------- */
+async function loadModels() {
+  try {
+    const d = await j('/api/models');
+    MODELS = d.items || []; MCACHE = !!d.cached;
+    if (!MODEL && d.current) MODEL = d.current;
+    if (MODEL && !MODELS.includes(MODEL)) MODELS.unshift(MODEL);
+    renderModels(d.updated);
+  } catch (e) {
+    $('#modelHint').innerHTML = '<span class="err">模型清单读取失败：' + e.message + '</span>';
+  }
+}
+
+function renderModels(updated) {
+  const sel = $('#model');
+  sel.innerHTML = MODELS.map(m =>
+    `<option value="${m}" ${m === MODEL ? 'selected' : ''}>${m}</option>`).join('')
+    || `<option value="">（无）</option>`;
+  const hint = $('#modelHint');
+  if (!MODELS.length) {
+    hint.innerHTML = '还没拉到模型清单 · <a href="/admin">后台拉取</a>';
+    return;
+  }
+  hint.innerHTML = MCACHE
+    ? `${MODELS.length} 个出图模型${updated ? ' · 更新于 ' + updated : ''}`
+    : '只有当前模型 · <span style="color:var(--cy);cursor:pointer" id="mrefresh">刷新清单</span>（只读，不出图不扣费）';
+  const rf = $('#mrefresh');
+  if (rf) rf.onclick = refreshModels;
+}
+
+async function refreshModels() {
+  const hint = $('#modelHint');
+  hint.textContent = '拉取模型清单…（只读 /models，不出图，不扣费）';
+  try {
+    await j('/api/apimart/models');
+    await loadModels();
+  } catch (e) {
+    hint.innerHTML = '<span class="err">拉取失败：' + e.message + '</span>';
+  }
+}
+
+$('#model').onchange = e => {
+  MODEL = e.target.value;
+  localStorage.setItem('model', MODEL);
+  setConsole('模型已切换：' + MODEL);
+};
+
+/* ---------------- 发型库 ---------------- */
+async function loadStyles() {
+  const d = await j('/api/styles');
+  STYLES = d.items; PALETTE = d.palette || []; $('#cnt').textContent = `${d.total} 款`;
+  if (typeof renderGates === 'function') renderGates();
+  const fc = $('#featCnt'); if (fc) fc.textContent = d.total;
+  const tags = ['全部', ...new Set(STYLES.flatMap(s => s.tags || []))];
+  $('#tags').innerHTML = tags.map(t => `<div class="tag ${t === TAG ? 'on' : ''}" data-t="${t}">${t}</div>`).join('');
+  render(); renderPicked(); renderColors();
+}
+
+function lenOf(s) {
+  if (s.length) return s.length + 'cm';
+  const m = (s.name_en || '').match(/(\d+)\s*cm/i);
+  return m ? m[1] + 'cm' : '';
+}
+
+/* ---------------- 我的参考图 ----------------
+   在别处看到好看发型？截图传上来当参考。它只属于你，
+   不进发型库、不进搜索、别人看不到 —— 老板的款和用户的图两本账。 */
+async function loadRefs() {
+  try {
+    const d = await j('/api/ref/list');
+    REFS = d.items || [];
+    renderRefs();
+  } catch {}
+}
+function renderRefs() {
+  const box = $('#refBox');
+  box.classList.toggle('hidden', !REFS.length);
+  if (!REFS.length) return;
+  box.innerHTML = `
+    <div class="rhead"><span>我的参考图</span><span class="rh2">仅自己可见 · 生成时照这张图重画发型</span></div>
+    <div class="rrow">${REFS.map(r => `
+      <div class="refit ${REF && REF.id === r.id ? 'on' : ''}" data-id="${r.id}" title="${esc(r.name || '')}">
+        <span class="rtag">参考</span>
+        <img src="${API}${r.url}" loading="lazy">
+        <span class="rdel" data-del="${r.id}" title="删除">×</span>
+      </div>`).join('')}</div>`;
+  $$('#refBox .refit').forEach(el => el.onclick = e => {
+    const del = e.target.closest('[data-del]');
+    if (del) { delRef(del.dataset.del); return; }
+    const it = REFS.find(x => x.id === el.dataset.id);
+    if (it) selectRef(it);
+  });
+}
+function selectRef(item) {
+  REF = item; PICK = null;
+  render();                       // 发型库网格取消高亮
+  renderPicked(); renderColors(); sync();
+  const tip = '已选用参考图「' + (item.name || '未命名') + '」· 生成时照这张图重画发型';
+  if (RUNNING) showToast(tip); else setConsole(tip);
+  $('#picked').scrollIntoView({behavior: 'smooth', block: 'nearest'});
+}
+async function delRef(id) {
+  try {
+    await j('/api/ref/' + id, {method: 'DELETE'});
+    if (REF && REF.id === id) REF = null;
+    await loadRefs();
+    renderPicked(); sync();
+  } catch (e) { showToast('删除失败：' + e.message); }
+}
+$('#refBtn').onclick = () => { if (!USER) return openAuth('login'); $('#refFile').click(); };
+$('#refFile').onchange = async e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  $('#refBtn').textContent = '上传中…';
+  try {
+    const fd = new FormData();
+    fd.append('file', f);
+    const r = await fetch(API + '/api/ref/upload', {
+      method: 'POST', headers: {'Authorization': 'Bearer ' + TOKEN}, body: fd});
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.detail || ('HTTP ' + r.status));
+    await loadRefs();
+    selectRef(d.item);
+  } catch (err) { showToast('参考图上传失败：' + err.message); }
+  $('#refBtn').textContent = '＋ 我的参考图';
+  e.target.value = '';
+};
+
+function cardInfo(s) {
+  const bits = [];
+  if (s.style_code) bits.push(`<em>${s.style_code}</em>`);
+  else if (s.product_code) bits.push(`<em>${s.product_code}</em>`);
+  const L = lenOf(s);
+  if (L) bits.push(L);
+  if (s.curl) bits.push(s.curl);
+  const n = (s.images || []).length;
+  const out = bits.join(' · ') + (n ? ` · 实拍${n}` : '');
+  return out ? `<div class="cardinfo">${out}</div>` : '';
+}
+
+function metaHTML(s) {
+  const rows = [];
+  if (s.product_code) rows.push(['产品编号', s.product_code]);
+  if (s.style_code) rows.push(['款式编号', s.style_code]);
+  if (s.category) rows.push(['分类', s.category]);
+  const L = lenOf(s);
+  if (L) rows.push(['长度', L]);
+  if (s.curl) rows.push(['卷度', s.curl]);
+  if (s.volume) rows.push(['发量', s.volume]);
+  if (s.color) rows.push(['主色', s.color]);
+  if ((s.colors || []).length) rows.push(['可选色', s.colors.join(' / ')]);
+  if ((s.images || []).length) rows.push(['实拍图', s.images.map(x => x.label).join(' / ')]);
+  return rows.map(([k, v]) => `<i>${k}<b>${v}</b></i>`).join('');
+}
+
+/* 当前筛选结果：搜索词 + 分类标签，列表与弹窗的翻款共用一份 */
+function filtered() {
+  const kw = Q.trim().toLowerCase();
+  return STYLES.filter(s => {
+    if (TAG !== '全部' && !(s.tags || []).includes(TAG)) return false;
+    if (!kw) return true;
+    return [s.name, s.name_en, s.style_code, s.product_code, s.curl, s.category]
+      .filter(Boolean).join(' ').toLowerCase().includes(kw);
+  });
+}
+
+function render() {
+  const list = filtered();
+  $('#grid').innerHTML = list.map(s => {
+    const cv = s.cover_url
+      ? `<img class="cv" src="${API + s.cover_url}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'dot'}))">`
+      : `<div class="dot"><span>NO IMG</span></div>`;
+    const n = (s.images || []).length;
+    const pv = n ? `<span class="pv">◧ ${n}</span>` : '';
+    return `<div class="item ${PICK === s.id ? 'on' : ''}" data-id="${s.id}">${pv}${cv}<div class="nm">${s.name}</div>${cardInfo(s)}</div>`;
+  }).join('') || '<div class="muted" style="padding:18px">没有匹配的款式</div>';
+  // 点一下 = 选中这款（立刻同步到上面的生成控制台）+ 顺手弹出实拍图
+  $$('.item').forEach(el => el.onclick = () => {
+    selectStyle(el.dataset.id);
+    openPrev(el.dataset.id);
+  });
+}
+
+/* 色号 → 色块。前端只负责显示，真正的色名以 /api/styles 的 palette 为准 */
+const CHEX = {
+  '自然黑': '#1b191c', '自然色': '#241f20', '深棕': '#4a2f22', '浅棕': '#8a5a33',
+  '栗棕': '#6b3a25', '酒红': '#6d1f2b', '亚麻金': '#b98f52', '亚麻灰': '#9a9599',
+  '奶茶棕': '#a8825f', '冷棕': '#5b4a42', '焦糖': '#7d4a26'
+};
+
+function colorList() {
+  const s = STYLES.find(x => x.id === PICK);
+  const out = [];
+  if (s) [s.color, ...(s.colors || [])].forEach(c => c && !out.includes(c) && out.push(c));
+  (PALETTE || []).forEach(c => c && !out.includes(c) && out.push(c));
+  return out;
+}
+
+/* 换发色：只把色号发给后端，形态仍然全照参考图（prompt 里写死了"只改颜色不改形态"） */
+function renderColors() {
+  const list = colorList();
+  if (COLOR && !list.includes(COLOR)) COLOR = '';
+  const one = (k, name) => {
+    const dot = k ? (CHEX[k] || 'linear-gradient(135deg,#31e1cf,#e3c164)') : 'linear-gradient(135deg,#31e1cf,#e3c164)';
+    return `<div class="cchip ${COLOR === k ? 'on' : ''}" data-c="${k}"><s style="background:${dot}"></s>${name}</div>`;
+  };
+  $('#colors').innerHTML = one('', '跟随款式') + list.map(c => one(c, c)).join('');
+  $$('#colors .cchip').forEach(el => el.onclick = () => {
+    COLOR = el.dataset.c;
+    localStorage.setItem('color', COLOR);
+    renderColors(); renderPicked();
+    setConsole(COLOR ? '发色已切换：' + COLOR + '（长度/卷度/刘海仍照款式图1）' : '发色已切回款式原色');
+  });
+  const s = STYLES.find(x => x.id === PICK);
+  $('#colorHint').innerHTML = COLOR
+    ? `本次出图染 <b style="color:var(--gold)">${COLOR}</b>`
+    : (s && s.color ? `款式原色 <b style="color:var(--fg)">${s.color}</b>` : '默认跟随款式主色');
+}
+
+/* 上面那块「已选发型」：产品编号 / 款式编号 / 分类 / 长度 / 卷度 / 发量 / 主色 / 可选色 / 实拍图 全部摊开，
+   选完就在控制台顶上能核对，不用回头翻弹窗。 */
+function renderPicked() {
+  const box = $('#picked');
+  // 自定义参考图分支：不是发型库的款，信息就三行，别混进产品规格
+  if (REF) {
+    box.innerHTML = `
+      <div class="phead">
+        <div class="pthumb"><img src="${REF.url.startsWith('http') ? REF.url : API + REF.url}" alt=""></div>
+        <div class="pbody">
+          <div class="ptitle">${esc(REF.name || '我的参考图')}<span class="pcodepill" style="background:rgba(227,193,100,.15);color:var(--gold)">我的参考</span></div>
+          <div class="pcode">上传的参考图 · 生成时模型照着这张图重画发型</div>
+        </div>
+        <div class="pacts"><button class="btn ghost" id="refClear">换回款式</button></div>
+      </div>
+      <div class="spec">
+        <i class="w2"><u>来源</u><b>我上传的参考图</b></i>
+        <i class="w2"><u>本次发色</u><b>${COLOR ? `<span style="color:var(--gold)">${COLOR}</span>` : '参考图原色'}</b></i>
+        <i class="wide"><u>提示</u><b>不占用发型库款式 · 仅自己可见</b></i>
+      </div>`;
+    const b = $('#refClear');
+    if (b) b.onclick = () => { REF = null; renderPicked(); renderColors(); sync(); };
+    return;
+  }
+  const s = STYLES.find(x => x.id === PICK);
+  if (!s) {
+    box.innerHTML = `<div class="pempty">还没选发型 · 点上面任意一款（会同时弹出实拍图）</div>`;
+    return;
+  }
+  const cover = s.cover_url ? `<img src="${API + s.cover_url}" alt="">`
+    : `<div class="dot" style="width:100%;height:100%;border-radius:0;font-size:7.5px"><span>NO IMG</span></div>`;
+  const imgs = s.images || [];
+  const shots = imgs.length
+    ? imgs.map((x, i) => `<span class="shot" data-i="${i}"><s></s>${x.label}</span>`).join('')
+    : '<span style="color:#4d5a70;font-weight:400">内置样款，无实拍</span>';
+  // 内置的 100 款没有 product_code / category（是本地样款），用 tags 兜一下，别只剩一行空表
+  const tags = s.tags || [];
+  const curl = s.curl || (tags.find(t => /直发|卷|波浪|纹理|锡纸/.test(t)) || '');
+  const cat = s.category || tags.filter(t => !/^(男|女)$/.test(t)).join(' · ');
+  const code = s.style_code || s.product_code || '';
+  // 顺序照用户提的那份：产品编号 / 款式编号 / 分类 / 长度 / 卷度 / 发量 / 主色 / 可选色 / 实拍图
+  // （本次发色是这一单的选择，紧跟在主色后面；w2 是为了一会儿两列时不留下半格空位）
+  const rows = [
+    ['产品编号', s.product_code, 'mono'],
+    ['款式编号', code, 'mono'],
+    ['分类', cat, 'w2'],
+    ['长度', lenOf(s), ''],
+    ['卷度', curl, ''],
+    ['发量', s.volume, ''],
+    ['主色', s.color, ''],
+    ['本次发色', COLOR ? `<span style="color:var(--gold)">${COLOR}</span>` : (s.color ? s.color + '（原色）' : ''), 'w2'],
+    ['可选色', (s.colors || []).join(' / '), 'wide'],
+    ['实拍图', shots, 'wide'],
+  ].filter(([, v]) => v);
+
+  box.innerHTML = `
+    <div class="phead">
+      <div class="pthumb">${cover}</div>
+      <div class="pbody">
+        <div class="ptitle">${s.name}${code ? `<span class="pcodepill">${code}</span>` : ''}</div>
+        <div class="pcode">${[s.product_code, s.category].filter(Boolean).join(' · ') || s.id}</div>
+      </div>
+      <div class="pacts"><button class="btn ghost" id="pickPv">看实拍</button></div>
+    </div>
+    <div class="spec">${rows.map(([k, v, cls]) =>
+      `<i class="${cls || ''}"><u>${k}</u><b class="${cls === 'mono' ? 'mono' : ''}">${v}</b></i>`).join('')}</div>`;
+
+  const b = $('#pickPv');
+  if (b) b.onclick = () => openPrev(PICK);
+  // 实拍图那一行的小标签直接翻到对应那张（点「背面」就开到背面）
+  $$('#picked .shot').forEach(el => el.onclick = (e) => {
+    e.stopPropagation();
+    openPrev(PICK, parseInt(el.dataset.i, 10) || 0);
+  });
+}
+
+/* ---------------- 实拍弹窗 ---------------- */
+let PVCUR = null, PVI = 0;
+
+function openPrev(id, startAt) {
+  const s = STYLES.find(x => x.id === id);
+  if (!s) return;
+  PVCUR = s; PVI = 0;
+  const imgs = s.images || [];
+  $('#pvTitle').textContent = s.name + (s.style_code ? ' · ' + s.style_code : '');
+  $('#pvMeta').innerHTML = metaHTML(s);
+  const at = Math.max(0, Math.min(imgs.length - 1, startAt || 0));
+  $('#pvSide').innerHTML = imgs.map((x, i) =>
+    `<div class="pvth ${i === at ? 'on' : ''}" data-i="${i}"><img src="${API + x.url}" loading="lazy"><span>${x.label}</span></div>`
+  ).join('');
+  if (!imgs.length) {
+    $('#pvMain').innerHTML = `<div class="pvnone">这款是内置样款，没有实拍图。<br>官网那批款式带「主图 / 正面 / 侧面 / 背面」。</div>`;
+    $('#pvInfo').textContent = '';
+  } else {
+    showPrevImg(at);
+    $('#pvInfo').textContent = `实拍 ${imgs.length} 张　← → 翻转`;
+  }
+  $('#pv').classList.add('on');
+}
+
+function showPrevImg(i) {
+  const imgs = (PVCUR && PVCUR.images) || [];
+  if (!imgs.length) return;
+  PVI = (i + imgs.length) % imgs.length;
+  $('#pvMain').innerHTML = `<img src="${API + imgs[PVI].url}" alt="${imgs[PVI].label}">`;
+  $$('.pvth').forEach(el => el.classList.toggle('on', +el.dataset.i === PVI));
+}
+
+let PENDING_FLASH = false;      // 这次关弹窗要不要闪一下控制台
+let TTO = null;
+
+function pickName() {
+  if (REF) return '参考图 · ' + (REF.name || '未命名');
+  const s = STYLES.find(x => x.id === PICK);
+  return s ? s.name : (PICK || '');
+}
+
+/* 选中一款：卡片高亮 + 控制台顶部同步 + 开始按钮解锁，全走这一处 */
+function selectStyle(id) {
+  if (!id) return;
+  PICK = id;
+  REF = null;                     // 选了库里的款就退出参考图模式，两套来源不混
+  render(); renderPicked(); renderColors(); sync();
+  PENDING_FLASH = true;
+  const tip = '已选中「' + pickName() + '」· 已同步到上方生成控制台（还没开始生成）';
+  if (RUNNING) showToast(tip);      // 生成中别把 stdout 的进度盖掉
+  else setConsole(tip);
+}
+
+function showToast(msg) {
+  $('#toastText').textContent = msg;
+  $('#toast').classList.add('on');
+  clearTimeout(TTO);
+  TTO = setTimeout(() => $('#toast').classList.remove('on'), 4800);
+}
+
+/* 控制台那块闪两下；它要是被滚出屏幕了，就用右下角提示条指个路 */
+function flashPicked() {
+  const el = $('#picked');
+  if (!el) return;
+  el.classList.remove('flash');
+  void el.offsetWidth;
+  el.classList.add('flash');
+  const r = el.getBoundingClientRect();
+  const onScreen = r.top > 60 && r.bottom < (window.innerHeight - 20);
+  if (!onScreen) showToast('已选中「' + pickName() + '」· 已同步到生成控制台');
+}
+
+function closePrev() {
+  $('#pv').classList.remove('on');
+  if (PENDING_FLASH) { PENDING_FLASH = false; flashPicked(); }
+}
+
+$('#pvClose').onclick = closePrev;
+$('#pv').onclick = e => { if (e.target.id === 'pv') closePrev(); };
+$('#pvSide').onclick = e => { const th = e.target.closest('.pvth'); if (th) showPrevImg(+th.dataset.i); };
+$('#pvOpen').onclick = () => PICK && openPrev(PICK);
+/* 在弹窗里直接翻上一款 / 下一款：一套款式挨个比较时不用关窗再点 */
+function stepStyle(d) {
+  const list = filtered();
+  if (!list.length) return;
+  const i = list.findIndex(x => x.id === PICK);
+  const nx = list[(i + d + list.length) % list.length];
+  if (!nx) return;
+  selectStyle(nx.id);
+  openPrev(nx.id);
+}
+$('#pvPrev').onclick = () => stepStyle(-1);
+$('#pvNext').onclick = () => stepStyle(1);
+
+// 「用这款 · 关闭」：只选中，不花钱
+$('#pvUse').onclick = () => {
+  if (PVCUR) selectStyle(PVCUR.id);
+  closePrev();
+};
+// 「用这款并生成」：选中 + 关弹窗 + 真跑一单（要有本人照片）
+$('#pvGo').onclick = () => {
+  if (PVCUR) selectStyle(PVCUR.id);
+  const hasPhoto = !!PHOTO;
+  closePrev();
+  if (hasPhoto) { $('#go').click(); }
+  else setConsole('还差一张本人照片：先在左上角上传，再点「开始换发」', true);
+};
+
+$('#toast').onclick = () => {
+  $('#toast').classList.remove('on');
+  document.querySelector('.console').scrollIntoView({behavior: 'smooth', block: 'start'});
+  flashPicked();
+};
+document.addEventListener('keydown', e => {
+  if (!$('#pv').classList.contains('on')) return;
+  if (e.key === 'Escape') closePrev();
+  if (e.key === 'ArrowLeft') showPrevImg(PVI - 1);
+  if (e.key === 'ArrowRight') showPrevImg(PVI + 1);
+});
+
+/* ---------------- 状态与可用性 ---------------- */
+function setConsole(txt, isErr) {
+  const el = $('#console');
+  el.innerHTML = isErr ? `<span class="err">${txt}</span>` : txt;
+}
+
+function sync() {
+  const hasStyle = !!(PICK || REF);
+  const ok = !!(PHOTO && hasStyle);
+  const g = $('#go');
+  g.disabled = !ok;
+  g.textContent = !PHOTO ? '先上传照片' : (!hasStyle ? '先选一款发型' : '开始换发 →');
+  $('#pvOpen').disabled = !PICK;
+  $('#pvOpen').style.opacity = PICK ? '' : '.45';
+  // 手机底部那条：条件齐了才出现，文案直接说清"还差什么 / 要花多少"
+  const bar = $('#mbar');
+  $('#mgo').disabled = !ok;
+  if (RUNNING) { bar.classList.add('on'); $('#mbarTxt').innerHTML = '生成中…'; return; }
+  bar.classList.toggle('on', !!PHOTO && window.innerWidth <= 640);
+  const per = (BILL && BILL.gen_credits) || 8;
+  $('#mbarTxt').innerHTML = !PHOTO ? '先上传一张正脸照'
+    : (!hasStyle ? '选一款发型就能开始'
+      : (USER ? `本次约 <b>${per * NCAND}</b> 积分${USER.free_left >= NCAND ? '（用免费次数）' : ''}`
+              : '登录即赠 AI 换发体验'));
+  if (!USER) { $('#mgo').textContent = '登录开始'; }
+  else { $('#mgo').textContent = '开始换发'; }
+}
+window.addEventListener('resize', sync);
+
+$('#tags').onclick = e => {
+  const t = e.target.closest('.tag'); if (!t) return;
+  TAG = t.dataset.t;
+  $$('.tag').forEach(x => x.classList.toggle('on', x.dataset.t === TAG));
+  render();
+};
+
+$('#q').oninput = e => { Q = e.target.value; render(); };
+
+$('#drop').onclick = () => $('#file').click();
+$('#drop').ondragover = e => e.preventDefault();
+$('#drop').ondrop = e => { e.preventDefault(); if (e.dataTransfer.files[0]) upload(e.dataTransfer.files[0]); };
+$('#file').onchange = e => e.target.files[0] && upload(e.target.files[0]);
+
+async function upload(f) {
+  const fd = new FormData(); fd.append('file', f);
+  setConsole('上传中…');
+  try {
+    const d = await j('/api/upload', {method: 'POST', body: fd});
+    PHOTO = d.photo_id;
+    $('#prev').src = API + d.preview; $('#prev').classList.remove('hidden');
+    $('#ph').classList.add('hidden');
+    $('#faceInfo').textContent = d.face_found ? '✓ 已识别到人脸' : '未识别人脸，按人像居中构图（建议重拍正面照）';
+    setConsole('照片已就绪 · 选一款发型');
+    sync();
+  } catch (e) {
+    setConsole('上传失败：' + e.message, true);
+  }
+}
+
+/* ---------------- 张数 ---------------- */
+let NCAND = parseInt(localStorage.getItem('ncand') || '1', 10);
+function renderN() {
+  // 普通用户最多 2 张（每多一张就是多一次 API 钱），管理员可以 4 张
+  const opts = IS_ADMIN ? [1, 2, 4] : [1, 2];
+  if (!opts.includes(NCAND)) NCAND = 1;
+  $('#ncand').innerHTML = opts.map(n =>
+    `<div class="chip ${NCAND === n ? 'on' : ''}" data-n="${n}">${n} 张</div>`).join('');
+  // 同样限定在 #ncand 内，别和 provider chip 抢事件
+  $$('#ncand .chip').forEach(el => el.onclick = () => {
+    NCAND = parseInt(el.dataset.n, 10);
+    localStorage.setItem('ncand', NCAND); renderN(); sync();
+  });
+  const per = (BILL && BILL.gen_credits) || 8;
+  $('#nHint').innerHTML = `本次共 <b style="color:var(--cy)">${per * NCAND}</b> 积分` +
+    (NCAND > 1 ? '（多张会自动挑脸最像、发际线最自然的一张）' : '');
+  sync();
+}
+
+/* ---------------- 进度条 ----------------
+   云端一单 20~60 秒，中间只有 status 0/1 两种状态，光看滚动条会以为卡死。
+   这里按「经过的秒数」推阶段文案，百分比做缓动趋近 92%，永远不会到 100 也永远不会停，
+   看起来就是"一直在算"，而不是"停住了"。完成才 100% 并转金色。 */
+let PROG = 0, PROGT = null, PROG_T0 = 0;
+
+function setProg(pct, stage) {
+  PROG = Math.max(0, Math.min(100, pct));
+  // 控制台一条 + 预览区一条，两边永远同一个数
+  ['#prog', '#prog2'].forEach(s => { const el = $(s); if (el) el.style.width = PROG + '%'; });
+  ['#pnum', '#pnum2'].forEach(s => { const el = $(s); if (el) el.textContent = Math.round(PROG); });
+  if (stage) ['#pstage', '#pstage2'].forEach(s => { const el = $(s); if (el) el.textContent = stage; });
+  const wt = $('#wt'); if (wt) wt.textContent = stage ? stage.split(' · ')[0] : 'RENDERING';
+}
+
+function stageFor(t) {
+  if (t < 1.5) return 'VALIDATE · 校验输入与额度';
+  if (t < 5) return 'UPLOAD · 送图 + 提示词';
+  if (t < 13) return 'HAIR SYNTH · 云端重绘发型';
+  if (t < 26) return 'COMPOSITE · 合成回贴';
+  if (t < 45) return 'REFINE · 发丝细节收敛';
+  return 'DEEP RENDER · 慢工出细活，别关页面';
+}
+
+function mmss(sec) {
+  const m = Math.floor(sec / 60), t = Math.floor(sec % 60);
+  return String(m).padStart(2, '0') + ':' + String(t).padStart(2, '0');
+}
+
+function startProg() {
+  clearInterval(PROGT);
+  ['#progbox', '#progbox2'].forEach(s => {
+    const box = $(s); if (!box) return;
+    box.classList.remove('done'); box.classList.add('run');
+  });
+  $('#cmp').classList.add('run');            // 预览区盖一层"正在算"的蒙版
+  PROG_T0 = Date.now();
+  setProg(4, stageFor(0));
+  ['#ptime', '#ptime2'].forEach(s => { const el = $(s); if (el) el.textContent = '00:00'; });
+  PROGT = setInterval(() => {
+    const el = (Date.now() - PROG_T0) / 1000;
+    const mm = mmss(el);
+    ['#ptime', '#ptime2'].forEach(s => { const t = $(s); if (t) t.textContent = mm; });  // 走秒：让人确定它没卡死
+    if (PROG >= 92) return;
+    // 越接近 92 涨得越慢：真实进度未知时，匀速冲到 90% 反而更像骗人
+    PROG = Math.min(92, PROG + Math.max(0.3, (92 - PROG) * 0.04) + Math.random() * 0.35);
+    setProg(PROG, stageFor(el));
+  }, 620);
+}
+
+function finishProg(ok) {
+  clearInterval(PROGT); PROGT = null;
+  ['#progbox', '#progbox2'].forEach(s => {
+    const box = $(s); if (!box) return;
+    box.classList.remove('run');
+    if (ok) box.classList.add('done');
+  });
+  $('#cmp').classList.remove('run');
+  if (ok) setProg(100, 'DONE · 出图完成');
+  else setProg(0, 'FAILED · 已中断');
+  // 停两秒让人看清 100%，再复位，不然后面一单看起来像没开始
+  setTimeout(() => {
+    if (RUNNING) return;
+    ['#progbox', '#progbox2'].forEach(s => { const b = $(s); if (b) b.classList.remove('done'); });
+    setProg(0, 'STANDBY · 待命');
+    ['#ptime', '#ptime2'].forEach(s => { const t = $(s); if (t) t.textContent = ''; });
+  }, ok ? 2800 : 1600);
+}
+
+/* ---------------- 分享 / 存相册 ---------------- */
+function resultBlob() {
+  return fetch(API + (RESULT_URL.startsWith('http') ? RESULT_URL.slice(API.length) : RESULT_URL))
+    .then(r => r.blob());
+}
+
+async function saveResult() {
+  if (!RESULT_URL) return;
+  try {
+    const b = await resultBlob();
+    // 手机上优先走系统分享（里面就有「存储到照片」），比 <a download> 稳
+    const f = new File([b], '微粒-换发型-' + Date.now() + '.jpg', {type: 'image/jpeg'});
+    if (navigator.canShare && navigator.canShare({files: [f]}) && navigator.share) {
+      await navigator.share({files: [f], title: '微粒 AI 换发型', text: '我用微粒 AI 试了个新发型'});
+      return;
+    }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(b);
+    a.download = '微粒-换发型-' + Date.now() + '.jpg';
+    document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    $('#saveHint').classList.remove('hidden');
+    setConsole('已下载到本机 · 手机上也可以长按效果图 →「存储到照片」');
+  } catch (e) {
+    if (e && e.name === 'AbortError') return;      // 用户自己取消了分享
+    setConsole('保存失败：' + e.message + '（可以长按图片保存）', true);
+  }
+}
+
+async function shareResult(kind) {
+  if (!RESULT_URL) return;
+  const url = location.origin + location.pathname;
+  const text = '我用「微粒 WEILI」AI 换了发型，效果还挺准的 →';
+  const open = u => window.open(u, '_blank', 'noopener');
+  if (kind === 'weibo') return open(`https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}&pic=${encodeURIComponent(location.origin + RESULT_URL)}`);
+  if (kind === 'qzone') return open(`https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`);
+  if (kind === 'x') return open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+  if (kind === 'copy') {
+    try { await navigator.clipboard.writeText(location.origin + RESULT_URL); setConsole('图片链接已复制'); }
+    catch (e) { setConsole('复制失败：' + e.message, true); }
+    return;
+  }
+  if (kind === 'wx') {
+    $('#saveHint').classList.remove('hidden');
+    setConsole('微信里没有直接分享接口：先「存相册」保存这张图，再在微信里发送图片');
+    return saveResult();
+  }
+  // 系统分享：手机上直接弹微信 / 微博 / 相册，电脑上走复制
+  try {
+    const b = await resultBlob();
+    const f = new File([b], '微粒-换发型.jpg', {type: 'image/jpeg'});
+    if (navigator.canShare && navigator.canShare({files: [f]})) {
+      await navigator.share({files: [f], title: '微粒 AI 换发型', text: text});
+      return;
+    }
+    if (navigator.share) { await navigator.share({title: '微粒 AI 换发型', text: text, url: url}); return; }
+  } catch (e) {
+    if (e && e.name === 'AbortError') return;
+  }
+  openShareMenu();
+}
+
+function openShareMenu() { $('#shareMenu').classList.add('on'); }
+$('#shareBtn').onclick = e => {
+  e.stopPropagation();
+  // 手机浏览器有系统分享就别弹菜单了，直接调起（微信/相册都在里面）
+  if (navigator.share && /Mobi|Android|iPhone/i.test(navigator.userAgent)) return shareResult('sys');
+  $('#shareMenu').classList.toggle('on');
+};
+$('#saveBtn').onclick = saveResult;
+$('#shareMenu').onclick = e => {
+  const el = e.target.closest('[data-s]');
+  if (!el) return;
+  $('#shareMenu').classList.remove('on');
+  shareResult(el.dataset.s);
+};
+document.addEventListener('click', e => {
+  if (!e.target.closest('#shareMenu') && e.target.id !== 'shareBtn') $('#shareMenu').classList.remove('on');
+});
+
+/* ---------------- 生成 ---------------- */
+async function runGenerate() {
+  if (!USER) { openAuth('reg'); return; }
+  const body = {photo_id: PHOTO, style_id: PICK || '', provider: PROVIDER, n: NCAND};
+  if (REF) { body.ref_id = REF.id; body.style_id = ''; }   // 参考图模式：走 custom 分支
+  if (IS_ADMIN && PROVIDER === 'apimart' && MODEL) body.model = MODEL;   // 只有管理员能选模型
+  if (COLOR) body.color = COLOR;
+  $('#go').disabled = true; $('#mgo').disabled = true; RUNNING = true; startProg();
+  setConsole('提交中…');
+  try {
+    const d = await j('/api/generate', {method: 'POST', body});
+    quotaBar(d.user); JOB = d.job_id;
+    const spend = d.spent || {};
+    const costTxt = spend.credits ? `扣 ${spend.credits} 积分`
+                                  : (spend.free ? `用免费次数 ×${spend.free}` : '管理员免扣');
+    setConsole('任务 ' + d.job_id + ' · ' +
+               [PNAME[d.provider] || d.provider, d.model, d.color ? '发色 ' + d.color : '',
+                (d.candidates || 1) + ' 张', costTxt].filter(Boolean).join(' · '));
+    poll();
+  } catch (e) {
+    if (e.status === 402 || (e.data && e.data.packages)) {
+      PKGS = (e.data && e.data.packages) || PKGS; renderPkgs();
+      setConsole(e.message + ' · 点右上角积分充值', true);
+      openPay();
+    } else if (e.status === 401 || /登录/.test(e.message)) {
+      setConsole(e.message, true); openAuth('login');
+    } else {
+      setConsole(e.message, true);
+    }
+    RUNNING = false; $('#go').disabled = false; $('#mgo').disabled = false; finishProg(false);
+  }
+}
+$('#go').onclick = runGenerate;
+$('#mgo').onclick = runGenerate;
+
+function renderCands(d) {
+  const c = d.candidates, box = $('#cands');
+  if (!c || !c.candidates || c.candidates.length < 2) { box.innerHTML = ''; return; }
+  const pct = v => v == null ? '–' : Math.round(v * 100) + '%';
+  box.innerHTML = '<div class="hint" style="margin:8px 0 6px">候选 ' + c.n +
+    ' 张 · 已选第 ' + (c.selected + 1) + ' 张（★）· 分数 = 脸部保护 / 身份相似 / 发际线</div>' +
+    '<div class="crow">' + c.candidates.map(x => {
+      const s = x.score || {};
+      return `<div class="ct ${x.selected ? 'on' : ''}" data-url="${API + x.url}">
+        <img src="${API + x.url}" loading="lazy">
+        <div class="cs">${x.selected ? '★ ' : ''}${pct(s.keep)} / ${pct(s.sim)} / ${pct(s.hair)}</div>
+        <div class="cn">#${x.index + 1} ${s.ok ? '' : '✕'}</div>
+      </div>`;
+    }).join('') + '</div>';
+  $$('#cands .ct').forEach(el => el.onclick = () => {
+    $('#after').src = el.dataset.url + '?t=' + Date.now();
+    $$('#cands .ct').forEach(o => o.classList.remove('on'));
+    el.classList.add('on');
+  });
+}
+
+function poll() {
+  clearInterval(TIMER);
+  let n = 0;
+  TIMER = setInterval(async () => {
+    n++;
+    try {
+      const d = await j('/api/job/' + JOB);
+      if (d.status === 2) {
+        clearInterval(TIMER); RUNNING = false; finishProg(true);
+        setConsole('完成 · ' + (PNAME[d.provider] || d.provider) +
+                   (d.spent && d.spent.credits ? ` · 已扣 ${d.spent.credits} 积分` : ''));
+        $('#before').src = $('#prev').src; $('#before').classList.remove('hidden');
+        $('#after').src = API + d.url + '?t=' + Date.now(); $('#after').classList.remove('hidden');
+        $('#tip').classList.add('hidden'); $('#slider').classList.remove('hidden');
+        $('#dl').href = API + d.url; $('#dl').classList.remove('hidden');
+        RESULT_URL = API + d.url;
+        $('#shareBtn').classList.remove('hidden');
+        $('#saveBtn').classList.remove('hidden');
+        $('#saveHint').classList.remove('hidden');
+        renderCands(d);
+        $('#go').disabled = false; $('#mgo').disabled = false; loadHistory(); loadMe();
+      } else if (d.status === 3) {
+        clearInterval(TIMER);
+        RUNNING = false; finishProg(false);
+        setConsole('生成失败：' + (d.err || '') + ' · 已退回这一单的积分/次数', true);
+        $('#go').disabled = false; $('#mgo').disabled = false; loadMe();
+      } else if (d.status === 0) {
+        setConsole('排队中…（前面还有单在跑）');
+        $('#pstage').textContent = 'QUEUE · 排队中';
+      } else {
+        setConsole('生成中…（云端模型通常 20~60 秒，别关页面）');
+      }
+    } catch (e) { clearInterval(TIMER); RUNNING = false; finishProg(false); setConsole(e.message, true); }
+  }, 1500);
+}
+
+$('#slider').oninput = e => { $('#after').style.clipPath = `inset(0 0 0 ${e.target.value}%)`; };
+
+async function refreshQuota() { await loadMe(); }
+
+async function loadHistory() {
+  if (!USER) { $('#hist').innerHTML = '<span class="muted">还没有记录</span>'; return; }
+  try {
+    const d = await j('/api/history' + (IS_ADMIN ? '?all=1' : ''));
+    const items = d.items.filter(x => x.url).slice(0, 12);
+    $('#hist').innerHTML = items.length
+      ? items.map(x => {
+          const t = (x.style_id || '').startsWith('custom:') ? '我的参考图' : (x.style_id || '');
+          return `<a href="${API + x.url}" target="_blank" title="${esc(t)}"><img src="${API + x.url}" loading="lazy"></a>`;
+        }).join('')
+      : '<span class="muted">还没有记录 · 生成一次这里就会有</span>';
+  } catch {}
+}
+$('#histRefresh').onclick = loadHistory;
+
+renderN();
+sync();
+renderAcct();
+
+(async () => {
+  if (!await pickBase()) return;
+  await loadMe();                 // 先看是谁（决定能不能选模型 / 余额多少）
+  await loadSite();               // 客服微信 / 版权 / 收款码
+  await loadProviders();
+  await loadModels();
+  await loadStyles();
+  await loadRefs();
+  await loadHistory();
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>微粒 · 管理后台</title>
+<style>
+  :root{--bg:#0f1115;--card:#171a21;--line:#252a34;--fg:#e8eaef;--sub:#8b93a4;--brand:#c9a227;--ok:#3fb950;--err:#ff7b72;--cy:#31e1cf}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.65 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+  .hidden{display:none!important}
+
+  /* ===== 登录门：未登录只看到这一层 ===== */
+  #gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(1200px 500px at 50% -10%,rgba(49,225,207,.08),transparent),var(--bg)}
+  .gatebox{width:340px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .gatebox h1{font-size:18px;margin:0 0 2px;text-align:center}
+  .gatebox h1 b{color:var(--brand)}
+  .gatebox .sub{text-align:center;color:var(--sub);font-size:12.5px;margin:0 0 18px}
+  .gatebox label{display:block;font-size:12.5px;color:var(--sub);margin:12px 0 5px}
+  .gatebox input{width:100%;background:#0e1117;border:1px solid var(--line);border-radius:9px;color:var(--fg);padding:10px 12px;font:inherit;outline:none}
+  .gatebox input:focus{border-color:var(--brand)}
+  .gatebox .btn{width:100%;margin-top:16px}
+  .gerr{color:var(--err);font-size:12.5px;min-height:18px;margin-top:10px;text-align:center}
+
+  /* ===== 登录后：顶栏 + 左侧栏目 ===== */
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;
+    border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(15,17,21,.94);backdrop-filter:blur(8px);z-index:9}
+  h1{font-size:15px;margin:0}
+  h1 b{color:var(--brand)}
+  .who{color:var(--sub);font-size:12.5px}
+  a.back,.hbtn{color:var(--sub);text-decoration:none;font-size:12.5px;border:1px solid var(--line);padding:6px 12px;border-radius:99px;background:none;cursor:pointer;font:inherit}
+  a.back:hover,.hbtn:hover{color:var(--fg)}
+  .app{display:flex;min-height:calc(100vh - 53px)}
+  aside{width:184px;flex:none;border-right:1px solid var(--line);padding:14px 10px;background:#12151b}
+  .nav{display:flex;flex-direction:column;gap:4px}
+  .nav button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:none;border:0;color:var(--sub);
+    font:inherit;font-size:13.5px;padding:10px 12px;border-radius:10px;cursor:pointer}
+  .nav button .ic{font-family:ui-monospace,monospace;font-size:10px;color:var(--brand);width:18px;text-align:center}
+  .nav button:hover{background:#171b23;color:var(--fg)}
+  .nav button.on{background:#2a2313;color:var(--brand)}
+  .nav button.on .ic{color:var(--brand)}
+  .nav .sep{border-top:1px solid var(--line);margin:8px 4px}
+  .nav .quit{color:#b0685f}
+  main{flex:1;min-width:0;padding:18px;max-width:980px}
+  .panel{display:none}
+  .panel.on{display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+  .card h2{font-size:15px;margin:0 0 4px}
+  .card h2:first-child{margin-top:0}
+  .hint{color:var(--sub);font-size:12.5px;margin:0 0 12px}
+  label{display:block;font-size:12.5px;color:var(--sub);margin:12px 0 5px}
+  input[type=text],input[type=password],select,textarea{width:100%;background:#0e1117;border:1px solid var(--line);border-radius:9px;color:var(--fg);padding:10px 12px;font:inherit;outline:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--brand)}
+  textarea{min-height:64px;resize:vertical}
+  .btn{background:var(--brand);color:#1a1500;border:0;border-radius:10px;padding:11px 20px;font-weight:700;cursor:pointer;font-size:14px}
+  .btn[disabled]{opacity:.45;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  .btn.mini{padding:7px 12px;font-size:12.5px;border-radius:8px}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .chip{font-size:12.5px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);cursor:pointer;color:var(--sub);background:#12151b}
+  .chip.on{background:#2a2313;border-color:var(--brand);color:var(--brand)}
+  .drop{border:1px dashed #3a4150;border-radius:12px;padding:18px;text-align:center;color:var(--sub);cursor:pointer;margin-top:6px}
+  .drop img{max-width:140px;border-radius:10px;display:block;margin:0 auto}
+  .msg{margin-top:12px;font-size:13px;min-height:20px}
+  .msg.ok{color:var(--ok)}
+  .msg.err{color:var(--err)}
+  .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px}
+  .st{background:#12151b;border:1px solid var(--line);border-radius:11px;padding:8px;text-align:center;font-size:12px}
+  .st img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:7px;display:block;margin-bottom:6px}
+  .st .tg{color:#6f7a88;font-size:10.5px}
+  .st .ops{display:flex;gap:6px;justify-content:center;margin-top:6px}
+  .st .ops span{font-size:11px;border:1px solid var(--line);border-radius:7px;padding:2px 8px;cursor:pointer;color:var(--sub)}
+  .st .ops span.ed{color:var(--brand);border-color:#4a3d16}
+  .st .ops span.dl{color:#ff8b84;border-color:#58272a}
+  .kv{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pill{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:4px 11px;color:var(--sub)}
+  .pill.on{border-color:var(--ok);color:var(--ok)}
+  .pill.off{border-color:#4a2b2b;color:#c98b86}
+  .steps{color:var(--sub);font-size:12.5px;margin:10px 0 0;padding-left:18px}
+  .steps li{margin:3px 0}
+  .editbar{display:none;align-items:center;gap:10px;background:#221d10;border:1px solid #4a3d16;color:var(--brand);border-radius:10px;padding:8px 12px;font-size:12.5px;margin-bottom:10px}
+  .editbar.on{display:flex}
+  .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin-top:8px}
+  .gal .g{position:relative;background:#0e1117;border:1px solid var(--line);border-radius:9px;padding:4px;text-align:center;font-size:10.5px;color:var(--sub)}
+  .gal .g img{width:100%;height:84px;object-fit:cover;border-radius:6px;display:block}
+  .gal .g b{position:absolute;top:4px;right:4px;background:#2a1416;border:1px solid #58272a;color:#ff8b84;border-radius:6px;font-size:10px;padding:1px 5px;cursor:pointer;font-weight:400}
+  .sel-row{display:flex;gap:8px;margin-top:6px}
+  .sel-row select{flex:1}
+  @media(max-width:760px){
+    .app{flex-direction:column}
+    aside{width:100%;border-right:0;border-bottom:1px solid var(--line);padding:8px}
+    .nav{flex-direction:row;overflow-x:auto;gap:6px}
+    .nav button{width:auto;white-space:nowrap;padding:8px 12px}
+    .nav .sep{display:none}
+    main{padding:12px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 登录门 ===== -->
+<div id="gate">
+  <form class="gatebox" id="gateForm">
+    <h1>微粒 · <b>管理后台</b></h1>
+    <p class="sub">仅限管理员登录使用</p>
+    <label>管理员账号</label>
+    <input id="au" type="text" autocomplete="username">
+    <label>密码</label>
+    <input id="ap" type="password" autocomplete="current-password">
+    <div class="gerr" id="gerr"></div>
+    <button class="btn" id="login" type="submit">登 录</button>
+  </form>
+</div>
+
+<!-- ===== 登录后 ===== -->
+<div id="app" class="hidden">
+  <header>
+    <h1 id="pgTitle">管理后台 · <b>概览</b></h1>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="who" id="who"></span>
+      <a class="back" href="/">← 回到前台</a>
+      <button class="hbtn" id="logout">退出</button>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside>
+      <div class="nav" id="nav">
+        <button data-p="key" class="on"><span class="ic">01</span>云端 Key 与模型</button>
+        <button data-p="styles"><span class="ic">02</span>发型库管理</button>
+        <button data-p="users"><span class="ic">03</span>用户与积分</button>
+        <button data-p="jobs"><span class="ic">04</span>生成记录</button>
+        <button data-p="cost"><span class="ic">05</span>成本与毛利</button>
+        <div class="sep"></div>
+        <button data-p="site"><span class="ic">06</span>网站设置</button>
+        <button data-p="orders"><span class="ic">07</span>充值订单</button>
+        <button data-p="pay"><span class="ic">08</span>自动到账</button>
+      </div>
+    </aside>
+
+    <main>
+      <!-- ============ 01 云端 Key ============ -->
+      <div class="panel on" id="p-key">
+        <div class="card">
+          <h2>云端 Key 与出图模型</h2>
+          <p class="hint">粘贴 APIMart 的 key → 点「拉取模型」→ 下拉里挑一个 → 保存。保存就生效，不用重启。</p>
+          <div id="prov" class="kv"></div>
+          <label>APIMart API Key</label>
+          <input id="key" type="password" placeholder="sk-xxxxxxxxxxxxxxxx" autocomplete="off">
+          <label>出图模型（点右边的按钮从账号里拉）</label>
+          <div class="sel-row">
+            <select id="model"></select>
+            <button class="btn ghost mini" id="pull">拉取模型</button>
+          </div>
+          <label>出图引擎</label>
+          <div class="chips" id="engine">
+            <div class="chip" data-v="apimart">云端 APIMart</div>
+            <div class="chip" data-v="comfy">本地 ComfyUI（免费）</div>
+            <div class="chip" data-v="">自动（谁可用用谁）</div>
+          </div>
+          <div class="row">
+            <button class="btn" id="save">保存并立即生效</button>
+            <button class="btn ghost" id="test">测试连接</button>
+          </div>
+          <div class="msg" id="msg1"></div>
+          <ul class="steps">
+            <li>Key 从哪来：apimart.ai 注册 → 后台 API Keys → 复制。最低充 $1，一张约 1~3 毛。</li>
+            <li>拉不到模型：多半是网络。程序会自动找本机梯子（10808 / 10809 / 7890 / 7897），找不到就直连。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============ 02 发型库 ============ -->
+      <div class="panel" id="p-styles">
+        <div class="card">
+          <h2 id="formTitle">加一款新发型</h2>
+          <div class="editbar" id="editbar">正在编辑：<b id="editName"></b><span style="flex:1"></span><button class="btn ghost mini" id="cancelEdit">取消编辑</button></div>
+          <p class="hint">填名字、选类目、传封面图；保存后前台立刻出现。点下面列表里的「编辑」可以改已经加过的款。</p>
+          <label>发型名称（顾客看到的名字）</label>
+          <input id="name" type="text" placeholder="例：法式羊毛卷">
+          <label>类目（可多选，前台按这个筛选）</label>
+          <div class="chips" id="tags"></div>
+          <label>长度（决定几何剪到哪，越准越像）</label>
+          <select id="len">
+            <option value="10">超短（耳朵以上 / 寸头 / 精灵）</option>
+            <option value="12">短发（到下颌）</option>
+            <option value="15" selected>中短（下巴下方一点 / Bob）</option>
+            <option value="20">中长（到锁骨）</option>
+            <option value="30">长发（到胸口以下）</option>
+          </select>
+          <label>发色</label>
+          <input id="color" type="text" placeholder="自然黑 / 深棕 / 栗棕 / 浅金" value="自然黑">
+          <label>封面图（列表里显示这张；编辑时不传就保留原图）</label>
+          <div class="drop" id="drop">点这里选图片，或把图拖进来</div>
+          <input id="file" type="file" accept="image/*" class="hidden" style="display:none">
+          <label>补充描述（可不填；填了更准）</label>
+          <textarea id="note" placeholder="例：S形小卷，卷度密集蓬松，刘海同卷度，长度到锁骨"></textarea>
+          <div id="galWrap" style="display:none">
+            <label>这款的实拍图（正面/侧面/背面，点小叉可删）</label>
+            <div class="gal" id="gal"></div>
+            <div class="sel-row">
+              <select id="imgLabel">
+                <option>正面</option><option>侧面</option><option>背面</option><option>主图</option><option>细节</option>
+              </select>
+              <button class="btn ghost mini" id="addImg">加一张实拍图</button>
+            </div>
+            <input id="imgFile" type="file" accept="image/*" style="display:none">
+          </div>
+          <div class="row">
+            <button class="btn" id="add">保存这款发型</button>
+            <span class="hint" style="margin:0" id="total"></span>
+          </div>
+          <div class="msg" id="msg2"></div>
+        </div>
+        <div class="card">
+          <h2>自己加的款（可编辑 / 可删）</h2>
+          <p class="hint">内置款写在代码里，改不了；这里是自己加的，随便改。</p>
+          <div class="list" id="list"></div>
+          <div class="msg" id="msg3"></div>
+        </div>
+      </div>
+
+      <!-- ============ 03 用户与积分 ============ -->
+      <div class="panel" id="p-users">
+        <div class="card">
+          <h2>用户与积分</h2>
+          <p class="hint">注册送 3 次免费，之后按积分扣（1 元 = 10 积分，单次 8 积分）。生成失败会自动退回。</p>
+          <div id="ov" class="kv"></div>
+          <div class="list" id="users" style="grid-template-columns:1fr;margin-top:12px"></div>
+          <div class="msg" id="msg4"></div>
+        </div>
+      </div>
+
+      <!-- ============ 04 生成记录 ============ -->
+      <div class="panel" id="p-jobs">
+        <div class="card">
+          <h2>生成记录（可删）</h2>
+          <p class="hint">用户只能在前台看到自己的记录；这里能看到全部，并可删除任意一条 ——
+            删除会同时删掉成图文件，释放磁盘。清空不会动账号 / 积分 / 订单。</p>
+          <div class="row" style="margin-top:0;margin-bottom:10px">
+            <span class="tg" id="jobDisk" style="font-size:12px;color:#6f7a88"></span>
+            <span style="flex:1"></span>
+            <button class="btn ghost mini" id="jobRefresh">刷新</button>
+            <button class="btn mini" id="jobClear" style="background:#7a2f2a;color:#fff">清空全部生成记录</button>
+          </div>
+          <div id="jobList" style="overflow:auto;max-height:640px"></div>
+          <div class="msg" id="msg9"></div>
+        </div>
+      </div>
+
+      <!-- ============ 05 成本与毛利 ============ -->
+      <div class="panel" id="p-cost">
+        <div class="card">
+          <h2>成本与毛利</h2>
+          <p class="hint">按 APIMart 现在的价格算的单张毛利。模型单价超过 $0.02 的档位会自动加倍扣积分，
+            超过 $0.10 的（seedream-pro / flux 等）只对管理员开放 —— 不然一张就亏一张。</p>
+          <div id="mt" style="overflow:auto"></div>
+          <div class="msg" id="msg5"></div>
+        </div>
+      </div>
+
+      <!-- ============ 06 网站设置 ============ -->
+      <div class="panel" id="p-site">
+        <div class="card">
+          <h2>网站设置（前台直接生效）</h2>
+          <p class="hint">客服微信 / 页脚版权显示在用户端页脚和充值弹窗；两张收款码上传后，
+            用户充值会看到「扫码转账 → 我已完成转账 → 你在充值订单里确认到账」。</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px">
+            <label style="font-size:12px;color:#8b93a4">客服微信号（个人微信）
+              <input id="stKf" style="width:100%;margin-top:4px" placeholder="例如：weili-kefu"></label>
+            <label style="font-size:12px;color:#8b93a4">页脚版权
+              <input id="stCopy" style="width:100%;margin-top:4px" placeholder="© 2026 微粒 · WEILI"></label>
+            <label style="font-size:12px;color:#8b93a4">公告（选填）
+              <input id="stNotice" style="width:100%;margin-top:4px" placeholder="比如：新用户赠送体验次数"></label>
+            <label style="font-size:12px;color:#8b93a4">微信收款码（经营码）
+              <input type="file" id="stWx" accept="image/*" style="width:100%;margin-top:4px"></label>
+            <label style="font-size:12px;color:#8b93a4">支付宝收款码
+              <input type="file" id="stAli" accept="image/*" style="width:100%;margin-top:4px"></label>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+            <button class="btn mini" id="stSave">保存设置</button>
+            <span class="tg" id="stQr" style="font-size:12px;color:#6f7a88"></span>
+          </div>
+          <div class="msg" id="msg6"></div>
+        </div>
+      </div>
+
+      <!-- ============ 07 充值订单 ============ -->
+      <div class="panel" id="p-orders">
+        <div class="card">
+          <h2>充值订单（确认到账）</h2>
+          <p class="hint">经营码没有到账回调：用户点「我已完成转账」后订单变「确认中」，
+            你在微信/支付宝里看到钱到了，点「确认到账」积分才会加上。接了自动到账通道后这里只做对账。</p>
+          <div id="ordList" style="overflow:auto"></div>
+          <div class="msg" id="msg7"></div>
+        </div>
+      </div>
+
+      <!-- ============ 08 自动到账 ============ -->
+      <div class="panel" id="p-pay">
+        <div class="card">
+          <h2>自动到账（不用人工确认）</h2>
+          <p class="hint">经营码是图片、没有回调，只能人工点确认。<b>想用户付完自动加积分</b>，必须用有异步通知的通道：
+            支付宝当面付 / 微信支付 v3（个体户、企业可签），或易支付类聚合（个人可接，第三方，注意选靠谱的）。</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px">
+            <label style="font-size:12px;color:#8b93a4">支付方式
+              <select id="pmMode" style="width:100%;margin-top:4px">
+                <option value="manual">经营码（人工确认，兜底）</option>
+                <option value="alipay">支付宝当面付（自动）</option>
+                <option value="wechat">微信支付 v3（自动）</option>
+                <option value="epay">易支付/聚合（自动，个人可接）</option>
+              </select></label>
+            <label style="font-size:12px;color:#8b93a4">公网地址（拼回调 notify_url 用）
+              <input id="pmBase" style="width:100%;margin-top:4px" placeholder="https://你的域名"></label>
+            <label style="font-size:12px;color:#8b93a4">易支付网关
+              <input id="epGw" style="width:100%;margin-top:4px" placeholder="https://pay.example.com"></label>
+            <label style="font-size:12px;color:#8b93a4">易支付 PID
+              <input id="epPid" style="width:100%;margin-top:4px"></label>
+            <label style="font-size:12px;color:#8b93a4">易支付密钥
+              <input id="epKey" style="width:100%;margin-top:4px" placeholder="没改就留空"></label>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:10px">
+            <label style="font-size:12px;color:#8b93a4">支付宝 APPID
+              <input id="alAppid" style="width:100%;margin-top:4px"></label>
+            <label style="font-size:12px;color:#8b93a4">支付宝应用私钥（PEM）
+              <textarea id="alPriv" rows="3" style="width:100%;margin-top:4px" placeholder="留空=不修改"></textarea></label>
+            <label style="font-size:12px;color:#8b93a4">支付宝公钥（PEM）
+              <textarea id="alPub" rows="3" style="width:100%;margin-top:4px" placeholder="留空=不修改"></textarea></label>
+            <label style="font-size:12px;color:#8b93a4">微信 APPID
+              <input id="wxAppid" style="width:100%;margin-top:4px"></label>
+            <label style="font-size:12px;color:#8b93a4">微信商户号 mchid
+              <input id="wxMchid" style="width:100%;margin-top:4px"></label>
+            <label style="font-size:12px;color:#8b93a4">商户证书序列号
+              <input id="wxSerial" style="width:100%;margin-top:4px"></label>
+            <label style="font-size:12px;color:#8b93a4">商户 API 私钥（PEM）
+              <textarea id="wxPriv" rows="3" style="width:100%;margin-top:4px" placeholder="留空=不修改"></textarea></label>
+            <label style="font-size:12px;color:#8b93a4">APIv3 密钥（32 位）
+              <input id="wxV3" style="width:100%;margin-top:4px" placeholder="留空=不修改"></label>
+            <label style="font-size:12px;color:#8b93a4">微信平台证书（PEM，验回调）
+              <textarea id="wxCert" rows="3" style="width:100%;margin-top:4px" placeholder="留空=不修改"></textarea></label>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button class="btn mini" id="pmSave">保存支付配置</button>
+            <span class="tg" id="pmState" style="font-size:12px;color:#6f7a88"></span>
+          </div>
+          <div class="msg" id="msg8"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+// 后端地址：config.js 指定优先，留空则走同源（本地一键启动时就是这个情况）
+const API = (typeof window.API_BASE === 'string' && !window.API_BASE.startsWith('__'))
+  ? window.API_BASE.replace(/\/+$/, '') : '';
+// 后端返回的是 /files/... /covers/... 这类相对路径，跨域部署时要拼上后端域名
+const U = u => (!u ? u : (/^https?:|^data:/.test(u) ? u : API + u));
+const j = async (u, o) => {
+  const r = await fetch(/^https?:/.test(u) ? u : API + u, o);
+  const t = await r.text();
+  let d = null;
+  try { d = JSON.parse(t); } catch (e) { d = { detail: t.slice(0, 300) }; }
+  if (!r.ok) throw new Error(d.detail || d.message || ('HTTP ' + r.status));
+  return d;
+};
+const say = (id, txt, ok) => { const e = $(id); e.textContent = txt; e.className = 'msg ' + (ok ? 'ok' : 'err'); };
+
+/* ================= 0. 登录门 ================= */
+let TOK = localStorage.getItem('admin_token') || '';
+const AH = () => TOK ? {Authorization: 'Bearer ' + TOK} : {};
+async function aj(u, o = {}) {
+  o.headers = Object.assign({'Content-Type': 'application/json'}, AH(), o.headers || {});
+  if (o.body && typeof o.body !== 'string') o.body = JSON.stringify(o.body);
+  const r = await fetch(/^https?:/.test(u) ? u : API + u, o);
+  const d = await r.json().catch(() => ({}));
+  if (r.status === 401) { showGate(); throw new Error(d.detail || '登录已过期，请重新登录'); }
+  if (!r.ok) throw new Error(d.detail || d.error || ('HTTP ' + r.status));
+  return d;
+}
+function showGate() { $('#gate').classList.remove('hidden'); $('#app').classList.add('hidden'); }
+function showApp() { $('#gate').classList.add('hidden'); $('#app').classList.remove('hidden'); }
+
+$('#gateForm').onsubmit = async e => {
+  e.preventDefault();
+  $('#gerr').textContent = '';
+  try {
+    const d = await fetch(API + '/api/auth/login', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username: $('#au').value.trim(), password: $('#ap').value})
+    }).then(r => r.json());
+    if (!d.token) throw new Error(d.detail || '登录失败');
+    if (d.user.role !== 'admin') throw new Error('这个账号不是管理员');
+    TOK = d.token; localStorage.setItem('admin_token', TOK);
+    $('#ap').value = '';
+    showApp(); boot();
+  } catch (err) { $('#gerr').textContent = err.message; }
+};
+$('#logout').onclick = () => { TOK = ''; localStorage.removeItem('admin_token'); showGate(); };
+
+/* ================= 左侧栏目切换 ================= */
+const TITLES = {key: '云端 Key', styles: '发型库', users: '用户与积分', jobs: '生成记录',
+                cost: '成本与毛利', site: '网站设置', orders: '充值订单', pay: '自动到账'};
+$('#nav').onclick = e => {
+  const b = e.target.closest('button[data-p]');
+  if (!b) return;
+  $$('#nav button').forEach(x => x.classList.toggle('on', x === b));
+  $$('.panel').forEach(p => p.classList.toggle('on', p.id === 'p-' + b.dataset.p));
+  $('#pgTitle').innerHTML = '管理后台 · <b>' + (TITLES[b.dataset.p] || '') + '</b>';
+  window.scrollTo({top: 0});
+};
+
+/* ================= 3. 用户 / 积分 / 经营数据 ================= */
+async function loadUsers() {
+  try {
+    const d = await aj('/api/admin/overview');
+    const u = d.unit, p = d.profile;
+    $('#ov').innerHTML = [
+      `用户 ${d.users} 人`, `生成 ${d.jobs.total} 单（成功 ${d.jobs.ok} / 失败 ${d.jobs.failed}）`,
+      `充值 ¥${d.recharge.cny} / ${d.recharge.credits} 积分`,
+      `API 累计 $${d.api.usd} ≈ ¥${d.api.cny}`,
+      `当前模型 ${p.current_model || '-'}（${p.current_tier.name}档 · ¥${p.current_cny}/张）`,
+      `单张收 ¥${u.income} · 成本 ¥${u.total_cost} · 毛利 ¥${u.gross}（${(u.rate * 100).toFixed(0)}%）`
+    ].map(t => `<span class="pill on">${t}</span>`).join('');
+    const rows = d.model_table || [];
+    $('#mt').innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:12px">' +
+      '<tr style="color:#8b93a4"><th align=left>模型</th><th>档位</th><th>$/张</th><th>¥/张</th><th>收</th><th>毛利</th></tr>' +
+      rows.slice(0, 24).map(r => `<tr style="border-top:1px solid #252a34">
+        <td style="font-family:monospace">${r.model}</td><td align=center>${r.name}×${r.mul}</td>
+        <td align=center>${r.usd}</td><td align=center>${r.cny}</td>
+        <td align=center>¥${r.income}</td>
+        <td align=center style="color:${r.gross > 0 ? '#3fb950' : '#ff7b72'}">¥${r.gross}</td></tr>`).join('') +
+      '</table>';
+  } catch (e) { $('#msg5').textContent = '经营数据读不到：' + e.message; }
+  try {
+    const d = await aj('/api/admin/users');
+    $('#users').innerHTML = d.users.map(u => `
+      <div class="st" style="text-align:left;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+          <b>${u.username}</b>
+          <span class="tg">${u.role} · ${u.credits} 积分 · 免费 ${u.free_left} 次</span>
+        </div>
+        <div class="tg">${u.id} · ${new Date(u.created_at * 1000).toLocaleString()}</div>
+        <div class="ops" style="justify-content:flex-start;margin-top:8px">
+          <span class="ed" data-id="${u.id}" data-act="credit">+100 积分</span>
+          <span class="ed" data-id="${u.id}" data-act="free">送 3 次</span>
+          <span class="ed" data-id="${u.id}" data-act="admin">设为管理员</span>
+          <span class="dl" data-id="${u.id}" data-act="ban">停用</span>
+        </div>
+      </div>`).join('') || '<div class="hint">还没有用户注册</div>';
+    $('#users').onclick = async e => {
+      const s = e.target.closest('[data-act]'); if (!s) return;
+      const id = s.dataset.id, act = s.dataset.act;
+      const body = act === 'credit' ? {credits: 100}
+        : act === 'free' ? {free_left: 3}
+        : act === 'admin' ? {role: 'admin'} : {status: 'banned'};
+      try { await aj('/api/admin/users/' + id, {method: 'POST', body}); loadUsers(); }
+      catch (err) { $('#msg4').textContent = '操作失败：' + err.message; }
+    };
+  } catch (e) { $('#msg4').textContent = '用户列表读不到：' + e.message; }
+}
+
+/* ================= 1. Key / 模型 ================= */
+let cfg = null, enginePick = '';
+const FALLBACK_MODELS = ['gemini-2.5-flash-image-preview', 'gpt-image-1', 'seedream-4.5',
+                         'gpt-image-2-official', 'gemini-2.5-flash-image'];
+
+function fillModels(list, current) {
+  const sel = $('#model');
+  const ids = list && list.length ? list : FALLBACK_MODELS;
+  sel.innerHTML = ids.map(m =>
+    `<option value="${m}"${m === current ? ' selected' : ''}>${m}</option>`).join('');
+  if (current && !ids.includes(current)) {
+    sel.insertAdjacentHTML('afterbegin', `<option value="${current}" selected>${current}（当前）</option>`);
+  }
+}
+
+async function loadCfg() {
+  cfg = await aj('/api/config');
+  enginePick = cfg.provider || '';
+  fillModels(FALLBACK_MODELS, cfg.apimart.model);
+  $('#key').placeholder = cfg.apimart.key_set
+    ? ('已保存：' + cfg.apimart.key_mask + '（要换就覆盖粘贴）') : 'sk-xxxxxxxxxxxxxxxx';
+  $('#prov').innerHTML = Object.entries(cfg.providers).map(([k, v]) =>
+    `<span class="pill ${v.available ? 'on' : 'off'}">${k}：${v.available ? '可用' : (v.reason || '不可用')}</span>`).join('')
+    + `<span class="pill">当前出图：${cfg.default}</span>`;
+  document.querySelectorAll('#engine .chip').forEach(c => c.classList.toggle('on', c.dataset.v === enginePick));
+}
+
+document.querySelectorAll('#engine .chip').forEach(c => c.onclick = () => {
+  enginePick = c.dataset.v;
+  document.querySelectorAll('#engine .chip').forEach(x => x.classList.toggle('on', x === c));
+});
+
+$('#pull').onclick = async () => {
+  const k = $('#key').value.trim();
+  $('#pull').disabled = true;
+  say('#msg1', k ? '正在用这个 key 拉模型...' : '正在用已保存的 key 拉模型...', true);
+  try {
+    const d = await aj('/api/apimart/models', {
+      method: 'POST', body: { key: k }
+    });
+    const imgs = d.image && d.image.length ? d.image : d.all;
+    fillModels(imgs, d.current);
+    say('#msg1', `拉到 ${d.total} 个模型，其中出图模型 ${imgs.length} 个，已填进下拉框（选好点保存）。`, true);
+  } catch (e) { say('#msg1', '拉取失败：' + e.message, false); }
+  $('#pull').disabled = false;
+};
+
+$('#save').onclick = async () => {
+  $('#save').disabled = true;
+  try {
+    const body = { provider: enginePick, apimart_model: $('#model').value };
+    if ($('#key').value.trim()) body.apimart_key = $('#key').value.trim();
+    const d = await aj('/api/config', {method: 'POST', body});
+    $('#key').value = '';
+    cfg = d.config;
+    await loadCfg();
+    say('#msg1', '已保存：' + d.saved.join('、') + '。当前出图 = ' + cfg.default, true);
+  } catch (e) { say('#msg1', '保存失败：' + e.message, false); }
+  $('#save').disabled = false;
+};
+
+$('#test').onclick = async () => {
+  say('#msg1', '正在测...', true);
+  try {
+    const d = await aj('/api/apimart/models', {method: 'POST', body: {key: $('#key').value.trim()}});
+    say('#msg1', `连接成功：模型 ${d.total} 个，出图 ${(d.image || []).length} 个；当前用 ${d.current || '?'}`, true);
+  } catch (e) { say('#msg1', '测试失败：' + e.message, false); }
+};
+
+/* ================= 2. 新增 / 编辑 ================= */
+const TAGSET = ['短发', '中长', '长发', '卷发', '扎发', '男士', '发色', '女'];
+$('#tags').innerHTML = TAGSET.map(t => `<div class="chip" data-t="${t}">${t}</div>`).join('');
+$('#tags').onclick = e => { const c = e.target.closest('.chip'); if (c) c.classList.toggle('on'); };
+
+let coverB64 = null, EDIT_SID = null, GAL = [];
+const drop = $('#drop'), file = $('#file');
+drop.onclick = () => file.click();
+drop.ondragover = e => { e.preventDefault(); drop.style.borderColor = '#c9a227'; };
+drop.ondragleave = () => { drop.style.borderColor = ''; };
+drop.ondrop = e => { e.preventDefault(); drop.style.borderColor = ''; if (e.dataTransfer.files[0]) readCover(e.dataTransfer.files[0]); };
+file.onchange = () => { if (file.files[0]) readCover(file.files[0]); };
+
+function readCover(f) {
+  if (!f.type.startsWith('image/')) return say('#msg2', '要选图片文件', false);
+  const r = new FileReader();
+  r.onload = () => {
+    coverB64 = r.result;
+    drop.innerHTML = `<img src="${coverB64}"><div style="margin-top:8px">${f.name} · 点一下可以换</div>`;
+  };
+  r.readAsDataURL(f);
+}
+
+function renderGal() {
+  $('#galWrap').style.display = EDIT_SID ? 'block' : 'none';
+  if (!EDIT_SID) return;
+  $('#gal').innerHTML = GAL.length ? GAL.map(g => `
+    <div class="g"><b data-f="${g.file}">✕</b><img src="${U(g.url)}"><div>${g.label}</div></div>`).join('')
+    : '<div class="hint" style="grid-column:1/-1">还没有实拍图，点下面「加一张实拍图」。</div>';
+  $('#gal').onclick = async e => {
+    const b = e.target.closest('b');
+    if (!b) return;
+    if (!confirm('删掉这张实拍图？')) return;
+    try {
+      await aj(`/api/admin/styles/${EDIT_SID}/images/${b.dataset.f}`, { method: 'DELETE' });
+      await openEdit(EDIT_SID, true);
+      say('#msg2', '删掉了那张图', true);
+    } catch (err) { say('#msg2', '删图失败：' + err.message, false); }
+  };
+}
+
+$('#addImg').onclick = () => $('#imgFile').click();
+$('#imgFile').onchange = () => {
+  const f = $('#imgFile').files[0];
+  if (!f || !EDIT_SID) return;
+  const r = new FileReader();
+  r.onload = async () => {
+    try {
+      await aj(`/api/admin/styles/${EDIT_SID}/images`, {
+        method: 'POST', body: { file_b64: r.result, label: $('#imgLabel').value }
+      });
+      $('#imgFile').value = '';
+      await openEdit(EDIT_SID, true);
+      say('#msg2', '加进去了', true);
+    } catch (err) { say('#msg2', '加图失败：' + err.message, false); }
+  };
+  r.readAsDataURL(f);
+};
+
+function resetForm() {
+  EDIT_SID = null; coverB64 = null; GAL = [];
+  $('#formTitle').textContent = '加一款新发型';
+  $('#editbar').classList.remove('on');
+  $('#add').textContent = '保存这款发型';
+  $('#name').value = ''; $('#note').value = ''; $('#color').value = '自然黑';
+  $('#len').value = '15';
+  document.querySelectorAll('#tags .chip.on').forEach(c => c.classList.remove('on'));
+  drop.innerHTML = '点这里选图片，或把图拖进来';
+  file.value = '';
+  renderGal();
+}
+
+async function openEdit(sid, keep) {
+  const d = await aj('/api/admin/styles');
+  const s = (d.external || []).find(x => x.id === sid);
+  if (!s) return say('#msg2', '没找到这款', false);
+  EDIT_SID = sid;
+  $('#formTitle').textContent = '编辑这款发型';
+  $('#editbar').classList.add('on');
+  $('#editName').textContent = s.name;
+  $('#add').textContent = '保存修改';
+  $('#name').value = s.name || '';
+  $('#note').value = s.prompt_zh || '';
+  $('#color').value = s.color || '自然黑';
+  $('#len').value = String(s.length || 15) in { 10: 1, 12: 1, 15: 1, 20: 1, 30: 1 } ? String(s.length) : '15';
+  document.querySelectorAll('#tags .chip').forEach(c => c.classList.toggle('on', (s.tags || []).includes(c.dataset.t)));
+  coverB64 = null;
+  drop.innerHTML = s.cover_url
+    ? `<img src="${U(s.cover_url)}"><div style="margin-top:8px">当前封面 · 点一下可以换</div>`
+    : '点这里选图片，或把图拖进来';
+  GAL = s.images || [];
+  renderGal();
+  if (!keep) say('#msg2', '改完点「保存修改」。', true);
+}
+
+$('#cancelEdit').onclick = () => { resetForm(); say('#msg2', '已取消编辑', true); };
+
+$('#add').onclick = async () => {
+  const name = $('#name').value.trim();
+  const tags = [...document.querySelectorAll('#tags .chip.on')].map(c => c.dataset.t);
+  if (!name) return say('#msg2', '先填发型名称', false);
+  if (!tags.length) return say('#msg2', '至少选一个类目', false);
+  if (!EDIT_SID && !coverB64) return say('#msg2', '新加的款要传一张封面图', false);
+  $('#add').disabled = true;
+  try {
+    const note = $('#note').value.trim();
+    const color = $('#color').value.trim() || '自然黑';
+    const lenCm = $('#len').value;
+    const body = {
+      name, tags, color, length: lenCm,
+      prompt_zh: note || (color + name + '，发丝质感真实，自然光泽'),
+      prompt_en: (note || name) + ', ' + lenCm + 'cm hair'
+    };
+    if (coverB64) body.cover_b64 = coverB64;
+    if (EDIT_SID) {
+      const r = await aj('/api/admin/styles/' + EDIT_SID, {method: 'POST', body});
+      say('#msg2', '改好了：' + r.style.name, true);
+      resetForm();
+    } else {
+      const r = await aj('/api/admin/styles', {method: 'POST', body});
+      say('#msg2', '加好了：' + r.style.name + '（总 ' + r.total + ' 款），回前台就能选。', true);
+      resetForm();
+    }
+    loadList();
+  } catch (e) { say('#msg2', '失败：' + e.message, false); }
+  $('#add').disabled = false;
+};
+
+/* ================= 3. 列表 ================= */
+async function loadList() {
+  const d = await aj('/api/admin/styles');
+  $('#total').textContent = '发型库共 ' + d.total + ' 款，其中自己加的 ' + d.external.length + ' 款';
+  if (!d.external.length) { $('#list').innerHTML = '<div class="hint">还没加过，上面表单加一款试试。</div>'; return; }
+  $('#list').innerHTML = d.external.map(s => `
+    <div class="st">
+      ${s.cover_url ? `<img src="${U(s.cover_url)}">` : '<div style="height:100px"></div>'}
+      <div>${s.name}</div>
+      <div class="tg">${(s.tags || []).join(' / ')}</div>
+      <div class="tg">${s.length ? s.length + 'cm · ' : ''}实拍 ${(s.images || []).length} 张</div>
+      <div class="ops"><span class="ed" data-id="${s.id}">编辑</span><span class="dl" data-id="${s.id}">删</span></div>
+    </div>`).join('');
+  $('#list').onclick = async e => {
+    const ed = e.target.closest('.ed'), dl = e.target.closest('.dl');
+    if (ed) return openEdit(ed.dataset.id);
+    if (!dl) return;
+    if (!confirm('删掉这款发型？（它的实拍图也一起删）')) return;
+    try {
+      await aj('/api/admin/styles/' + dl.dataset.id, { method: 'DELETE' });
+      say('#msg3', '删掉了', true);
+      if (EDIT_SID === dl.dataset.id) resetForm();
+      loadList();
+    } catch (err) { say('#msg3', '删除失败：' + err.message, false); }
+  };
+}
+
+/* ================= 5. 网站设置 + 6. 订单确认 ================= */
+async function loadSite() {
+  try {
+    const d = await aj('/api/site');
+    $('#stKf').value = d.kf_wechat || '';
+    $('#stCopy').value = d.copyright || '';
+    $('#stNotice').value = d.notice || '';
+    $('#stQr').textContent = '收款码：' + (d.wxpay_qr ? '微信✓' : '微信✗') +
+      ' / ' + (d.alipay_qr ? '支付宝✓' : '支付宝✗');
+    loadOrders();
+    loadPay();
+  } catch (e) { say('#msg6', '站点信息读不到：' + e.message, false); }
+}
+$('#stSave').onclick = async () => {
+  const body = {kf_wechat: $('#stKf').value, copyright: $('#stCopy').value,
+                notice: $('#stNotice').value};
+  const toB64 = async inp => {
+    const f = inp.files[0];
+    if (!f) return '';
+    return new Promise(res => {
+      const rd = new FileReader();
+      rd.onload = () => res(rd.result);
+      rd.readAsDataURL(f);
+    });
+  };
+  body.wxpay_qr_b64 = await toB64($('#stWx'));
+  body.alipay_qr_b64 = await toB64($('#stAli'));
+  try {
+    const d = await aj('/api/admin/site', {method: 'POST', body});
+    say('#msg6', '已保存，前台刷新即生效', true);
+    $('#stQr').textContent = '收款码：' + (d.site.wxpay_qr ? '微信✓' : '微信✗') +
+      ' / ' + (d.site.alipay_qr ? '支付宝✓' : '支付宝✗');
+    $('#stWx').value = ''; $('#stAli').value = '';
+  } catch (e) { say('#msg6', '保存失败：' + e.message, false); }
+};
+async function loadOrders() {
+  try {
+    const d = await aj('/api/admin/users');       // orders 在同一个接口里
+    const rows = (d.orders || []).slice(0, 30).map(o => {
+      const st = {created: '待支付', checking: '确认中',
+                  paid: '<b style="color:#3fb950">已到账</b>', closed: '已关闭'}[o.status] || o.status;
+      return `<tr style="border-top:1px solid #252a34">
+        <td style="font-family:monospace">${o.id}</td>
+        <td>${o.username || o.uid}</td>
+        <td align=center>¥${(o.amount_cents / 100).toFixed(2)}</td>
+        <td align=center>${o.credits} 积分</td>
+        <td align=center>${st}</td>
+        <td align=center>${new Date(o.created_at * 1000).toLocaleString()}</td>
+        <td align=center>${o.status !== 'paid' ?
+          `<span class="ed" data-oid="${o.id}">确认到账</span>` : '-'}</td></tr>`;
+    }).join('');
+    $('#ordList').innerHTML = rows
+      ? '<table style="width:100%;border-collapse:collapse;font-size:12px">' +
+        '<tr style="color:#8b93a4"><th align=left>订单</th><th align=left>用户</th><th>金额</th>' +
+        '<th>积分</th><th>状态</th><th>时间</th><th>操作</th></tr>' + rows + '</table>'
+      : '<div class="hint">还没有订单</div>';
+    $('#ordList').querySelectorAll('[data-oid]').forEach(el => el.onclick = async () => {
+      try {
+        await aj('/api/billing/order/' + el.dataset.oid + '/pay', {method: 'POST', body: {}});
+        say('#msg7', '已确认到账，积分已加给用户', true);
+        loadOrders(); loadUsers();
+      } catch (e) { say('#msg7', '确认失败：' + e.message, false); }
+    });
+  } catch (e) { say('#msg7', '订单读不到：' + e.message, false); }
+}
+
+/* ================= 4. 生成记录管理 ================= */
+async function loadJobs() {
+  try {
+    const d = await aj('/api/admin/jobs');
+    $('#jobDisk').textContent = `成图文件：results ${d.disk.results} 个 · candidates ${d.disk.candidates} 个 · 记录 ${d.items.length} 条（最近 200）`;
+    const st = {0: '排队', 1: '生成中', 2: '<b style="color:#3fb950">成功</b>', 3: '<span style="color:#ff7b72">失败</span>'};
+    $('#jobList').innerHTML = d.items.length ? '<table style="width:100%;border-collapse:collapse;font-size:12px">' +
+      '<tr style="color:#8b93a4"><th align=left>任务</th><th align=left>用户</th><th align=left>款式</th>' +
+      '<th>后端</th><th>状态</th><th>积分</th><th>成本</th><th>时间</th><th>图</th><th>操作</th></tr>' +
+      d.items.map(j => `<tr style="border-top:1px solid #252a34">
+        <td style="font-family:monospace">${j.id.slice(0, 10)}…</td>
+        <td>${j.username || j.openid}</td>
+        <td>${j.style_id || ''}</td>
+        <td align=center>${j.provider || ''}</td>
+        <td align=center>${st[j.status] || j.status}</td>
+        <td align=center>${j.credits_spent || 0}${j.free_spent ? '+' + j.free_spent + '免费' : ''}</td>
+        <td align=center>${j.cost_usd ? '$' + Number(j.cost_usd).toFixed(4) : '-'}</td>
+        <td align=center>${new Date((j.created_at || 0) * 1000).toLocaleString()}</td>
+        <td align=center>${j.url ? `<a href="${U(j.url)}" target="_blank"><img src="${U(j.url)}" style="width:34px;height:34px;object-fit:cover;border-radius:5px;vertical-align:middle"></a>` : '-'}</td>
+        <td align=center><span class="dl" data-jid="${j.id}">删除</span></td></tr>`).join('') + '</table>'
+      : '<div class="hint">还没有生成记录</div>';
+    $('#jobList').querySelectorAll('[data-jid]').forEach(el => el.onclick = async () => {
+      if (!confirm('删掉这条生成记录？成图文件也会一起删除。')) return;
+      try {
+        const r = await aj('/api/admin/jobs/' + el.dataset.jid, {method: 'DELETE'});
+        say('#msg9', `已删除（清理 ${r.files_removed} 个文件）`, true);
+        loadJobs();
+      } catch (e) { say('#msg9', '删除失败：' + e.message, false); }
+    });
+  } catch (e) { say('#msg9', '生成记录读不到：' + e.message, false); }
+}
+$('#jobRefresh').onclick = loadJobs;
+$('#jobClear').onclick = async () => {
+  if (!confirm('确定清空全部生成记录？所有成图文件会一起删除，且不可恢复！')) return;
+  try {
+    const r = await aj('/api/admin/jobs/clear', {method: 'POST', body: {}});
+    say('#msg9', `已清空：${r.jobs_removed} 条记录 / ${r.files_removed} 个文件`, true);
+    loadJobs();
+  } catch (e) { say('#msg9', '清空失败：' + e.message, false); }
+};
+
+/* ================= 7. 自动支付 ================= */
+let PAYCFG = null;
+async function loadPay() {
+  try {
+    const d = await aj('/api/admin/pay');
+    PAYCFG = d;
+    $('#pmMode').value = d.mode || 'manual';
+    $('#pmBase').value = d.base_url || '';
+    $('#alAppid').value = d.alipay.appid || '';
+    $('#epGw').value = d.epay.gateway || '';
+    $('#epPid').value = d.epay.pid || '';
+    $('#wxAppid').value = d.wechat.appid || '';
+    $('#wxMchid').value = d.wechat.mchid || '';
+    $('#wxSerial').value = d.wechat.serial_no || '';
+    const st = [];
+    st.push(d.alipay.private_key_set ? '支付宝私钥✓' : '支付宝私钥✗');
+    st.push(d.alipay.public_key_set ? '支付宝公钥✓' : '支付宝公钥✗');
+    st.push(d.wechat.private_key_set ? '微信私钥✓' : '微信私钥✗');
+    st.push(d.wechat.apiv3_key_set ? 'v3密钥✓' : 'v3密钥✗');
+    st.push(d.wechat.platform_cert_set ? '平台证书✓' : '平台证书✗');
+    st.push(d.epay.key_set ? '易支付密钥✓' : '易支付密钥✗');
+    $('#pmState').textContent = (d.ready ? '自动到账：已就绪 · ' : '自动到账：未就绪（当前经营码人工确认） · ') + st.join(' ');
+  } catch (e) { say('#msg8', '支付配置读不到：' + e.message, false); }
+}
+$('#pmSave').onclick = async () => {
+  const v = id => $(id).value.trim();
+  const body = {
+    mode: $('#pmMode').value,
+    base_url: v('#pmBase'),
+    alipay: {appid: v('#alAppid'), gateway: 'https://openapi.alipay.com/gateway.do'},
+    wechat: {appid: v('#wxAppid'), mchid: v('#wxMchid'), serial_no: v('#wxSerial')},
+    epay: {gateway: v('#epGw'), pid: v('#epPid'), type: 'alipay'},
+  };
+  if (v('#alPriv')) body.alipay.private_key = v('#alPriv');
+  if (v('#alPub')) body.alipay.public_key = v('#alPub');
+  if (v('#wxPriv')) body.wechat.private_key = v('#wxPriv');
+  if (v('#wxV3')) body.wechat.apiv3_key = v('#wxV3');
+  if (v('#wxCert')) body.wechat.platform_cert = v('#wxCert');
+  if (v('#epKey')) body.epay.key = v('#epKey');
+  try {
+    const d = await aj('/api/admin/pay', {method: 'POST', body});
+    say('#msg8', d.ready ? '已保存：自动到账已就绪' : '已保存：配置还不全，仍按经营码收款', !!d.ready);
+    ['#alPriv', '#alPub', '#wxPriv', '#wxV3', '#wxCert', '#epKey'].forEach(x => $(x).value = '');
+    loadPay();
+  } catch (e) { say('#msg8', '保存失败：' + e.message, false); }
+};
+
+/* ================= 启动：有 token 先验，验过才进 ================= */
+async function boot() {
+  $('#who').textContent = '已登录';
+  try {
+    const me = await aj('/api/auth/me');
+    $('#who').textContent = '已登录：' + (me.user ? me.user.username : '?') + '（管理员）';
+  } catch (e) { return; }   // 401 已被 aj 拦下回到登录门
+  loadCfg().catch(e => say('#msg1', '读配置失败：' + e.message, false));
+  loadList().catch(e => say('#msg3', '读发型库失败：' + e.message, false));
+  renderGal();
+  loadUsers();
+  loadSite();
+  loadJobs();
+}
+if (TOK) {
+  // 有历史登录态：先显示门（避免闪内容），静默验证通过才进
+  fetch(API + '/api/auth/me', {headers: AH()}).then(r => {
+    if (r.ok) { showApp(); boot(); } else { localStorage.removeItem('admin_token'); TOK = ''; showGate(); }
+  }).catch(() => showGate());
+} else {
+  showGate();
+}
+</script>
+</body>
+</html>

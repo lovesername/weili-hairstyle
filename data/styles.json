@@ -1,0 +1,7006 @@
+[
+ {
+  "id": "ps0101",
+  "name": "女士发片01款·FP01",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.429,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0101.jpg",
+  "product_code": "S0101",
+  "style_code": "FP01",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=136",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0101.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0101_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S01/S0101_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0101_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0102",
+  "name": "女士发片02款·FP02",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.393,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0102.jpg",
+  "product_code": "S0102",
+  "style_code": "FP02",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=148",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0102.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0102_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S01/S0102_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0103",
+  "name": "女士发片03款·FP03",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.398,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0103.jpg",
+  "product_code": "S0103",
+  "style_code": "FP03",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=160",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0103.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0103_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S01/S0103_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0104",
+  "name": "女士发片04款·FP04",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.387,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0104.jpg",
+  "product_code": "S0104",
+  "style_code": "FP04",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=171",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0104.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0104_front.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0104_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0105",
+  "name": "女士发片05款·FP05",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.526,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0105.jpg",
+  "product_code": "S0105",
+  "style_code": "FP05",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=182",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0105.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0105_front.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0105_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0106",
+  "name": "女士发片06款·FP06",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.356,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0106.jpg",
+  "product_code": "S0106",
+  "style_code": "FP06",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=193",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0106.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0106_front.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0106_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0107",
+  "name": "女士发片07款·FP07",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.658,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0107.jpg",
+  "product_code": "S0107",
+  "style_code": "FP07",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=202",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0107.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0107_front.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0107_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0108",
+  "name": "女士发片08款·FP08",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.684,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0108.jpg",
+  "product_code": "S0108",
+  "style_code": "FP08",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=209",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0108.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0108_front.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0108_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0109",
+  "name": "女士发片09款·FP09",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "贴头",
+  "curl_coh": 0.943,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，服帖不蓬炸，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0109.jpg",
+  "product_code": "S0109",
+  "style_code": "FP09",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=216",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0109.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0109_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S01/S0109_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0110",
+  "name": "女士发片10款·FP10",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "贴头",
+  "curl_coh": 0.53,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，服帖不蓬炸，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0110.jpg",
+  "product_code": "S0110",
+  "style_code": "FP10",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=222",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0110.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0110_front.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0110_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1210",
+  "name": "平荷款·FP12",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.335,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps1210.jpg",
+  "product_code": "S1210",
+  "style_code": "FP12",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=227",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S1210.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S1210_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S01/S1210_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0111",
+  "name": "女士发片11款·FP11",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.632,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0111.jpg",
+  "product_code": "S0111",
+  "style_code": "FP11",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=228",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S0111.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S0111_front.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S01/S0111_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1211",
+  "name": "分菱款·FP13",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "贴头",
+  "curl_coh": 0.274,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，服帖不蓬炸，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps1211.jpg",
+  "product_code": "S1211",
+  "style_code": "FP13",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=233",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S1211.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S1211_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S01/S1211_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1212",
+  "name": "垂檐款·FP14",
+  "name_en": "女 发片 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "发片",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "贴头",
+  "curl_coh": 0.206,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, soft natural waves, thin lace topper base, realistic strand texture",
+  "cover": "ps1212.jpg",
+  "product_code": "S1212",
+  "style_code": "FP14",
+  "category": "女士发片（15,20,30cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=238",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S01/S1212.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S01/S1212_front.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0201",
+  "name": "女士锡纸烫01款·WT1501",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.322,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0201.jpg",
+  "product_code": "S0201",
+  "style_code": "WT1501",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=137",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0201.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0201_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0201_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0201_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0301",
+  "name": "女士直发01款·WZ1501",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": null,
+  "curl_coh": 0.091,
+  "prompt_zh": "耳上短款的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0301.jpg",
+  "product_code": "S0301",
+  "style_code": "WZ1501",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=139",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0301.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0301_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0301_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0301_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1201",
+  "name": "晴丝款·WZ1537",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.372,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1201.jpg",
+  "product_code": "S1201",
+  "style_code": "WZ1537",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=147",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S1201.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S1201_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S1201_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0302",
+  "name": "女士直发02款·WZ1502",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.608,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0302.jpg",
+  "product_code": "S0302",
+  "style_code": "WZ1502",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=150",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0302.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0302_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0302_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0302_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0303",
+  "name": "女士直发03款·WZ1503",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.36,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0303.jpg",
+  "product_code": "S0303",
+  "style_code": "WZ1503",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=162",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0303.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0303_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0303_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0303_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0304",
+  "name": "女士直发04款·WZ1504",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "贴头",
+  "curl_coh": 0.347,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0304.jpg",
+  "product_code": "S0304",
+  "style_code": "WZ1504",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=173",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0304.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0304_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0304_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0304_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0305",
+  "name": "女士直发05款·WZ1505",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.371,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0305.jpg",
+  "product_code": "S0305",
+  "style_code": "WZ1505",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=184",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0305.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0305_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0305_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0305_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0306",
+  "name": "女士直发06款·WZ1506",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.362,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0306.jpg",
+  "product_code": "S0306",
+  "style_code": "WZ1506",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=195",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0306.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0306_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0306_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0306_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0307",
+  "name": "女士直发07款·WZ1507",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.198,
+  "prompt_zh": "耳上短款的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0307.jpg",
+  "product_code": "S0307",
+  "style_code": "WZ1507",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=204",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0307.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0307_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0307_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0307_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0308",
+  "name": "女士直发08款·WZ1508",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.496,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0308.jpg",
+  "product_code": "S0308",
+  "style_code": "WZ1508",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=211",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0308.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0308_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0308_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0308_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0309",
+  "name": "女士直发09款·WZ1509",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.391,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0309.jpg",
+  "product_code": "S0309",
+  "style_code": "WZ1509",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=218",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0309.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0309_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0309_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0309_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0310",
+  "name": "女士直发10款·WZ1510",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.461,
+  "prompt_zh": "发尾及颌的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0310.jpg",
+  "product_code": "S0310",
+  "style_code": "WZ1510",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=224",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0310.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0310_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0310_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0310_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0311",
+  "name": "女士直发11款·WZ1511",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.247,
+  "prompt_zh": "发尾及颌的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0311.jpg",
+  "product_code": "S0311",
+  "style_code": "WZ1511",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=230",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0311.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0311_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0311_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0311_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0312",
+  "name": "女士直发12款·WZ1512",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.428,
+  "prompt_zh": "发尾及颌的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0312.jpg",
+  "product_code": "S0312",
+  "style_code": "WZ1512",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=235",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0312.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0312_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0312_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0312_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0313",
+  "name": "女士直发13款·WZ1513",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.421,
+  "prompt_zh": "发尾及颌的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0313.jpg",
+  "product_code": "S0313",
+  "style_code": "WZ1513",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=240",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0313.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0313_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0313_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0313_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0314",
+  "name": "女士直发14款·WZ1514",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.338,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0314.jpg",
+  "product_code": "S0314",
+  "style_code": "WZ1514",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=244",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0314.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0314_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0314_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0314_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0315",
+  "name": "女士直发15款·WZ1515",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.387,
+  "prompt_zh": "发尾及颌的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0315.jpg",
+  "product_code": "S0315",
+  "style_code": "WZ1515",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=248",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0315.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0315_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0315_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0315_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0316",
+  "name": "女士直发16款·WZ1516",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "贴头",
+  "curl_coh": 0.151,
+  "prompt_zh": "发尾及颌的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0316.jpg",
+  "product_code": "S0316",
+  "style_code": "WZ1516",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=251",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0316.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0316_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0316_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0316_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0317",
+  "name": "女士直发17款·WZ1517",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.362,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0317.jpg",
+  "product_code": "S0317",
+  "style_code": "WZ1517",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=253",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0317.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0317_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0317_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0317_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0318",
+  "name": "女士直发18款·WZ1518",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.276,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0318.jpg",
+  "product_code": "S0318",
+  "style_code": "WZ1518",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=255",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0318.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0318_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0318_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0318_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0319",
+  "name": "女士直发19款·WZ1519",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.336,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0319.jpg",
+  "product_code": "S0319",
+  "style_code": "WZ1519",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=258",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0319.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0319_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0319_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0319_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0320",
+  "name": "女士直发20款·WZ1520",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.242,
+  "prompt_zh": "发尾及颌的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0320.jpg",
+  "product_code": "S0320",
+  "style_code": "WZ1520",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=260",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0320.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0320_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0320_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0320_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0321",
+  "name": "女士直发21款·WZ1521",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.327,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0321.jpg",
+  "product_code": "S0321",
+  "style_code": "WZ1521",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=262",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0321.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0321_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0321_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0321_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0322",
+  "name": "女士直发22款·WZ1522",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "贴头",
+  "curl_coh": 0.191,
+  "prompt_zh": "耳上短款的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0322.jpg",
+  "product_code": "S0322",
+  "style_code": "WZ1522",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=263",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0322.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0322_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0322_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0322_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0323",
+  "name": "女士直发23款·WZ1523",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "贴头",
+  "curl_coh": 0.351,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0323.jpg",
+  "product_code": "S0323",
+  "style_code": "WZ1523",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=264",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0323.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0323_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0323_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0323_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0324",
+  "name": "女士直发24款·WZ1524",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "贴头",
+  "curl_coh": 0.212,
+  "prompt_zh": "耳上短款的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0324.jpg",
+  "product_code": "S0324",
+  "style_code": "WZ1524",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=265",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0324.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0324_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0324_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0324_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0325",
+  "name": "女士直发25款·WZ1525",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.312,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0325.jpg",
+  "product_code": "S0325",
+  "style_code": "WZ1525",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=266",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0325.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0325_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0325_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0325_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0326",
+  "name": "女士直发26款·WZ1526",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.427,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0326.jpg",
+  "product_code": "S0326",
+  "style_code": "WZ1526",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=267",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0326.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0326_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0326_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0327",
+  "name": "女士直发27款·WZ1527",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "贴头",
+  "curl_coh": 0.262,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0327.jpg",
+  "product_code": "S0327",
+  "style_code": "WZ1527",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=268",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0327.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0327_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0327_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0327_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0328",
+  "name": "女士直发28款·WZ1528",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.211,
+  "prompt_zh": "耳上短款的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0328.jpg",
+  "product_code": "S0328",
+  "style_code": "WZ1528",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=269",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0328.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0328_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0328_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0328_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0329",
+  "name": "女士直发29款·WZ1529",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.496,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0329.jpg",
+  "product_code": "S0329",
+  "style_code": "WZ1529",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=270",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0329.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0329_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0329_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0329_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0330",
+  "name": "女士直发30款·WZ1530",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.348,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0330.jpg",
+  "product_code": "S0330",
+  "style_code": "WZ1530",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=271",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0330.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0330_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0330_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0331",
+  "name": "女士直发31款·WZ1531",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.38,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0331.jpg",
+  "product_code": "S0331",
+  "style_code": "WZ1531",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=272",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0331.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0331_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0331_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0332",
+  "name": "女士直发32款·WZ1532",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.359,
+  "prompt_zh": "发尾及颌的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0332.jpg",
+  "product_code": "S0332",
+  "style_code": "WZ1532",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=273",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0332.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0332_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0332_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0332_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0333",
+  "name": "女士直发33款·WZ1533",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "贴头",
+  "curl_coh": 0.115,
+  "prompt_zh": "耳上短款的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0333.jpg",
+  "product_code": "S0333",
+  "style_code": "WZ1533",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=274",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0333.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0333_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0333_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0333_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0334",
+  "name": "女士直发34款·WZ1534",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.635,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0334.jpg",
+  "product_code": "S0334",
+  "style_code": "WZ1534",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=275",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0334.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0334_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0334_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0334_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0335",
+  "name": "女士直发35款·WZ1535",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.397,
+  "prompt_zh": "发尾及颌的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0335.jpg",
+  "product_code": "S0335",
+  "style_code": "WZ1535",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=276",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0335.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0335_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0335_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S03/S0335_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0336",
+  "name": "女士直发36款·WZ1536",
+  "name_en": "女 直发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.284,
+  "prompt_zh": "耳上短款的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps0336.jpg",
+  "product_code": "S0336",
+  "style_code": "WZ1536",
+  "category": "女士直发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=277",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S03/S0336.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S03/S0336_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S03/S0336_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1001",
+  "name": "女士直发01款·WZ2001",
+  "name_en": "女 直发 20cm",
+  "tags": [
+   "中长",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.465,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1001.jpg",
+  "product_code": "S1001",
+  "style_code": "WZ2001",
+  "category": "女士直发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=145",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S10/S1001.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S10/S1001_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S10/S1001_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S10/S1001_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1002",
+  "name": "女士直发02款·WZ2002",
+  "name_en": "女 直发 20cm",
+  "tags": [
+   "中长",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.528,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1002.jpg",
+  "product_code": "S1002",
+  "style_code": "WZ2002",
+  "category": "女士直发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=157",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S10/S1002.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S10/S1002_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S10/S1002_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S10/S1002_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1003",
+  "name": "女士直发03款·WZ2003",
+  "name_en": "女 直发 20cm",
+  "tags": [
+   "中长",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.523,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1003.jpg",
+  "product_code": "S1003",
+  "style_code": "WZ2003",
+  "category": "女士直发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=168",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S10/S1003.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S10/S1003_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S10/S1003_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S10/S1003_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1004",
+  "name": "女士直发04款·WZ2004",
+  "name_en": "女 直发 20cm",
+  "tags": [
+   "中长",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.47,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1004.jpg",
+  "product_code": "S1004",
+  "style_code": "WZ2004",
+  "category": "女士直发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=179",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S10/S1004.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S10/S1004_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S10/S1004_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S10/S1004_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1005",
+  "name": "女士直发05款·WZ2005",
+  "name_en": "女 直发 20cm",
+  "tags": [
+   "中长",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.452,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1005.jpg",
+  "product_code": "S1005",
+  "style_code": "WZ2005",
+  "category": "女士直发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=190",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S10/S1005.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S10/S1005_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S10/S1005_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S10/S1005_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0202",
+  "name": "女士卷发01款·WJ1501",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.142,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0202.jpg",
+  "product_code": "S0202",
+  "style_code": "WJ1501",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=138",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0202.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0202_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0202_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0203",
+  "name": "女士卷发02款·WJ1502",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.105,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0203.jpg",
+  "product_code": "S0203",
+  "style_code": "WJ1502",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=149",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0203.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0203_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0203_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0203_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0204",
+  "name": "女士卷发03款·WJ1503",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "蓬松",
+  "curl_coh": 0.144,
+  "prompt_zh": "发尾及颌的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0204.jpg",
+  "product_code": "S0204",
+  "style_code": "WJ1503",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=161",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0204.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0204_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0204_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0204_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0205",
+  "name": "女士卷发04款·WJ1504",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.14,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0205.jpg",
+  "product_code": "S0205",
+  "style_code": "WJ1504",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=172",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0205.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0205_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0205_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0205_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1204",
+  "name": "芒刺款·WJ1517",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": null,
+  "curl_coh": 0.089,
+  "prompt_zh": "耳上短款的自然黑小卷，细密小卷，卷度紧实有弹性，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, tight small curls, realistic strand texture",
+  "cover": "ps1204.jpg",
+  "product_code": "S1204",
+  "style_code": "WJ1517",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=181",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S1204.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S1204_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S1204_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S1204_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0206",
+  "name": "女士卷发05款·WJ1505",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "蓬松",
+  "curl_coh": 0.043,
+  "prompt_zh": "发尾及肩的自然黑小卷，细密小卷，卷度紧实有弹性，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, tight small curls, realistic strand texture",
+  "cover": "ps0206.jpg",
+  "product_code": "S0206",
+  "style_code": "WJ1505",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=183",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0206.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0206_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0206_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0206_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1205",
+  "name": "榴卷款·WJ1518",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.119,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps1205.jpg",
+  "product_code": "S1205",
+  "style_code": "WJ1518",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=192",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S1205.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S1205_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S1205_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S1205_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0207",
+  "name": "女士卷发06款·WJ1506",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "蓬松",
+  "curl_coh": 0.096,
+  "prompt_zh": "发尾及颌的自然黑小卷，细密小卷，卷度紧实有弹性，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, tight small curls, realistic strand texture",
+  "cover": "ps0207.jpg",
+  "product_code": "S0207",
+  "style_code": "WJ1506",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=194",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0207.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0207_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0207_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0207_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0208",
+  "name": "女士卷发07款·WJ1507",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.134,
+  "prompt_zh": "发尾及颌的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0208.jpg",
+  "product_code": "S0208",
+  "style_code": "WJ1507",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=203",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0208.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0208_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0208_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0208_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0209",
+  "name": "女士卷发08款·WJ1508",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.291,
+  "prompt_zh": "发尾及颌的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0209.jpg",
+  "product_code": "S0209",
+  "style_code": "WJ1508",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=210",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0209.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0209_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0209_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0209_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0210",
+  "name": "女士卷发09款·WJ1509",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "贴头",
+  "curl_coh": 0.236,
+  "prompt_zh": "发尾及颌的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0210.jpg",
+  "product_code": "S0210",
+  "style_code": "WJ1509",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=217",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0210.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0210_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0210_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0210_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0211",
+  "name": "女士卷发10款·WJ1510",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.187,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0211.jpg",
+  "product_code": "S0211",
+  "style_code": "WJ1510",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=223",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0211.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0211_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0211_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0211_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0212",
+  "name": "女士卷发11款·WJ1511",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "蓬松",
+  "curl_coh": 0.164,
+  "prompt_zh": "发尾及颌的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0212.jpg",
+  "product_code": "S0212",
+  "style_code": "WJ1511",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=229",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0212.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0212_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0212_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0212_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0213",
+  "name": "女士卷发12款·WJ1512",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": null,
+  "curl_coh": 0.066,
+  "prompt_zh": "发尾及颌的自然黑小卷，细密小卷，卷度紧实有弹性，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, tight small curls, realistic strand texture",
+  "cover": "ps0213.jpg",
+  "product_code": "S0213",
+  "style_code": "WJ1512",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=234",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0213.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0213_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0213_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0213_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0214",
+  "name": "女士卷发13款·WJ1513",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "蓬松",
+  "curl_coh": 0.08,
+  "prompt_zh": "发尾及颌的自然黑小卷，细密小卷，卷度紧实有弹性，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, tight small curls, realistic strand texture",
+  "cover": "ps0214.jpg",
+  "product_code": "S0214",
+  "style_code": "WJ1513",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=239",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0214.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0214_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0214_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0214_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0215",
+  "name": "女士卷发15款·WJ1515",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "蓬松",
+  "curl_coh": 0.12,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0215.jpg",
+  "product_code": "S0215",
+  "style_code": "WJ1515",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=243",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0215.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0215_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0215_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0215_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0216",
+  "name": "女士卷发14款·WJ1514",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "蓬松",
+  "curl_coh": 0.08,
+  "prompt_zh": "发尾及颌的自然黑小卷，细密小卷，卷度紧实有弹性，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, tight small curls, realistic strand texture",
+  "cover": "ps0216.jpg",
+  "product_code": "S0216",
+  "style_code": "WJ1514",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=247",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0216.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0216_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0216_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0216_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0217",
+  "name": "女士卷发16款·WJ1516",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.13,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0217.jpg",
+  "product_code": "S0217",
+  "style_code": "WJ1516",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=250",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0217.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0217_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0217_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0217_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0218",
+  "name": "女士卷发19款·WJ1519",
+  "name_en": "女 卷发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.109,
+  "prompt_zh": "耳上短款的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0218.jpg",
+  "product_code": "S0218",
+  "style_code": "WJ1519",
+  "category": "女士卷发（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=257",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S02/S0218.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S02/S0218_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S02/S0218_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S02/S0218_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0901",
+  "name": "女士卷发01款·WJ2001",
+  "name_en": "女 卷发 20cm",
+  "tags": [
+   "中长",
+   "小卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "蓬松",
+  "curl_coh": 0.088,
+  "prompt_zh": "发尾及肩的自然黑小卷，细密小卷，卷度紧实有弹性，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, tight small curls, realistic strand texture",
+  "cover": "ps0901.jpg",
+  "product_code": "S0901",
+  "style_code": "WJ2001",
+  "category": "女士卷发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=144",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S09/S0901.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S09/S0901_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S09/S0901_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S09/S0901_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0902",
+  "name": "女士卷发02款·WJ2002",
+  "name_en": "女 卷发 20cm",
+  "tags": [
+   "中长",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "蓬松",
+  "curl_coh": 0.109,
+  "prompt_zh": "发尾及颌的自然黑卷发，松散卷度，卷型饱满不僵硬，发量蓬松，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, loose full curls, realistic strand texture",
+  "cover": "ps0902.jpg",
+  "product_code": "S0902",
+  "style_code": "WJ2002",
+  "category": "女士卷发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=156",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S09/S0902.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S09/S0902_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S09/S0902_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S09/S0902_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0903",
+  "name": "女士卷发03款·WJ2003",
+  "name_en": "女 卷发 20cm",
+  "tags": [
+   "中长",
+   "微卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "贴头",
+  "curl_coh": 0.194,
+  "prompt_zh": "发尾及肩的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0903.jpg",
+  "product_code": "S0903",
+  "style_code": "WJ2003",
+  "category": "女士卷发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=167",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S09/S0903.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S09/S0903_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S09/S0903_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S09/S0903_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0904",
+  "name": "女士卷发04款·WJ2004",
+  "name_en": "女 卷发 20cm",
+  "tags": [
+   "中长",
+   "微卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "贴头",
+  "curl_coh": 0.228,
+  "prompt_zh": "耳上短款的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0904.jpg",
+  "product_code": "S0904",
+  "style_code": "WJ2004",
+  "category": "女士卷发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=178",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S09/S0904.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S09/S0904_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S09/S0904_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S09/S0904_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0905",
+  "name": "女士卷发05款·WJ2005",
+  "name_en": "女 卷发 20cm",
+  "tags": [
+   "中长",
+   "微卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "蓬松",
+  "curl_coh": 0.224,
+  "prompt_zh": "发尾及肩的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0905.jpg",
+  "product_code": "S0905",
+  "style_code": "WJ2005",
+  "category": "女士卷发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=189",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S09/S0905.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S09/S0905_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S09/S0905_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S09/S0905_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0906",
+  "name": "女士卷发06款·WJ2006",
+  "name_en": "女 卷发 20cm",
+  "tags": [
+   "中长",
+   "微卷",
+   "卷发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.36,
+  "prompt_zh": "发尾过肩落胸的自然黑微卷，发尾带自然微卷弧度，不刻意不僵硬，发量极多，蓬松炸开，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "past-shoulder length natural black wig, soft natural waves, realistic strand texture",
+  "cover": "ps0906.jpg",
+  "product_code": "S0906",
+  "style_code": "WJ2006",
+  "category": "女士卷发（20cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=199",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S09/S0906.jpg"
+   },
+   {
+    "label": "source",
+    "file": "source.jpg",
+    "src": "uploads/products/images/S09/S0906_source.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0401",
+  "name": "女士纹理01款·WL1501",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "蓬松",
+  "curl_coh": 0.216,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，整体蓬松有空气感，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0401.jpg",
+  "product_code": "S0401",
+  "style_code": "WL1501",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=140",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0401.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0401_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0401_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0401_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0402",
+  "name": "女士纹理02款·WL1502",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.293,
+  "prompt_zh": "耳上短款的自然黑纹理，顺直无卷度，发尾自然垂顺，发丝有光泽，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, layered texture, realistic strand texture",
+  "cover": "ps0402.jpg",
+  "product_code": "S0402",
+  "style_code": "WL1502",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=151",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0402.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0402_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0402_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0402_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1202",
+  "name": "松絮款·WL1521",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.126,
+  "prompt_zh": "耳上短款的自然黑纹理，松散卷度，卷型饱满不僵硬，发量蓬松，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, layered texture, realistic strand texture",
+  "cover": "ps1202.jpg",
+  "product_code": "S1202",
+  "style_code": "WL1521",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=159",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S1202.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S1202_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S1202_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0403",
+  "name": "女士纹理03款·WL1503",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.273,
+  "prompt_zh": "耳上短款的自然黑纹理，顺直无卷度，发尾自然垂顺，发丝有光泽，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, layered texture, realistic strand texture",
+  "cover": "ps0403.jpg",
+  "product_code": "S0403",
+  "style_code": "WL1503",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=163",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0403.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0403_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0403_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0403_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1203",
+  "name": "蝉尾款·WL1522",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.261,
+  "prompt_zh": "发尾及颌的自然黑纹理，顺直无卷度，发尾自然垂顺，发丝有光泽，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, layered texture, realistic strand texture",
+  "cover": "ps1203.jpg",
+  "product_code": "S1203",
+  "style_code": "WL1522",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=170",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S1203.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S1203_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S1203_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S1203_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0404",
+  "name": "女士纹理04款·WL1504",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.176,
+  "prompt_zh": "耳上短款的自然黑纹理，松散卷度，卷型饱满不僵硬，发量蓬松，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, layered texture, realistic strand texture",
+  "cover": "ps0404.jpg",
+  "product_code": "S0404",
+  "style_code": "WL1504",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=174",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0404.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0404_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0404_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0404_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0405",
+  "name": "女士纹理05款·WL1505",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.338,
+  "prompt_zh": "发尾及肩的自然黑纹理，顺直无卷度，发尾自然垂顺，发丝有光泽，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, layered texture, realistic strand texture",
+  "cover": "ps0405.jpg",
+  "product_code": "S0405",
+  "style_code": "WL1505",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=185",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0405.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0405_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0405_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0405_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0406",
+  "name": "女士纹理06款·WL1506",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.246,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0406.jpg",
+  "product_code": "S0406",
+  "style_code": "WL1506",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=196",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0406.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0406_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0406_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0406_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1206",
+  "name": "疏影款·WL1523",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.205,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps1206.jpg",
+  "product_code": "S1206",
+  "style_code": "WL1523",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=201",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S1206.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S1206_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S1206_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S1206_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0407",
+  "name": "女士纹理07款·WL1507",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.117,
+  "prompt_zh": "耳上短款的自然黑纹理，松散卷度，卷型饱满不僵硬，发量蓬松，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, layered texture, realistic strand texture",
+  "cover": "ps0407.jpg",
+  "product_code": "S0407",
+  "style_code": "WL1507",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=205",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0407.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0407_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0407_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0407_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0408",
+  "name": "女士纹理08款·WL1508",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.245,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0408.jpg",
+  "product_code": "S0408",
+  "style_code": "WL1508",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=212",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0408.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0408_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0408_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0408_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0409",
+  "name": "女士纹理09款·WL1509",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.21,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0409.jpg",
+  "product_code": "S0409",
+  "style_code": "WL1509",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=219",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0409.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0409_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0409_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0409_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0410",
+  "name": "女士纹理10款·WL1510",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.248,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0410.jpg",
+  "product_code": "S0410",
+  "style_code": "WL1510",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=225",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0410.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0410_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0410_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0410_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0411",
+  "name": "女士纹理11款·WL1511",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "贴头",
+  "curl_coh": 0.156,
+  "prompt_zh": "耳上短款的自然黑纹理，松散卷度，卷型饱满不僵硬，发量蓬松，服帖不蓬炸，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, layered texture, realistic strand texture",
+  "cover": "ps0411.jpg",
+  "product_code": "S0411",
+  "style_code": "WL1511",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=231",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0411.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0411_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0411_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0412",
+  "name": "女士纹理12款·WL1512",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "贴头",
+  "curl_coh": 0.026,
+  "prompt_zh": "耳上短款的自然黑纹理，细密小卷，卷度紧实有弹性，服帖不蓬炸，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, tight small curls, layered texture, realistic strand texture",
+  "cover": "ps0412.jpg",
+  "product_code": "S0412",
+  "style_code": "WL1512",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=236",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0412.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0412_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0412_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0413",
+  "name": "女士纹理13款·WL1513",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.213,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0413.jpg",
+  "product_code": "S0413",
+  "style_code": "WL1513",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=241",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0413.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0413_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0413_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0413_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0414",
+  "name": "女士纹理14款·WL1514",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.236,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0414.jpg",
+  "product_code": "S0414",
+  "style_code": "WL1514",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=245",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0414.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0414_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0414_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0415",
+  "name": "女士纹理15款·WL1515",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.292,
+  "prompt_zh": "发尾及颌的自然黑纹理，顺直无卷度，发尾自然垂顺，发丝有光泽，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, straight, glossy natural fall, layered texture, realistic strand texture",
+  "cover": "ps0415.jpg",
+  "product_code": "S0415",
+  "style_code": "WL1515",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=249",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0415.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0415_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0415_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0415_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0416",
+  "name": "女士纹理16款·WL1516",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.194,
+  "prompt_zh": "耳上短款的自然黑纹理，发尾带自然微卷弧度，不刻意不僵硬，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, soft natural waves, layered texture, realistic strand texture",
+  "cover": "ps0416.jpg",
+  "product_code": "S0416",
+  "style_code": "WL1516",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=252",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0416.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0416_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0416_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0416_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0417",
+  "name": "女士纹理17款·WL1517",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.179,
+  "prompt_zh": "耳上短款的自然黑纹理，松散卷度，卷型饱满不僵硬，发量蓬松，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, layered texture, realistic strand texture",
+  "cover": "ps0417.jpg",
+  "product_code": "S0417",
+  "style_code": "WL1517",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=254",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0417.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0417_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0417_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0417_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0418",
+  "name": "女士纹理18款·WL1518",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.159,
+  "prompt_zh": "耳上短款的自然黑纹理，松散卷度，卷型饱满不僵硬，发量蓬松，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, layered texture, realistic strand texture",
+  "cover": "ps0418.jpg",
+  "product_code": "S0418",
+  "style_code": "WL1518",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=256",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0418.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0418_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0418_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0419",
+  "name": "女士纹理19款·WL1519",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.289,
+  "prompt_zh": "耳上短款的自然黑纹理，顺直无卷度，发尾自然垂顺，发丝有光泽，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, layered texture, realistic strand texture",
+  "cover": "ps0419.jpg",
+  "product_code": "S0419",
+  "style_code": "WL1519",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=259",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0419.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0419_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0419_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0419_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0420",
+  "name": "女士纹理20款·WL1520",
+  "name_en": "女 纹理 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "纹理",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "贴头",
+  "curl_coh": 0.087,
+  "prompt_zh": "耳上短款的自然黑纹理，细密小卷，卷度紧实有弹性，服帖不蓬炸，表面有层次纹理，发丝分明不贴头皮，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, tight small curls, layered texture, realistic strand texture",
+  "cover": "ps0420.jpg",
+  "product_code": "S0420",
+  "style_code": "WL1520",
+  "category": "女士纹理（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=261",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S04/S0420.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S04/S0420_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S04/S0420_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S04/S0420_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0501",
+  "name": "女士锡纸烫02款·WT1502",
+  "name_en": "女 锡纸烫 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "锡纸烫",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": null,
+  "curl_coh": 0.074,
+  "prompt_zh": "发尾及颌的自然黑锡纸烫，细密小卷，卷度紧实有弹性，发根蓬松立体，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, tight small curls, lifted roots, realistic strand texture",
+  "cover": "ps0501.jpg",
+  "product_code": "S0501",
+  "style_code": "WT1502",
+  "category": "女士锡纸烫（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=152",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S05/S0501.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S05/S0501_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S05/S0501_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S05/S0501_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0502",
+  "name": "女士锡纸烫03款·WT1503",
+  "name_en": "女 锡纸烫 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "锡纸烫",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": null,
+  "curl_coh": 0.088,
+  "prompt_zh": "发尾及颌的自然黑锡纸烫，细密小卷，卷度紧实有弹性，发根蓬松立体，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, tight small curls, lifted roots, realistic strand texture",
+  "cover": "ps0502.jpg",
+  "product_code": "S0502",
+  "style_code": "WT1503",
+  "category": "女士锡纸烫（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=164",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S05/S0502.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S05/S0502_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S05/S0502_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S05/S0502_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0503",
+  "name": "女士锡纸烫04款·WT1504",
+  "name_en": "女 锡纸烫 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "锡纸烫",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": null,
+  "curl_coh": 0.195,
+  "prompt_zh": "发尾及颌的自然黑锡纸烫，发尾带自然微卷弧度，不刻意不僵硬，发根蓬松立体，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, soft natural waves, lifted roots, realistic strand texture",
+  "cover": "ps0503.jpg",
+  "product_code": "S0503",
+  "style_code": "WT1504",
+  "category": "女士锡纸烫（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=175",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S05/S0503.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S05/S0503_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S05/S0503_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S05/S0503_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0504",
+  "name": "女士锡纸烫05款·WT1505",
+  "name_en": "女 锡纸烫 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "锡纸烫",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "贴头",
+  "curl_coh": 0.064,
+  "prompt_zh": "耳上短款的自然黑锡纸烫，细密小卷，卷度紧实有弹性，服帖不蓬炸，发根蓬松立体，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, tight small curls, lifted roots, realistic strand texture",
+  "cover": "ps0504.jpg",
+  "product_code": "S0504",
+  "style_code": "WT1505",
+  "category": "女士锡纸烫（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=186",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S05/S0504.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S05/S0504_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S05/S0504_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S05/S0504_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0505",
+  "name": "女士锡纸烫06款·WT1506",
+  "name_en": "女 锡纸烫 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "锡纸烫",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "贴头",
+  "curl_coh": 0.054,
+  "prompt_zh": "耳上短款的自然黑锡纸烫，细密小卷，卷度紧实有弹性，服帖不蓬炸，发根蓬松立体，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, tight small curls, lifted roots, realistic strand texture",
+  "cover": "ps0505.jpg",
+  "product_code": "S0505",
+  "style_code": "WT1506",
+  "category": "女士锡纸烫（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=197",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S05/S0505.png"
+   },
+   {
+    "label": "source",
+    "file": "source.jpg",
+    "src": "uploads/products/images/S05/S0505_source.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1101",
+  "name": "女士长发01款·WC01",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "贴头",
+  "curl_coh": 0.585,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，服帖不蓬炸，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1101.jpg",
+  "product_code": "S1101",
+  "style_code": "WC01",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=146",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1101.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1101_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1101_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1101_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1102",
+  "name": "女士长发02款·WC02",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.612,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1102.jpg",
+  "product_code": "S1102",
+  "style_code": "WC02",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=158",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1102.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1102_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1102_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1102_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1103",
+  "name": "女士长发03款·WC03",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.616,
+  "prompt_zh": "发尾过肩落胸的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "past-shoulder length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1103.jpg",
+  "product_code": "S1103",
+  "style_code": "WC03",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=169",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1103.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1103_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1103_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1103_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1104",
+  "name": "女士长发04款·WC04",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "蓬松",
+  "curl_coh": 0.688,
+  "prompt_zh": "发尾过肩落胸的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，整体蓬松有空气感，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "past-shoulder length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1104.jpg",
+  "product_code": "S1104",
+  "style_code": "WC04",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=180",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1104.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1104_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1104_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1104_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1105",
+  "name": "女士长发05款·WC05",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.398,
+  "prompt_zh": "发尾过肩落胸的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "past-shoulder length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1105.jpg",
+  "product_code": "S1105",
+  "style_code": "WC05",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=191",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1105.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1105_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1105_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1105_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1106",
+  "name": "女士长发06款·WC06",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.604,
+  "prompt_zh": "发尾过肩落胸的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "past-shoulder length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1106.jpg",
+  "product_code": "S1106",
+  "style_code": "WC06",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=200",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1106.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1106_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1106_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1106_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1107",
+  "name": "女士长发07款·WC07",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.473,
+  "prompt_zh": "发尾过肩落胸的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "past-shoulder length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1107.jpg",
+  "product_code": "S1107",
+  "style_code": "WC07",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=207",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1107.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1107_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1107_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1107_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1108",
+  "name": "女士长发08款·WC08",
+  "name_en": "女 直发 30cm",
+  "tags": [
+   "长发",
+   "直发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.415,
+  "prompt_zh": "发尾及肩的自然黑直发，顺直无卷度，发尾自然垂顺，发丝有光泽，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "shoulder-grazing length natural black wig, straight, glossy natural fall, realistic strand texture",
+  "cover": "ps1108.jpg",
+  "product_code": "S1108",
+  "style_code": "WC08",
+  "category": "女士长发（30,35cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=214",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S11/S1108.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S11/S1108_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S11/S1108_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S11/S1108_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0601",
+  "name": "混发翻翘01款·HF1501",
+  "name_en": "女 混发 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "混发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": null,
+  "curl_coh": 0.009,
+  "prompt_zh": "发尾及颌的自然黑混发，细密小卷，卷度紧实有弹性，真人发与纤维混纺，质感接近原生发，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, tight small curls, human hair blend, realistic strand texture",
+  "cover": "ps0601.jpg",
+  "product_code": "S0601",
+  "style_code": "FQ1501",
+  "category": "混发专区（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=141",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S06/S0601.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S06/S0601_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S06/S0601_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S06/S0601_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0602",
+  "name": "混发翻翘02款·HF1502",
+  "name_en": "女 混发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "混发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "贴头",
+  "curl_coh": 0.135,
+  "prompt_zh": "发尾及颌的自然黑混发，松散卷度，卷型饱满不僵硬，发量蓬松，服帖不蓬炸，真人发与纤维混纺，质感接近原生发，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "jaw-grazing length natural black wig, loose full curls, human hair blend, realistic strand texture",
+  "cover": "ps0602.jpg",
+  "product_code": "S0602",
+  "style_code": "FQ1502",
+  "category": "混发专区（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=153",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S06/S0602.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S06/S0602_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S06/S0602_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1207",
+  "name": "凝丝款·HF1503",
+  "name_en": "女 混发 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "混发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": null,
+  "curl_coh": 0.376,
+  "prompt_zh": "耳上短款的自然黑混发，顺直无卷度，发尾自然垂顺，发丝有光泽，真人发与纤维混纺，质感接近原生发，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, straight, glossy natural fall, human hair blend, realistic strand texture",
+  "cover": "ps1207.jpg",
+  "product_code": "S1207",
+  "style_code": "HF1503",
+  "category": "混发专区（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=208",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S06/S1207.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S06/S1207_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S06/S1207_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S06/S1207_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1208",
+  "name": "圆鬟款·HF1504",
+  "name_en": "女 混发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "混发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.184,
+  "prompt_zh": "耳上短款的自然黑混发，松散卷度，卷型饱满不僵硬，发量蓬松，真人发与纤维混纺，质感接近原生发，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, human hair blend, realistic strand texture",
+  "cover": "ps1208.jpg",
+  "product_code": "S1208",
+  "style_code": "HF1504",
+  "category": "混发专区（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=215",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S06/S1208.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S06/S1208_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S06/S1208_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S06/S1208_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps1209",
+  "name": "敛云款·HF1505",
+  "name_en": "女 混发 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "混发",
+   "女"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": null,
+  "curl_coh": 0.167,
+  "prompt_zh": "耳上短款的自然黑混发，松散卷度，卷型饱满不僵硬，发量蓬松，真人发与纤维混纺，质感接近原生发，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "short above-ear length natural black wig, loose full curls, human hair blend, realistic strand texture",
+  "cover": "ps1209.jpg",
+  "product_code": "S1209",
+  "style_code": "HF1505",
+  "category": "混发专区（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=221",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S06/S1209.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S06/S1209_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S06/S1209_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S06/S1209_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0801",
+  "name": "男士发片01款·MP1501",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.03,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0801.jpg",
+  "product_code": "S0801",
+  "style_code": "MP1501",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=143",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0801.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0801_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0801_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0801_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0802",
+  "name": "男士发片02款·MP1502",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.047,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0802.jpg",
+  "product_code": "S0802",
+  "style_code": "MP1502",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=155",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0802.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0802_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0802_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0803",
+  "name": "男士发片03款·MP1503",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.066,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0803.jpg",
+  "product_code": "S0803",
+  "style_code": "MP1503",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=166",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0803.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0803_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0803_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0803_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0804",
+  "name": "男士发片04款·MP1504",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "极蓬松",
+  "curl_coh": 0.12,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，松散卷度，卷型饱满不僵硬，发量蓬松，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, loose full curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0804.jpg",
+  "product_code": "S0804",
+  "style_code": "MP1504",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=177",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0804.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0804_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0804_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0805",
+  "name": "男士发片05款·MP1505",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "极蓬松",
+  "curl_coh": 0.111,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，松散卷度，卷型饱满不僵硬，发量蓬松，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, loose full curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0805.jpg",
+  "product_code": "S0805",
+  "style_code": "MP1505",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=188",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0805.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0805_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0805_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0806",
+  "name": "男士发片06款·MP1506",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "极蓬松",
+  "curl_coh": 0.113,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，松散卷度，卷型饱满不僵硬，发量蓬松，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, loose full curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0806.jpg",
+  "product_code": "S0806",
+  "style_code": "MP1506",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=198",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0806.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0806_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0806_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0806_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0807",
+  "name": "男士发片07款·MP1507",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.318,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0807.jpg",
+  "product_code": "S0807",
+  "style_code": "MP1507",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=206",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0807.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0807_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0807_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0807_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0808",
+  "name": "男士发片08款·MP1508",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.336,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0808.jpg",
+  "product_code": "S0808",
+  "style_code": "MP1508",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=213",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0808.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0808_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0808_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0808_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0809",
+  "name": "男士发片09款·MP1509",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "直发",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "直发",
+  "volume": "极蓬松",
+  "curl_coh": 0.27,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，顺直无卷度，发尾自然垂顺，发丝有光泽，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, straight, glossy natural fall, thin lace topper base, realistic strand texture",
+  "cover": "ps0809.jpg",
+  "product_code": "S0809",
+  "style_code": "MP1509",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=220",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0809.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0809_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0809_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0809_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0810",
+  "name": "男士发片10款·MP1510",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.06,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0810.jpg",
+  "product_code": "S0810",
+  "style_code": "MP1510",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=226",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0810.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0810_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0810_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0810_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0811",
+  "name": "男士发片11款·MP1511",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "微卷",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "微卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.204,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，发尾带自然微卷弧度，不刻意不僵硬，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, soft natural waves, thin lace topper base, realistic strand texture",
+  "cover": "ps0811.jpg",
+  "product_code": "S0811",
+  "style_code": "MP1511",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=232",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0811.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0811_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0811_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0812",
+  "name": "男士发片12款·MP1512",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.017,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0812.jpg",
+  "product_code": "S0812",
+  "style_code": "MP1512",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=237",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0812.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0812_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0812_side.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0813",
+  "name": "男士发片13款·MP1513",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "极蓬松",
+  "curl_coh": 0.118,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，松散卷度，卷型饱满不僵硬，发量蓬松，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, loose full curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0813.jpg",
+  "product_code": "S0813",
+  "style_code": "MP1513",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=242",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0813.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0813_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0813_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0813_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0814",
+  "name": "男士发片14款·MP1514",
+  "name_en": "男 发片 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "发片",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.047,
+  "prompt_zh": "齐耳到下颌长度的自然黑发片，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，轻薄网底无痕贴合发缝，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, thin lace topper base, realistic strand texture",
+  "cover": "ps0814.jpg",
+  "product_code": "S0814",
+  "style_code": "MP1514",
+  "category": "男士发片（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=246",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S08/S0814.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S08/S0814_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S08/S0814_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S08/S0814_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0701",
+  "name": "男士全头套01款·MT1501",
+  "name_en": "男 全头套 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "全头套",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.036,
+  "prompt_zh": "齐耳到下颌长度的自然黑全头套，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，全头包裹，发际线自然过渡，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, full cap coverage, natural hairline, realistic strand texture",
+  "cover": "ps0701.jpg",
+  "product_code": "S0701",
+  "style_code": "MT1501",
+  "category": "男士全头套（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=142",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S07/S0701.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S07/S0701_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S07/S0701_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S07/S0701_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0702",
+  "name": "男士全头套02款·MT1502",
+  "name_en": "男 全头套 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "全头套",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.037,
+  "prompt_zh": "齐耳到下颌长度的自然黑全头套，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，全头包裹，发际线自然过渡，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, full cap coverage, natural hairline, realistic strand texture",
+  "cover": "ps0702.jpg",
+  "product_code": "S0702",
+  "style_code": "MT1502",
+  "category": "男士全头套（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=154",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S07/S0702.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S07/S0702_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S07/S0702_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S07/S0702_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0703",
+  "name": "男士全头套03款·MT1503",
+  "name_en": "男 全头套 15cm",
+  "tags": [
+   "短发",
+   "卷发",
+   "全头套",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "卷发",
+  "volume": "极蓬松",
+  "curl_coh": 0.146,
+  "prompt_zh": "齐耳到下颌长度的自然黑全头套，松散卷度，卷型饱满不僵硬，发量蓬松，发量极多，蓬松炸开，全头包裹，发际线自然过渡，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, loose full curls, full cap coverage, natural hairline, realistic strand texture",
+  "cover": "ps0703.jpg",
+  "product_code": "S0703",
+  "style_code": "MT1503",
+  "category": "男士全头套（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=165",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S07/S0703.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S07/S0703_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S07/S0703_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S07/S0703_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0704",
+  "name": "男士全头套04款·MT1504",
+  "name_en": "男 全头套 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "全头套",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.089,
+  "prompt_zh": "齐耳到下颌长度的自然黑全头套，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，全头包裹，发际线自然过渡，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, full cap coverage, natural hairline, realistic strand texture",
+  "cover": "ps0704.jpg",
+  "product_code": "S0704",
+  "style_code": "MT1504",
+  "category": "男士全头套（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=176",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S07/S0704.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S07/S0704_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S07/S0704_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S07/S0704_back.jpg"
+   }
+  ]
+ },
+ {
+  "id": "ps0705",
+  "name": "男士全头套05款·MT1505",
+  "name_en": "男 全头套 15cm",
+  "tags": [
+   "短发",
+   "小卷",
+   "全头套",
+   "男"
+  ],
+  "color": "自然黑",
+  "colors": [
+   "自然色",
+   "深棕",
+   "浅棕",
+   "酒红"
+  ],
+  "curl": "小卷",
+  "volume": "极蓬松",
+  "curl_coh": 0.099,
+  "prompt_zh": "齐耳到下颌长度的自然黑全头套，细密小卷，卷度紧实有弹性，发量极多，蓬松炸开，全头包裹，发际线自然过渡，发丝质感真实，发根自然，发际线衔接原生发",
+  "prompt_en": "ear-to-jaw length natural black wig, tight small curls, full cap coverage, natural hairline, realistic strand texture",
+  "cover": "ps0705.jpg",
+  "product_code": "S0705",
+  "style_code": "MT1505",
+  "category": "男士全头套（15cm）",
+  "source": "https://www.bbkjfwg.com/product_detail.php?id=187",
+  "imported_from": "products",
+  "images": [
+   {
+    "label": "主图",
+    "file": "main.jpg",
+    "src": "uploads/products/images/S07/S0705.jpg"
+   },
+   {
+    "label": "正面",
+    "file": "front.jpg",
+    "src": "uploads/products/images/S07/S0705_front.jpg"
+   },
+   {
+    "label": "侧面",
+    "file": "side.jpg",
+    "src": "uploads/products/images/S07/S0705_side.jpg"
+   },
+   {
+    "label": "背面",
+    "file": "back.jpg",
+    "src": "uploads/products/images/S07/S0705_back.jpg"
+   }
+  ]
+ }
+]

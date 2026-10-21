@@ -1,0 +1,1990 @@
+[
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   54,
+   39,
+   36
+  ],
+  "curl": 0.429,
+  "volume": 1.847,
+  "hair_bottom_ratio": 1.056,
+  "product": "S0101",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   45,
+   34,
+   31
+  ],
+  "curl": 0.393,
+  "volume": 2.037,
+  "hair_bottom_ratio": 0.956,
+  "product": "S0102",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.95,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   53,
+   36,
+   32
+  ],
+  "curl": 0.398,
+  "volume": 1.944,
+  "hair_bottom_ratio": 0.918,
+  "product": "S0103",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   48,
+   36,
+   31
+  ],
+  "curl": 0.387,
+  "volume": 0.356,
+  "hair_bottom_ratio": 0.484,
+  "product": "S0104",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   45,
+   35,
+   32
+  ],
+  "curl": 0.526,
+  "volume": 0.848,
+  "hair_bottom_ratio": 1.004,
+  "product": "S0105",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   57,
+   42,
+   38
+  ],
+  "curl": 0.356,
+  "volume": 1.442,
+  "hair_bottom_ratio": 0.805,
+  "product": "S0106",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   29,
+   26
+  ],
+  "curl": 0.658,
+  "volume": 1.549,
+  "hair_bottom_ratio": 1.029,
+  "product": "S0107",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   38,
+   29,
+   27
+  ],
+  "curl": 0.684,
+  "volume": 0.996,
+  "hair_bottom_ratio": 1.148,
+  "product": "S0108",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   140,
+   118,
+   108
+  ],
+  "curl": 0.943,
+  "volume": 0.021,
+  "hair_bottom_ratio": 0.31,
+  "product": "S0109",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   40,
+   31,
+   27
+  ],
+  "curl": 0.53,
+  "volume": 0.348,
+  "hair_bottom_ratio": 0.304,
+  "product": "S0110",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   24,
+   21
+  ],
+  "curl": 0.335,
+  "volume": 0.439,
+  "hair_bottom_ratio": -0.436,
+  "product": "S1210",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.937,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   44,
+   33,
+   31
+  ],
+  "curl": 0.632,
+  "volume": 1.086,
+  "hair_bottom_ratio": 1.012,
+  "product": "S0111",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   29,
+   20,
+   17
+  ],
+  "curl": 0.274,
+  "volume": 0.21,
+  "hair_bottom_ratio": -0.513,
+  "product": "S1211",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   60,
+   43,
+   38
+  ],
+  "curl": 0.206,
+  "volume": 0.221,
+  "hair_bottom_ratio": -0.778,
+  "product": "S1212",
+  "category": "女士发片（15,20,30cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   25,
+   20
+  ],
+  "curl": 0.322,
+  "volume": 0.683,
+  "hair_bottom_ratio": -0.256,
+  "product": "S0201",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   41,
+   29,
+   23
+  ],
+  "curl": 0.091,
+  "volume": 0.395,
+  "hair_bottom_ratio": -0.52,
+  "product": "S0301",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   25,
+   22,
+   22
+  ],
+  "curl": 0.372,
+  "volume": 0.683,
+  "hair_bottom_ratio": -0.387,
+  "product": "S1201",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.94,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   63,
+   44,
+   38
+  ],
+  "curl": 0.608,
+  "volume": 0.518,
+  "hair_bottom_ratio": -0.23,
+  "product": "S0302",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.941,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   29,
+   25,
+   23
+  ],
+  "curl": 0.36,
+  "volume": 0.701,
+  "hair_bottom_ratio": -0.165,
+  "product": "S0303",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   29,
+   25
+  ],
+  "curl": 0.347,
+  "volume": 0.339,
+  "hair_bottom_ratio": -0.421,
+  "product": "S0304",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   51,
+   40,
+   36
+  ],
+  "curl": 0.371,
+  "volume": 0.57,
+  "hair_bottom_ratio": -0.252,
+  "product": "S0305",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.951,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   25,
+   22
+  ],
+  "curl": 0.362,
+  "volume": 0.507,
+  "hair_bottom_ratio": -0.359,
+  "product": "S0306",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   23,
+   19,
+   18
+  ],
+  "curl": 0.198,
+  "volume": 0.647,
+  "hair_bottom_ratio": -0.288,
+  "product": "S0307",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   67,
+   49,
+   43
+  ],
+  "curl": 0.496,
+  "volume": 0.48,
+  "hair_bottom_ratio": -0.452,
+  "product": "S0308",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   28,
+   23,
+   20
+  ],
+  "curl": 0.391,
+  "volume": 0.634,
+  "hair_bottom_ratio": 0.156,
+  "product": "S0309",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   31,
+   24,
+   22
+  ],
+  "curl": 0.461,
+  "volume": 0.441,
+  "hair_bottom_ratio": 0.016,
+  "product": "S0310",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   30,
+   23,
+   21
+  ],
+  "curl": 0.247,
+  "volume": 0.688,
+  "hair_bottom_ratio": -0.03,
+  "product": "S0311",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   30,
+   28,
+   28
+  ],
+  "curl": 0.428,
+  "volume": 0.658,
+  "hair_bottom_ratio": 0.004,
+  "product": "S0312",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   29,
+   29
+  ],
+  "curl": 0.421,
+  "volume": 0.91,
+  "hair_bottom_ratio": 0.119,
+  "product": "S0313",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   26,
+   21,
+   19
+  ],
+  "curl": 0.338,
+  "volume": 0.577,
+  "hair_bottom_ratio": -0.331,
+  "product": "S0314",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   48,
+   37,
+   33
+  ],
+  "curl": 0.387,
+  "volume": 0.433,
+  "hair_bottom_ratio": 0.0,
+  "product": "S0315",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   61,
+   45,
+   38
+  ],
+  "curl": 0.151,
+  "volume": 0.247,
+  "hair_bottom_ratio": 0.02,
+  "product": "S0316",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   41,
+   30,
+   27
+  ],
+  "curl": 0.362,
+  "volume": 0.477,
+  "hair_bottom_ratio": -0.238,
+  "product": "S0317",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   35,
+   25,
+   21
+  ],
+  "curl": 0.276,
+  "volume": 0.522,
+  "hair_bottom_ratio": -0.256,
+  "product": "S0318",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   31,
+   24,
+   21
+  ],
+  "curl": 0.336,
+  "volume": 0.559,
+  "hair_bottom_ratio": -0.299,
+  "product": "S0319",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   42,
+   30,
+   26
+  ],
+  "curl": 0.242,
+  "volume": 0.416,
+  "hair_bottom_ratio": -0.008,
+  "product": "S0320",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   43,
+   34,
+   29
+  ],
+  "curl": 0.327,
+  "volume": 0.617,
+  "hair_bottom_ratio": -0.348,
+  "product": "S0321",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   54,
+   40,
+   32
+  ],
+  "curl": 0.191,
+  "volume": 0.314,
+  "hair_bottom_ratio": -0.192,
+  "product": "S0322",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   55,
+   40,
+   32
+  ],
+  "curl": 0.351,
+  "volume": 0.319,
+  "hair_bottom_ratio": -0.414,
+  "product": "S0323",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   50,
+   37,
+   31
+  ],
+  "curl": 0.212,
+  "volume": 0.093,
+  "hair_bottom_ratio": -0.946,
+  "product": "S0324",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   42,
+   31,
+   34
+  ],
+  "curl": 0.312,
+  "volume": 0.55,
+  "hair_bottom_ratio": -0.433,
+  "product": "S0325",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   56,
+   49,
+   43
+  ],
+  "curl": 0.427,
+  "volume": 0.528,
+  "hair_bottom_ratio": -0.268,
+  "product": "S0326",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   60,
+   43,
+   34
+  ],
+  "curl": 0.262,
+  "volume": 0.254,
+  "hair_bottom_ratio": -0.537,
+  "product": "S0327",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   28,
+   23
+  ],
+  "curl": 0.211,
+  "volume": 0.497,
+  "hair_bottom_ratio": -0.456,
+  "product": "S0328",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.95,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   71,
+   58,
+   52
+  ],
+  "curl": 0.496,
+  "volume": 0.568,
+  "hair_bottom_ratio": 0.164,
+  "product": "S0329",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   49,
+   39,
+   36
+  ],
+  "curl": 0.348,
+  "volume": 0.56,
+  "hair_bottom_ratio": -0.29,
+  "product": "S0330",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   44,
+   39,
+   44
+  ],
+  "curl": 0.38,
+  "volume": 0.839,
+  "hair_bottom_ratio": 0.409,
+  "product": "S0331",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   34,
+   29,
+   27
+  ],
+  "curl": 0.359,
+  "volume": 0.685,
+  "hair_bottom_ratio": 0.141,
+  "product": "S0332",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.95,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   40,
+   29,
+   24
+  ],
+  "curl": 0.115,
+  "volume": 0.11,
+  "hair_bottom_ratio": -0.736,
+  "product": "S0333",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   143,
+   118,
+   114
+  ],
+  "curl": 0.635,
+  "volume": 0.405,
+  "hair_bottom_ratio": 0.167,
+  "product": "S0334",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   38,
+   29,
+   23
+  ],
+  "curl": 0.397,
+  "volume": 0.681,
+  "hair_bottom_ratio": 0.071,
+  "product": "S0335",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   44,
+   32,
+   26
+  ],
+  "curl": 0.284,
+  "volume": 0.381,
+  "hair_bottom_ratio": -0.275,
+  "product": "S0336",
+  "category": "女士直发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   41,
+   30,
+   26
+  ],
+  "curl": 0.465,
+  "volume": 0.65,
+  "hair_bottom_ratio": 0.172,
+  "product": "S1001",
+  "category": "女士直发（20cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   40,
+   28,
+   24
+  ],
+  "curl": 0.528,
+  "volume": 0.713,
+  "hair_bottom_ratio": 0.216,
+  "product": "S1002",
+  "category": "女士直发（20cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   36,
+   28,
+   25
+  ],
+  "curl": 0.523,
+  "volume": 0.833,
+  "hair_bottom_ratio": 0.176,
+  "product": "S1003",
+  "category": "女士直发（20cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   30,
+   23,
+   20
+  ],
+  "curl": 0.47,
+  "volume": 0.916,
+  "hair_bottom_ratio": 0.157,
+  "product": "S1004",
+  "category": "女士直发（20cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   38,
+   30,
+   30
+  ],
+  "curl": 0.452,
+  "volume": 0.897,
+  "hair_bottom_ratio": 0.154,
+  "product": "S1005",
+  "category": "女士直发（20cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   21,
+   14,
+   11
+  ],
+  "curl": 0.142,
+  "volume": 0.675,
+  "hair_bottom_ratio": -0.407,
+  "product": "S0202",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.951,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   24,
+   21
+  ],
+  "curl": 0.105,
+  "volume": 0.729,
+  "hair_bottom_ratio": -0.311,
+  "product": "S0203",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   37,
+   27,
+   22
+  ],
+  "curl": 0.144,
+  "volume": 0.982,
+  "hair_bottom_ratio": 0.129,
+  "product": "S0204",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   30,
+   22,
+   19
+  ],
+  "curl": 0.14,
+  "volume": 0.704,
+  "hair_bottom_ratio": -0.263,
+  "product": "S0205",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   31,
+   22,
+   18
+  ],
+  "curl": 0.089,
+  "volume": 0.664,
+  "hair_bottom_ratio": -0.381,
+  "product": "S1204",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   36,
+   25,
+   19
+  ],
+  "curl": 0.043,
+  "volume": 0.842,
+  "hair_bottom_ratio": 0.175,
+  "product": "S0206",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.952,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   20,
+   15,
+   12
+  ],
+  "curl": 0.119,
+  "volume": 0.711,
+  "hair_bottom_ratio": -0.286,
+  "product": "S1205",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   54,
+   37,
+   32
+  ],
+  "curl": 0.096,
+  "volume": 0.838,
+  "hair_bottom_ratio": 0.036,
+  "product": "S0207",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   43,
+   33,
+   27
+  ],
+  "curl": 0.134,
+  "volume": 0.528,
+  "hair_bottom_ratio": 0.058,
+  "product": "S0208",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   42,
+   28,
+   24
+  ],
+  "curl": 0.291,
+  "volume": 0.674,
+  "hair_bottom_ratio": 0.043,
+  "product": "S0209",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   88,
+   68,
+   60
+  ],
+  "curl": 0.236,
+  "volume": 0.096,
+  "hair_bottom_ratio": 0.093,
+  "product": "S0210",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.95,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   44,
+   32,
+   28
+  ],
+  "curl": 0.187,
+  "volume": 0.703,
+  "hair_bottom_ratio": -0.26,
+  "product": "S0211",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   36,
+   27,
+   22
+  ],
+  "curl": 0.164,
+  "volume": 1.213,
+  "hair_bottom_ratio": 0.113,
+  "product": "S0212",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   65,
+   51,
+   45
+  ],
+  "curl": 0.066,
+  "volume": 0.429,
+  "hair_bottom_ratio": -0.008,
+  "product": "S0213",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   37,
+   26,
+   21
+  ],
+  "curl": 0.08,
+  "volume": 1.106,
+  "hair_bottom_ratio": 0.034,
+  "product": "S0214",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   37,
+   29,
+   25
+  ],
+  "curl": 0.12,
+  "volume": 0.877,
+  "hair_bottom_ratio": -0.415,
+  "product": "S0215",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   37,
+   26,
+   21
+  ],
+  "curl": 0.08,
+  "volume": 1.106,
+  "hair_bottom_ratio": 0.034,
+  "product": "S0216",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   36,
+   26,
+   20
+  ],
+  "curl": 0.13,
+  "volume": 0.576,
+  "hair_bottom_ratio": -0.381,
+  "product": "S0217",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   41,
+   31,
+   26
+  ],
+  "curl": 0.109,
+  "volume": 0.69,
+  "hair_bottom_ratio": -0.429,
+  "product": "S0218",
+  "category": "女士卷发（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   40,
+   28,
+   24
+  ],
+  "curl": 0.088,
+  "volume": 0.794,
+  "hair_bottom_ratio": 0.354,
+  "product": "S0901",
+  "category": "女士卷发（20cm）"
+ },
+ {
+  "face_score": 0.941,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   57,
+   40,
+   35
+  ],
+  "curl": 0.109,
+  "volume": 0.775,
+  "hair_bottom_ratio": 0.134,
+  "product": "S0902",
+  "category": "女士卷发（20cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   70,
+   51,
+   44
+  ],
+  "curl": 0.194,
+  "volume": 0.346,
+  "hair_bottom_ratio": 0.261,
+  "product": "S0903",
+  "category": "女士卷发（20cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   52,
+   37,
+   31
+  ],
+  "curl": 0.228,
+  "volume": 0.237,
+  "hair_bottom_ratio": -0.663,
+  "product": "S0904",
+  "category": "女士卷发（20cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   28,
+   25
+  ],
+  "curl": 0.224,
+  "volume": 0.933,
+  "hair_bottom_ratio": 0.155,
+  "product": "S0905",
+  "category": "女士卷发（20cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   29,
+   26
+  ],
+  "curl": 0.36,
+  "volume": 2.18,
+  "hair_bottom_ratio": 1.004,
+  "product": "S0906",
+  "category": "女士卷发（20cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   33,
+   24,
+   21
+  ],
+  "curl": 0.216,
+  "volume": 0.811,
+  "hair_bottom_ratio": -0.306,
+  "product": "S0401",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   28,
+   26
+  ],
+  "curl": 0.293,
+  "volume": 0.703,
+  "hair_bottom_ratio": -0.42,
+  "product": "S0402",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   24,
+   18,
+   15
+  ],
+  "curl": 0.126,
+  "volume": 0.693,
+  "hair_bottom_ratio": -0.41,
+  "product": "S1202",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   23,
+   18,
+   18
+  ],
+  "curl": 0.273,
+  "volume": 0.674,
+  "hair_bottom_ratio": -0.431,
+  "product": "S0403",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   25,
+   22
+  ],
+  "curl": 0.261,
+  "volume": 0.677,
+  "hair_bottom_ratio": 0.082,
+  "product": "S1203",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   23,
+   21
+  ],
+  "curl": 0.176,
+  "volume": 0.569,
+  "hair_bottom_ratio": -0.326,
+  "product": "S0404",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   33,
+   28,
+   25
+  ],
+  "curl": 0.338,
+  "volume": 0.644,
+  "hair_bottom_ratio": 0.153,
+  "product": "S0405",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   29,
+   21,
+   18
+  ],
+  "curl": 0.246,
+  "volume": 0.626,
+  "hair_bottom_ratio": -0.211,
+  "product": "S0406",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   22,
+   16,
+   13
+  ],
+  "curl": 0.205,
+  "volume": 0.603,
+  "hair_bottom_ratio": -0.506,
+  "product": "S1206",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   25,
+   18,
+   15
+  ],
+  "curl": 0.117,
+  "volume": 0.605,
+  "hair_bottom_ratio": -0.266,
+  "product": "S0407",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   47,
+   33,
+   28
+  ],
+  "curl": 0.245,
+  "volume": 0.523,
+  "hair_bottom_ratio": -0.427,
+  "product": "S0408",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   36,
+   27,
+   24
+  ],
+  "curl": 0.21,
+  "volume": 0.637,
+  "hair_bottom_ratio": -0.162,
+  "product": "S0409",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.95,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   44,
+   33,
+   27
+  ],
+  "curl": 0.248,
+  "volume": 0.476,
+  "hair_bottom_ratio": -0.275,
+  "product": "S0410",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.941,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   34,
+   20,
+   15
+  ],
+  "curl": 0.156,
+  "volume": 0.343,
+  "hair_bottom_ratio": -0.648,
+  "product": "S0411",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   89,
+   62,
+   52
+  ],
+  "curl": 0.026,
+  "volume": 0.219,
+  "hair_bottom_ratio": -0.667,
+  "product": "S0412",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   42,
+   31,
+   23
+  ],
+  "curl": 0.213,
+  "volume": 0.617,
+  "hair_bottom_ratio": -0.578,
+  "product": "S0413",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   29,
+   20,
+   16
+  ],
+  "curl": 0.236,
+  "volume": 0.696,
+  "hair_bottom_ratio": -0.522,
+  "product": "S0414",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   47,
+   33,
+   29
+  ],
+  "curl": 0.292,
+  "volume": 0.618,
+  "hair_bottom_ratio": -0.09,
+  "product": "S0415",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   26,
+   22
+  ],
+  "curl": 0.194,
+  "volume": 0.584,
+  "hair_bottom_ratio": -0.451,
+  "product": "S0416",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   26,
+   20
+  ],
+  "curl": 0.179,
+  "volume": 0.477,
+  "hair_bottom_ratio": -0.6,
+  "product": "S0417",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   30,
+   22,
+   18
+  ],
+  "curl": 0.159,
+  "volume": 0.411,
+  "hair_bottom_ratio": -0.429,
+  "product": "S0418",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   47,
+   32,
+   26
+  ],
+  "curl": 0.289,
+  "volume": 0.464,
+  "hair_bottom_ratio": -0.282,
+  "product": "S0419",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   29,
+   19,
+   16
+  ],
+  "curl": 0.087,
+  "volume": 0.251,
+  "hair_bottom_ratio": -0.523,
+  "product": "S0420",
+  "category": "女士纹理（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   50,
+   35,
+   28
+  ],
+  "curl": 0.074,
+  "volume": 0.566,
+  "hair_bottom_ratio": -0.13,
+  "product": "S0501",
+  "category": "女士锡纸烫（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   56,
+   39,
+   32
+  ],
+  "curl": 0.088,
+  "volume": 0.492,
+  "hair_bottom_ratio": 0.102,
+  "product": "S0502",
+  "category": "女士锡纸烫（15cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   63,
+   45,
+   35
+  ],
+  "curl": 0.195,
+  "volume": 0.513,
+  "hair_bottom_ratio": -0.089,
+  "product": "S0503",
+  "category": "女士锡纸烫（15cm）"
+ },
+ {
+  "face_score": 0.95,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   58,
+   45,
+   35
+  ],
+  "curl": 0.064,
+  "volume": 0.34,
+  "hair_bottom_ratio": -0.475,
+  "product": "S0504",
+  "category": "女士锡纸烫（15cm）"
+ },
+ {
+  "face_score": 0.928,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   74,
+   59,
+   48
+  ],
+  "curl": 0.054,
+  "volume": 0.299,
+  "hair_bottom_ratio": -0.511,
+  "product": "S0505",
+  "category": "女士锡纸烫（15cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   47,
+   33,
+   28
+  ],
+  "curl": 0.585,
+  "volume": 0.225,
+  "hair_bottom_ratio": 0.46,
+  "product": "S1101",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   36,
+   27,
+   22
+  ],
+  "curl": 0.612,
+  "volume": 0.373,
+  "hair_bottom_ratio": 0.547,
+  "product": "S1102",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   38,
+   27,
+   23
+  ],
+  "curl": 0.616,
+  "volume": 0.629,
+  "hair_bottom_ratio": 0.94,
+  "product": "S1103",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   31,
+   23,
+   20
+  ],
+  "curl": 0.688,
+  "volume": 1.145,
+  "hair_bottom_ratio": 0.831,
+  "product": "S1104",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.944,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   39,
+   28,
+   24
+  ],
+  "curl": 0.398,
+  "volume": 1.569,
+  "hair_bottom_ratio": 0.906,
+  "product": "S1105",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   45,
+   35,
+   29
+  ],
+  "curl": 0.604,
+  "volume": 0.655,
+  "hair_bottom_ratio": 0.929,
+  "product": "S1106",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.942,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   40,
+   30,
+   26
+  ],
+  "curl": 0.473,
+  "volume": 0.398,
+  "hair_bottom_ratio": 0.623,
+  "product": "S1107",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.941,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   48,
+   33,
+   29
+  ],
+  "curl": 0.415,
+  "volume": 0.411,
+  "hair_bottom_ratio": 0.548,
+  "product": "S1108",
+  "category": "女士长发（30,35cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   32,
+   23,
+   19
+  ],
+  "curl": 0.009,
+  "volume": 0.497,
+  "hair_bottom_ratio": -0.053,
+  "product": "S0601",
+  "category": "混发专区（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   117,
+   92,
+   83
+  ],
+  "curl": 0.135,
+  "volume": 0.212,
+  "hair_bottom_ratio": 0.044,
+  "product": "S0602",
+  "category": "混发专区（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   21,
+   19,
+   24
+  ],
+  "curl": 0.376,
+  "volume": 0.639,
+  "hair_bottom_ratio": -0.285,
+  "product": "S1207",
+  "category": "混发专区（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   23,
+   18,
+   16
+  ],
+  "curl": 0.184,
+  "volume": 0.681,
+  "hair_bottom_ratio": -0.245,
+  "product": "S1208",
+  "category": "混发专区（15cm）"
+ },
+ {
+  "face_score": 0.945,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   25,
+   19,
+   17
+  ],
+  "curl": 0.167,
+  "volume": 0.599,
+  "hair_bottom_ratio": -0.377,
+  "product": "S1209",
+  "category": "混发专区（15cm）"
+ },
+ {
+  "face_score": 0.943,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   13,
+   14,
+   16
+  ],
+  "curl": 0.03,
+  "volume": 3.802,
+  "hair_bottom_ratio": 1.488,
+  "product": "S0801",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   13,
+   14,
+   17
+  ],
+  "curl": 0.047,
+  "volume": 3.409,
+  "hair_bottom_ratio": 1.497,
+  "product": "S0802",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   12,
+   13,
+   15
+  ],
+  "curl": 0.066,
+  "volume": 3.708,
+  "hair_bottom_ratio": 1.576,
+  "product": "S0803",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   11,
+   12,
+   14
+  ],
+  "curl": 0.12,
+  "volume": 3.444,
+  "hair_bottom_ratio": 1.322,
+  "product": "S0804",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.946,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   15,
+   16,
+   19
+  ],
+  "curl": 0.111,
+  "volume": 3.215,
+  "hair_bottom_ratio": 1.42,
+  "product": "S0805",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   13,
+   14,
+   16
+  ],
+  "curl": 0.113,
+  "volume": 3.397,
+  "hair_bottom_ratio": 1.439,
+  "product": "S0806",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   16,
+   16,
+   16
+  ],
+  "curl": 0.318,
+  "volume": 3.182,
+  "hair_bottom_ratio": 1.425,
+  "product": "S0807",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   14,
+   14,
+   18
+  ],
+  "curl": 0.336,
+  "volume": 2.485,
+  "hair_bottom_ratio": 1.113,
+  "product": "S0808",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   15,
+   16,
+   17
+  ],
+  "curl": 0.27,
+  "volume": 3.051,
+  "hair_bottom_ratio": 1.317,
+  "product": "S0809",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   23,
+   23,
+   25
+  ],
+  "curl": 0.06,
+  "volume": 3.593,
+  "hair_bottom_ratio": 1.352,
+  "product": "S0810",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   14,
+   14,
+   16
+  ],
+  "curl": 0.204,
+  "volume": 3.199,
+  "hair_bottom_ratio": 1.422,
+  "product": "S0811",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.939,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   14,
+   15,
+   18
+  ],
+  "curl": 0.017,
+  "volume": 3.461,
+  "hair_bottom_ratio": 1.541,
+  "product": "S0812",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   14,
+   14,
+   15
+  ],
+  "curl": 0.118,
+  "volume": 4.02,
+  "hair_bottom_ratio": 1.483,
+  "product": "S0813",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.94,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   16,
+   17,
+   19
+  ],
+  "curl": 0.047,
+  "volume": 4.055,
+  "hair_bottom_ratio": 1.492,
+  "product": "S0814",
+  "category": "男士发片（15cm）"
+ },
+ {
+  "face_score": 0.952,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   12,
+   13,
+   15
+  ],
+  "curl": 0.036,
+  "volume": 4.36,
+  "hair_bottom_ratio": 1.527,
+  "product": "S0701",
+  "category": "男士全头套（15cm）"
+ },
+ {
+  "face_score": 0.947,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   14,
+   15,
+   17
+  ],
+  "curl": 0.037,
+  "volume": 3.821,
+  "hair_bottom_ratio": 1.452,
+  "product": "S0702",
+  "category": "男士全头套（15cm）"
+ },
+ {
+  "face_score": 0.949,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   15,
+   15,
+   16
+  ],
+  "curl": 0.146,
+  "volume": 3.376,
+  "hair_bottom_ratio": 1.465,
+  "product": "S0703",
+  "category": "男士全头套（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   13,
+   14,
+   16
+  ],
+  "curl": 0.089,
+  "volume": 3.415,
+  "hair_bottom_ratio": 1.416,
+  "product": "S0704",
+  "category": "男士全头套（15cm）"
+ },
+ {
+  "face_score": 0.948,
+  "hair_color": "自然黑",
+  "hair_rgb": [
+   16,
+   16,
+   18
+  ],
+  "curl": 0.099,
+  "volume": 3.457,
+  "hair_bottom_ratio": 1.505,
+  "product": "S0705",
+  "category": "男士全头套（15cm）"
+ }
+]

@@ -1,0 +1,127 @@
+{
+ "女士假发": [
+  {
+   "id": "11",
+   "name": "女士发片（15,20,30cm）",
+   "code": "S01",
+   "gender": "女士假发",
+   "sort_order": "10",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S01",
+   "count": 14
+  },
+  {
+   "id": "12",
+   "name": "女士直发（15cm）",
+   "code": "S03",
+   "gender": "女士假发",
+   "sort_order": "20",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S03",
+   "count": 38
+  },
+  {
+   "id": "13",
+   "name": "女士直发（20cm）",
+   "code": "S10",
+   "gender": "女士假发",
+   "sort_order": "30",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S10",
+   "count": 5
+  },
+  {
+   "id": "14",
+   "name": "女士卷发（15cm）",
+   "code": "S02",
+   "gender": "女士假发",
+   "sort_order": "40",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S02",
+   "count": 19
+  },
+  {
+   "id": "15",
+   "name": "女士卷发（20cm）",
+   "code": "S09",
+   "gender": "女士假发",
+   "sort_order": "50",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S09",
+   "count": 6
+  },
+  {
+   "id": "16",
+   "name": "女士纹理（15cm）",
+   "code": "S04",
+   "gender": "女士假发",
+   "sort_order": "60",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S04",
+   "count": 23
+  },
+  {
+   "id": "17",
+   "name": "女士锡纸烫（15cm）",
+   "code": "S05",
+   "gender": "女士假发",
+   "sort_order": "70",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S05",
+   "count": 5
+  },
+  {
+   "id": "18",
+   "name": "女士长发（30,35cm）",
+   "code": "S11",
+   "gender": "女士假发",
+   "sort_order": "80",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S11",
+   "count": 8
+  },
+  {
+   "id": "19",
+   "name": "混发专区（15cm）",
+   "code": "S06",
+   "gender": "女士假发",
+   "sort_order": "90",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S06",
+   "count": 5
+  }
+ ],
+ "男士假发": [
+  {
+   "id": "20",
+   "name": "男士发片（15cm）",
+   "code": "S08",
+   "gender": "男士假发",
+   "sort_order": "100",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S08",
+   "count": 14
+  },
+  {
+   "id": "21",
+   "name": "男士全头套（15cm）",
+   "code": "S07",
+   "gender": "男士假发",
+   "sort_order": "110",
+   "status": "1",
+   "created_at": "2026-09-21 22:36:23",
+   "series_code": "S07",
+   "count": 5
+  }
+ ]
+}

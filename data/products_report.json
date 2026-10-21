@@ -1,0 +1,109 @@
+{
+ "categories": [
+  {
+   "id": 11,
+   "gender": "女士假发",
+   "name": "女士发片（15,20,30cm）",
+   "code": "S01",
+   "declared": 14,
+   "got": 14
+  },
+  {
+   "id": 12,
+   "gender": "女士假发",
+   "name": "女士直发（15cm）",
+   "code": "S03",
+   "declared": 38,
+   "got": 38
+  },
+  {
+   "id": 13,
+   "gender": "女士假发",
+   "name": "女士直发（20cm）",
+   "code": "S10",
+   "declared": 5,
+   "got": 5
+  },
+  {
+   "id": 14,
+   "gender": "女士假发",
+   "name": "女士卷发（15cm）",
+   "code": "S02",
+   "declared": 19,
+   "got": 19
+  },
+  {
+   "id": 15,
+   "gender": "女士假发",
+   "name": "女士卷发（20cm）",
+   "code": "S09",
+   "declared": 6,
+   "got": 6
+  },
+  {
+   "id": 16,
+   "gender": "女士假发",
+   "name": "女士纹理（15cm）",
+   "code": "S04",
+   "declared": 23,
+   "got": 23
+  },
+  {
+   "id": 17,
+   "gender": "女士假发",
+   "name": "女士锡纸烫（15cm）",
+   "code": "S05",
+   "declared": 5,
+   "got": 5
+  },
+  {
+   "id": 18,
+   "gender": "女士假发",
+   "name": "女士长发（30,35cm）",
+   "code": "S11",
+   "declared": 8,
+   "got": 8
+  },
+  {
+   "id": 19,
+   "gender": "女士假发",
+   "name": "混发专区（15cm）",
+   "code": "S06",
+   "declared": 5,
+   "got": 5
+  },
+  {
+   "id": 20,
+   "gender": "男士假发",
+   "name": "男士发片（15cm）",
+   "code": "S08",
+   "declared": 14,
+   "got": 14
+  },
+  {
+   "id": 21,
+   "gender": "男士假发",
+   "name": "男士全头套（15cm）",
+   "code": "S07",
+   "declared": 5,
+   "got": 5
+  }
+ ],
+ "api": {
+  "11": "api/products/get_products.php",
+  "12": "api/products/get_products.php",
+  "13": "api/products/get_products.php",
+  "14": "api/products/get_products.php",
+  "15": "api/products/get_products.php",
+  "16": "api/products/get_products.php",
+  "17": "api/products/get_products.php",
+  "18": "api/products/get_products.php",
+  "19": "api/products/get_products.php",
+  "20": "api/products/get_products.php",
+  "21": "api/products/get_products.php"
+ },
+ "missing_images": [],
+ "detail": 0,
+ "total": 142,
+ "with_cover": 142
+}
