@@ -205,6 +205,30 @@ def _count(target, since, ip=""):
     return int((r or {})["n"] or 0)
 
 
+def _mail_err(e):
+    """把 smtplib 的异常翻成老板/顾客能看懂的一句话。
+
+    为什么要翻：以前发信一失败就是 500 Internal Server Error，
+    前端只看到"服务器错误"，日志在 Render 上又不好翻，
+    根本分不清是授权码错、地址不存在，还是 QQ 把云服务器 IP 当垃圾邮件拒了。
+    """
+    name = type(e).__name__
+    raw = str(e)[:160]
+    if isinstance(e, smtplib.SMTPAuthenticationError):
+        return "邮箱授权码不对（535），去 QQ 邮箱 设置→账户 重新生成授权码"
+    if isinstance(e, smtplib.SMTPRecipientsRefused):
+        return "收件地址被拒：%s" % raw
+    if isinstance(e, smtplib.SMTPDataError):
+        if "non-existent" in raw or "550" in raw:
+            return "收件地址不存在或拒收：%s" % raw
+        return "邮件内容被拒：%s" % raw
+    if isinstance(e, (smtplib.SMTPServerDisconnected, ConnectionError)):
+        return "连接被服务器断开（授权码错 / IP 被风控）：%s" % raw
+    if isinstance(e, (smtplib.SMTPConnectError, OSError)):
+        return "连不上 SMTP 服务器：%s" % raw
+    return "%s: %s" % (name, raw)
+
+
 def issue(target, kind="", purpose="register", ip=""):
     """生成并发送验证码。返回 {ok, target, kind, wait}；异常抛 RuntimeError（文案直接给用户看）。"""
     t, kind = norm(target, kind)
@@ -224,15 +248,29 @@ def issue(target, kind="", purpose="register", ip=""):
         raise RuntimeError("操作太频繁，等一小时再试")
 
     code = "%06d" % secrets.randbelow(1000000)
+    vid = "v" + uuid.uuid4().hex[:12]
     with db._lock, db.conn() as c:
         c.execute("insert into vcodes(id,target,kind,code,purpose,tries,used,ip,created_at,expires_at)"
                   " values(?,?,?,?,?,0,0,?,?,?)",
-                  ("v" + uuid.uuid4().hex[:12], t, kind, code, purpose, ip or "", now, now + TTL))
+                  (vid, t, kind, code, purpose, ip or "", now, now + TTL))
 
-    if kind == "email":
-        send_email(t, code, purpose)
-    else:
-        send_sms(t, code, purpose)
+    try:
+        if kind == "email":
+            send_email(t, code, purpose)
+        else:
+            send_sms(t, code, purpose)
+    except Exception as e:
+        # 发不出去就把这条码删掉：不然用户什么都没收到，却被 60 秒冷却挡住重试。
+        # 然后把真实原因抛出去（app 层转成 400 的 detail），别再把 500 丢给前端。
+        try:
+            with db._lock, db.conn() as c:
+                c.execute("delete from vcodes where id=?", (vid,))
+        except Exception:
+            pass
+        if isinstance(e, RuntimeError):
+            raise
+        raise RuntimeError("验证码发不出去：%s"
+                           % (_mail_err(e) if kind == "email" else str(e)[:160]))
     return {"ok": True, "target": t, "kind": kind, "wait": RESEND_GAP, "ttl": TTL}
 
 
