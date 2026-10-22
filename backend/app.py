@@ -36,6 +36,7 @@ import billing
 import prompts
 import pay
 import store
+import verify as vcode
 import styles as stylelib
 from pipeline import compose, mask as maskmod, preprocess, updo
 from pipeline import select as picker
@@ -406,6 +407,20 @@ def api_admin_pay_test(request: Request):
             "notify": {"alipay": pay.notify_url("alipay"), "wechat": pay.notify_url("wechat"),
                        "epay": pay.notify_url("epay")},
             "base_url": c["base_url"]}
+
+
+@app.get("/api/admin/pay/logs")
+def api_admin_pay_logs(request: Request, limit: int = 40,
+                       openid: str = Header(default=""),
+                       x_admin_token: str = Header(default="")):
+    """回调日志：谁付了、到没到、被拒的理由。用户说「我付了」时先看这张表。"""
+    m = me(request, openid)
+    _need_role(request, m)
+    with db.conn() as c:
+        rows = c.execute("select * from pay_logs order by id desc limit ?",
+                         (max(1, min(200, int(limit))),)).fetchall()
+        unpaid = c.execute("select count(*) n from orders where status!='paid'").fetchone()
+    return {"logs": [dict(r) for r in rows], "unpaid": int((unpaid or {})["n"] or 0)}
 
 
 # ---------------- 用户上传的发型参考图（和发型库完全隔离） ----------------
@@ -923,19 +938,121 @@ def api_unlock(openid: str = Header(default=""), channel: str = "share"):
 
 
 # ---------------- 注册 / 登录 ----------------
+def _code_required():
+    """注册要不要验证码。
+
+    没配任何通道时自动不强制 —— 否则一开站就没人能注册（收不到码）。
+    配了邮箱或短信就强制；REQUIRE_CODE=0/1 可以手动覆盖。
+    """
+    env = os.environ.get("REQUIRE_CODE", "").strip().lower()
+    if env in ("0", "false", "no", "off"):
+        return False
+    if env in ("1", "true", "yes", "on"):
+        return True
+    c = vcode.public_cfg()
+    return bool(c["email_ready"] or c["sms_ready"])
+
+
+@app.get("/api/auth/policy")
+def api_auth_policy():
+    """前台注册弹窗按这个决定长得什么样：要不要验证码、邮箱/手机哪个能选。"""
+    c = vcode.public_cfg()
+    return {"need_code": _code_required(), "email": c["email_ready"],
+            "phone": c["sms_ready"], "free": billing.FREE_GENS,
+            "ttl": vcode.TTL, "gap": vcode.RESEND_GAP}
+
+
+@app.post("/api/auth/sendcode")
+def api_sendcode(payload: dict, request: Request):
+    """发验证码。purpose=register 会先查重，省得用户白填一遍密码。"""
+    target = str(payload.get("target") or "").strip()
+    kind = str(payload.get("kind") or "")
+    purpose = str(payload.get("purpose") or "register")
+    if purpose not in ("register", "reset"):
+        raise HTTPException(400, "不支持的场景")
+    if purpose == "register" and auth.by_name(target):
+        raise HTTPException(400, "这个账号已经注册过，直接登录就行")
+    if purpose == "reset" and not auth.by_name(target):
+        raise HTTPException(400, "没有这个账号")
+    ip = (request.client.host if request.client else "") or ""
+    try:
+        r = vcode.issue(target, kind, purpose, ip=ip)
+    except RuntimeError as e:
+        raise HTTPException(400, str(e))
+    return dict(r, ok=True)
+
+
 @app.post("/api/auth/register")
 def api_register(payload: dict):
+    """注册：账号就是邮箱或手机号。
+
+    need_code 时先验码；username 与 email/phone 同步落一份，三种都能登录。
+    """
     u = str(payload.get("username") or "").strip()
     p = str(payload.get("password") or "")
+    code = str(payload.get("code") or "").strip()
+    kind = str(payload.get("kind") or "")
+    target, k = vcode.norm(u, kind)
+    email = str(payload.get("email") or "").strip().lower()
     phone = str(payload.get("phone") or "").strip()
+
+    if _code_required():
+        if not target:
+            raise HTTPException(400, "填手机号或邮箱")
+        try:
+            vcode.verify(target, code, "register")
+        except RuntimeError as e:
+            raise HTTPException(400, str(e))
+        u = target
+
+    # 不管走不走验证码，账号里带 @ 就同步存一份小写邮箱、纯手机号就存 phone，
+    # 这样「邮箱登录不区分大小写」「手机号登录」都能生效。
+    if not email and "@" in u:
+        email = u.lower()
+    if not phone and vcode.PHONE_RE.match(u):
+        phone = u
+
     try:
-        a = auth.register(u, p, phone)
+        a = auth.register(u, p, phone, email=email)
     except ValueError as e:
         raise HTTPException(400, str(e))
     except sqlite3.IntegrityError:
         raise HTTPException(400, "这个账号已经被注册了")
     return {"ok": True, "token": auth.make_token(a["id"]), "user": auth.public(a),
             "billing": billing.profile()}
+
+
+@app.post("/api/auth/reset")
+def api_reset(payload: dict):
+    """忘记密码：验证码 + 新密码，不用登录。"""
+    target = str(payload.get("target") or payload.get("username") or "").strip()
+    code = str(payload.get("code") or "").strip()
+    newpw = str(payload.get("password") or "")
+    a = auth.by_name(target)
+    if not a:
+        raise HTTPException(400, "没有这个账号")
+    t, _ = vcode.norm(target)
+    try:
+        vcode.verify(t, code, "reset")
+        auth.set_password(a["id"], newpw, "verify code reset")
+    except (RuntimeError, ValueError) as e:
+        raise HTTPException(400, str(e))
+    return {"ok": True, "username": a["username"]}
+
+
+@app.post("/api/auth/password")
+def api_change_pw(payload: dict, request: Request, openid: str = Header(default="")):
+    """登录状态下自己改密码。改完全端下线（token 里的 pw_at 对不上了）。"""
+    m = need_user(request, openid)
+    if not m["account"]:
+        raise HTTPException(401, "先登录")
+    try:
+        auth.change_password(m["account"]["id"], str(payload.get("old") or ""),
+                             str(payload.get("password") or ""))
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    a = auth.get(m["account"]["id"])
+    return {"ok": True, "token": auth.make_token(a["id"]), "user": auth.public(a)}
 
 
 @app.post("/api/auth/login")
@@ -1028,19 +1145,38 @@ def api_order_qr(oid: str):
     return FileResponse(p)
 
 
-def _settle(oid, cents, trade_no=""):
+def _pay_log(channel, oid, cents, trade_no, ok, reason=""):
+    """回调落库。钱的事不留痕，出了事只能靠猜。"""
+    try:
+        with db._lock, db.conn() as c:
+            c.execute("insert into pay_logs(channel,oid,amount_cents,trade_no,ok,reason,created_at)"
+                      " values(?,?,?,?,?,?,?)",
+                      (channel, oid or "", int(cents or 0), trade_no or "",
+                       1 if ok else 0, (reason or "")[:200], int(time.time())))
+    except Exception as e:
+        print("pay_log 写入失败:", e)
+
+
+def _settle(oid, cents, trade_no="", channel=""):
     """回调统一落账：金额必须和订单一致，已付过的幂等返回。"""
     o = auth.get_order(oid or "")
     if not o:
         print("回调订单不存在:", oid)
+        _pay_log(channel, oid, cents, trade_no, False, "订单不存在")
         return False
     if o["status"] == "paid":
+        _pay_log(channel, oid, cents, trade_no, True, "already paid（重复回调，幂等）")
         return True
     if int(cents or 0) != int(o["amount_cents"]):
         print("回调金额不符 订单=%s 应付=%s 实付=%s" % (oid, o["amount_cents"], cents))
+        _pay_log(channel, oid, cents, trade_no, False,
+                 "金额不符：应付 %d 分，实付 %d 分" % (o["amount_cents"], cents))
         return False
     auth.pay_order(oid, None)
+    a = auth.get(o["uid"]) or {}
     print("自动到账：订单 %s 金额 %s 分 交易号 %s" % (oid, cents, trade_no))
+    _pay_log(channel, oid, cents, trade_no, True,
+             "到账 %d 积分 → %s" % (o["credits"], a.get("username") or o["uid"]))
     return True
 
 
@@ -1050,8 +1186,9 @@ async def notify_alipay(request: Request):
     got = pay.alipay_notify(form)
     if not got:
         print("支付宝回调验签失败:", form.get("out_trade_no"))
+        _pay_log("alipay", form.get("out_trade_no"), 0, "", False, "验签失败 / 状态不对")
         return PlainTextResponse("fail", status_code=400)
-    ok = _settle(got["oid"], got["amount_cents"], got.get("trade_no"))
+    ok = _settle(got["oid"], got["amount_cents"], got.get("trade_no"), "alipay")
     return PlainTextResponse("success" if ok else "fail")
 
 
@@ -1064,8 +1201,9 @@ async def notify_wechat(request: Request):
                              "Wechatpay-Signature": hdr.get("wechatpay-signature", "")}, raw)
     if not got:
         print("微信回调验签失败")
+        _pay_log("wechat", "", 0, "", False, "验签 / 解密失败")
         return JSONResponse({"code": "FAIL", "message": "verify failed"}, status_code=400)
-    ok = _settle(got["oid"], got["amount_cents"], got.get("trade_no"))
+    ok = _settle(got["oid"], got["amount_cents"], got.get("trade_no"), "wechat")
     return JSONResponse({"code": "SUCCESS" if ok else "FAIL", "message": ""})
 
 
@@ -1081,8 +1219,9 @@ async def notify_epay(request: Request):
     got = pay.epay_notify(q)
     if not got:
         print("易支付回调验签失败:", q.get("out_trade_no"))
+        _pay_log("epay", q.get("out_trade_no"), 0, "", False, "验签失败 / 状态不对")
         return PlainTextResponse("fail", status_code=400)
-    ok = _settle(got["oid"], got["amount_cents"], got.get("trade_no"))
+    ok = _settle(got["oid"], got["amount_cents"], got.get("trade_no"), "epay")
     return PlainTextResponse("success" if ok else "fail")
 
 
@@ -1133,12 +1272,30 @@ def api_admin_users(request: Request, openid: str = Header(default=""),
 def api_admin_user_set(aid: str, payload: dict, request: Request,
                        openid: str = Header(default=""),
                        x_admin_token: str = Header(default="")):
-    """{credits?:+N, free_left?:N, role?:'user'|'admin', status?}"""
+    """{credits?:+N, free_left?:N, role?:'user'|'admin', status?, password?}
+
+    password 有两种用法：
+      给了具体值      → 直接设成这个密码（老板口头告诉顾客）
+      传 "random"     → 生成一个 8 位随机密码，回在结果里，老板复制给顾客
+    改密码会刷新 pw_at，这个账号原来的登录态全部失效（重新登录即可）。
+    """
     m = me(request, openid)
     _need_role(request, m)
     a = auth.get(aid)
     if not a:
         raise HTTPException(404, "没这个用户")
+    newpw = None
+    if payload.get("password") is not None:
+        raw = str(payload["password"]).strip()
+        if raw == "random":
+            import secrets, string
+            raw = "".join(secrets.choice(string.ascii_letters.replace("l", "").replace("I", "")
+                                         + "23456789") for _ in range(8))
+        try:
+            auth.set_password(aid, raw, "admin: 后台重置")
+            newpw = raw
+        except ValueError as e:
+            raise HTTPException(400, str(e))
     if "credits" in payload:
         try:
             n = int(payload["credits"])
@@ -1152,7 +1309,52 @@ def api_admin_user_set(aid: str, payload: dict, request: Request,
     if payload.get("status") in ("ok", "banned"):
         with db.conn() as c:
             c.execute("update accounts set status=? where id=?", (payload["status"], aid))
-    return {"ok": True, "user": auth.public(auth.get(aid))}
+    return {"ok": True, "user": auth.public(auth.get(aid)), "password": newpw}
+
+
+@app.get("/api/admin/mail")
+def api_admin_mail_get(request: Request, openid: str = Header(default=""),
+                       x_admin_token: str = Header(default="")):
+    """验证码通道状态。密钥只回「配没配」。"""
+    m = me(request, openid)
+    _need_role(request, m)
+    return dict(vcode.public_cfg(), need_code=_code_required())
+
+
+@app.post("/api/admin/mail")
+def api_admin_mail_set(payload: dict, request: Request,
+                       openid: str = Header(default=""),
+                       x_admin_token: str = Header(default="")):
+    """SMTP / 短信配置。空值不覆盖（老板可以只改一项）。
+
+    存到 WEILI_RUNTIME_DIR/mail.json（持久卷），重新部署不丢；
+    环境变量优先于这里的值。
+    """
+    m = me(request, openid)
+    _need_role(request, m)
+    allow = ("host", "port", "user", "pass", "from", "sms_provider", "sms_key",
+             "sms_secret", "sms_sign", "sms_template")
+    vcode.save({k: payload[k] for k in allow if payload.get(k) not in (None, "")})
+    return dict(vcode.public_cfg(), need_code=_code_required())
+
+
+@app.post("/api/admin/mail/test")
+def api_admin_mail_test(payload: dict, request: Request,
+                        openid: str = Header(default=""),
+                        x_admin_token: str = Header(default="")):
+    """发一封真信，确认 SMTP 配对了。这一步不测，等到顾客注册才发现发不出去就晚了。"""
+    m = me(request, openid)
+    _need_role(request, m)
+    to = str(payload.get("to") or "").strip()
+    if "@" not in to:
+        raise HTTPException(400, "填个收件邮箱")
+    import secrets
+    code = "%06d" % secrets.randbelow(1000000)
+    try:
+        vcode.send_email(to, code, "register")
+    except Exception as e:
+        raise HTTPException(400, "发信失败：%s" % str(e)[:200])
+    return {"ok": True, "msg": "测试信已发到 %s，去收件箱（含垃圾箱）看" % to}
 
 
 @app.get("/api/admin/overview")
