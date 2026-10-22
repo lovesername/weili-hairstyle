@@ -46,7 +46,8 @@
   }
   header::after{content:"";display:block;height:1px;background:linear-gradient(90deg,transparent,var(--cy),transparent);opacity:.55}
   .hwrap{max-width:1240px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:10px}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand .bwrap{display:flex;flex-direction:column;justify-content:center;min-width:0}
   .logo{
     width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:15px;
     background:linear-gradient(140deg,rgba(49,225,207,.22),rgba(227,193,100,.16));
@@ -76,18 +77,36 @@
   }
   .card::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
     background:linear-gradient(90deg,transparent,rgba(49,225,207,.42),transparent);opacity:.5}
-  /* 访客遮罩：登录前盖住发型库 / 生成记录 */
+  /* 访客遮罩：只盖住款式网格（卡片标题照旧可读），网格模糊当背景。
+     .reel 有 min-height，遮罩内容永远装得下，不会再被卡片的 overflow:hidden 切掉半截。 */
   .gate{
-    position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;gap:9px;text-align:center;padding:20px;
-    background:rgba(8,11,17,.58);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
-    border-radius:14px;
+    position:absolute;inset:0;z-index:6;display:grid;place-items:center;padding:14px;
+    background:linear-gradient(180deg,rgba(9,13,19,.5),rgba(9,13,19,.82));
+    border-radius:12px;
   }
-  .gate .gi{font-size:30px;color:var(--cy);opacity:.85;text-shadow:0 0 18px rgba(49,225,207,.5)}
-  .gate .gt{font-size:14.5px;font-weight:600}
-  .gate .gt b{color:var(--cy);font-family:var(--mono)}
-  .gate .gs{font-size:12px;color:var(--sub);margin-bottom:4px}
-  .gate .btn{padding:8px 22px}
+  .gate .gpanel{
+    width:100%;max-width:336px;display:flex;flex-direction:column;align-items:center;gap:8px;
+    text-align:center;padding:20px 18px 18px;border-radius:14px;
+    border:1px solid rgba(227,193,100,.26);
+    background:linear-gradient(180deg,rgba(18,24,36,.97),rgba(11,15,22,.97));
+    box-shadow:0 26px 60px -26px #000,0 1px 0 rgba(255,255,255,.03) inset;
+  }
+  .gate .gi{font-size:19px;color:var(--gold);opacity:.9;line-height:1;
+    text-shadow:0 0 20px rgba(227,193,100,.5)}
+  .gate .gt{font-size:14.5px;font-weight:600;letter-spacing:.3px}
+  .gate .gt b{color:var(--cy);font-family:var(--mono);font-size:18px;margin:0 2px;vertical-align:-1px}
+  .gate .gs{font-size:11.5px;color:var(--sub);line-height:1.75;max-width:26ch}
+  .gate .btn{padding:9px 26px;margin-top:2px}
+  .gate .gf{font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;color:var(--dim)}
+
+  /* 未登录状态：网格当模糊底图，搜索/标签/箭头全部收起，别让访客点空 */
+  #libCard.locked .grid{filter:blur(7px) saturate(.72);opacity:.4;pointer-events:none;user-select:none}
+  #libCard.locked .reel{min-height:262px}
+  #libCard.locked .reelArrow,
+  #libCard.locked .reelPos,
+  #libCard.locked .search,
+  #libCard.locked #refBtn,
+  #libCard.locked .tags{display:none!important}
   .chead{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
   .idx{
     font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--cy);
@@ -220,6 +239,14 @@
     animation:barBreathe 2.4s ease-in-out infinite;
   }
   .rowline{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;min-height:24px}
+  /* 质检结论前挂个小标签：说清楚这是 AI 给的建议，不是拦路虎 */
+  .qtag{display:inline-block;margin-right:7px;padding:2px 7px;border-radius:5px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.7px;font-weight:600;
+    color:rgba(227,193,100,.95);border:1px solid rgba(227,193,100,.32);
+    background:rgba(227,193,100,.08);white-space:nowrap;vertical-align:1px}
+  #faceInfo .qi{font-style:normal;margin-right:5px;opacity:.9}
+  #faceInfo .qhint{opacity:.6;margin-left:6px;white-space:nowrap}
+  #faceInfo{line-height:1.75}
   .muted{color:var(--sub);font-size:12px}
   .err{color:var(--err)}
   .mono{font-family:var(--mono);font-size:11.5px}
@@ -305,7 +332,9 @@
   .picked .spec i b .shot s{width:5px;height:5px;border-radius:99px;background:var(--cy);opacity:.75;text-decoration:none}
 
   .ctrlgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.4fr);gap:14px;margin-top:14px}
-  @media(max-width:860px){.ctrlgrid{grid-template-columns:1fr}}
+  /* 普通用户只有一个「张数」控制在，别让它拉成一条 440px 的空旷横条 */
+  .ctrlgrid.solo{grid-template-columns:minmax(0,320px)}
+  @media(max-width:860px){.ctrlgrid,.ctrlgrid.solo{grid-template-columns:1fr}}
   .field label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;color:var(--dim);margin-bottom:7px}
   .field label span{color:var(--cy);letter-spacing:1.2px}
   .hint{font-size:10.5px;color:var(--dim);margin-top:6px;line-height:1.5}
@@ -666,12 +695,12 @@
     .slogan{margin-bottom:13px;gap:9px}
     .slogan span{font-size:13px;letter-spacing:.24em;text-indent:.24em}
     .mclose{width:32px;height:32px;font-size:16px}
-    /* 手机端首屏是关掉的，标语挂到顶栏标题右边 */
+    /* 手机端首屏是关掉的，标语挂到顶栏品牌名下当第二行 */
     .bslogan{
-      display:inline-block;margin-left:1px;padding-left:9px;
-      border-left:1px solid rgba(227,193,100,.34);
+      display:block;margin-top:3px;
       font-family:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC","SimSun",serif;
-      font-size:11.5px;font-weight:600;letter-spacing:.1em;white-space:nowrap;line-height:1.3;
+      font-size:11px;font-weight:600;letter-spacing:.16em;text-indent:.16em;
+      white-space:nowrap;line-height:1.25;
       background:linear-gradient(92deg,#fff6de,#f2ce72 46%,#6ee8d8);
       -webkit-background-clip:text;background-clip:text;color:transparent;
     }
@@ -679,7 +708,9 @@
     .hwrap{gap:8px;padding:10px 12px}
     .brand b{font-size:14px;letter-spacing:1.6px}
     .brand small{font-size:8.5px}
-    .hbar{gap:6px;width:100%}
+    .hbar{gap:6px;width:100%;justify-content:flex-end}
+    /* 访客顶栏只有一个按钮：留在品牌同一行右侧，别单独占一行 */
+    header.guest .hbar{width:auto;margin-left:auto;flex:0 0 auto}
     .pill{font-size:10px;padding:5px 9px}
     .drop{min-height:230px}
     .cmp{min-height:230px}
@@ -784,10 +815,11 @@
     .reelArrow.r{right:-5px}
     /* 未登录遮罩别把整张卡糊死，压缩一点，箭头仍可点（z-index 8 在遮罩之上） */
     #libCard{position:relative}
-    #gateLib{padding:14px 10px;gap:6px;background:rgba(8,11,17,.55)}
-    #gateLib .gi{font-size:20px}
-    #gateLib .gt{font-size:13px}
-    #gateLib .gs{font-size:11.5px}
+    #libCard.locked .reel{min-height:236px}
+    #gateLib{padding:10px 8px}
+    #gateLib .gpanel{padding:16px 14px 14px;gap:7px;max-width:300px}
+    #gateLib .gt{font-size:13.5px}
+    #gateLib .gs{font-size:11px}
     .reelPos{display:block;font-family:var(--mono);font-size:10px;color:var(--dim);
       text-align:right;letter-spacing:1px;margin-top:1px}
 
@@ -846,11 +878,11 @@
   <div class="hwrap">
     <div class="brand">
       <div class="mark">微</div>
-      <div>
+      <div class="bwrap">
         <b>微粒 · WEILI</b>
         <small>AI HAIRSTYLE ENGINE</small>
+        <span class="bslogan">发型预演 · 引领新时尚</span>
       </div>
-      <span class="bslogan">发型预演 · 引领新时尚</span>
     </div>
     <div class="hbar">
       <span class="pill" id="api">CONNECTING…</span>
@@ -965,7 +997,7 @@
       </div>
       <div class="field">
         <label>BATCH <span>一次出几张</span></label>
-        <div class="chips" id="ncand"></div>
+        <select class="sel" id="ncand"></select>
         <div class="hint" id="nHint">多张会自动挑脸最像、发际线最自然的一张</div>
       </div>
       <div class="field adminonly hidden" id="fProv">
@@ -1025,14 +1057,17 @@
       <div class="grid" id="grid"></div>
       <button class="reelArrow l" id="reelPrev" type="button" aria-label="上一款">‹</button>
       <button class="reelArrow r" id="reelNext" type="button" aria-label="下一款">›</button>
+      <div class="gate hidden" id="gateLib">
+        <div class="gpanel">
+          <div class="gi">◈</div>
+          <div class="gt">发型库共 <b id="gateCnt">259</b> 款真人发型</div>
+          <div class="gs">登录后解锁全部款式、实拍图与发色预设</div>
+          <button class="btn" data-openauth>登录 / 注册</button>
+          <div class="gf">免费注册 · 送 3 次预演 · 不满意不扣积分</div>
+        </div>
+      </div>
     </div>
     <div class="reelPos" id="reelPos"></div>
-    <div class="gate hidden" id="gateLib">
-      <div class="gi">◈</div>
-      <div class="gt">发型库共 <b id="gateCnt">259</b> 款真人发型</div>
-      <div class="gs">登录后解锁全部款式与实拍图</div>
-      <button class="btn" data-openauth>登录 / 注册</button>
-    </div>
   </section>
 
   <section class="card hidden" id="histCard" style="margin-top:16px">
@@ -1231,6 +1266,8 @@ function renderAcct() {
   }
   // 普通用户只看得到：选款 / 发色 / 出几张 / 生成；模型和后端是管理员的
   $$('.adminonly').forEach(el => el.classList.toggle('hidden', !IS_ADMIN));
+  const cg = document.querySelector('.ctrlgrid');
+  if (cg) cg.classList.toggle('solo', !IS_ADMIN);
   $('#adminLink').classList.toggle('hidden', !IS_ADMIN);
   $('#resetq').classList.toggle('hidden', !IS_ADMIN);
   $('#histTip').textContent = IS_ADMIN ? '全部用户记录' : '';
@@ -1243,6 +1280,8 @@ function renderAcct() {
 function renderGates() {
   const on = !USER;
   $('#gateLib').classList.toggle('hidden', !on);
+  $('#libCard').classList.toggle('locked', on);
+  document.querySelector('header').classList.toggle('guest', on);
   $('#histCard').classList.toggle('hidden', on);
   $('#gateCnt').textContent = STYLES.length || 259;
 }
@@ -2205,21 +2244,24 @@ async function upload(f) {
 function showFaceQuality(d) {
   const el = $('#faceInfo');
   const q = d.quality || {};
+  const TAG = '<b class="qtag">AI 检测参考</b>';
+  const SOFT = '<span class="qhint">· 仅建议，不改也能出图</span>';
   el.style.color = '';
   if (!d.face_found || q.face === false) {
     el.style.color = 'var(--err)';
-    el.textContent = '✗ ' + (q.hint || '未识别人脸，按人像居中构图（建议重拍正面照）');
+    el.innerHTML = TAG + '<i class="qi">✗</i>' +
+      esc(q.hint || '没识别到正脸，换个正对镜头的角度会更像本人') + SOFT;
     return;
   }
   const bits = [];
   if (q.rotated) bits.push(`已把歪 ${Math.abs(q.rotated).toFixed(1)}° 的头扶正`);
+  const tail = bits.length ? ' · ' + esc(bits.join(' · ')) : '';
   if (q.level === 'good') {
-    el.textContent = '✓ 正脸角度良好' + (bits.length ? ' · ' + bits.join(' · ') : '');
+    el.innerHTML = TAG + '<i class="qi">✓</i>正脸角度良好' + tail;
     return;
   }
   el.style.color = q.level === 'small' ? 'var(--sub)' : 'var(--gold)';
-  el.textContent = (q.level === 'small' ? '△ ' : '△ ') +
-    (q.hint || '角度一般') + (bits.length ? ' · ' + bits.join(' · ') : '');
+  el.innerHTML = TAG + '<i class="qi">△</i>' + esc(q.hint || '角度一般') + tail + SOFT;
 }
 
 /* ---------------- 张数 ---------------- */
@@ -2228,14 +2270,18 @@ function renderN() {
   // 普通用户最多 2 张（每多一张就是多一次 API 钱），管理员可以 4 张
   const opts = IS_ADMIN ? [1, 2, 4] : [1, 2];
   if (!opts.includes(NCAND)) NCAND = 1;
-  $('#ncand').innerHTML = opts.map(n =>
-    `<div class="chip ${NCAND === n ? 'on' : ''}" data-n="${n}">${n} 张</div>`).join('');
-  // 同样限定在 #ncand 内，别和 provider chip 抢事件
-  $$('#ncand .chip').forEach(el => el.onclick = () => {
-    NCAND = parseInt(el.dataset.n, 10);
-    localStorage.setItem('ncand', NCAND); renderN(); sync();
-  });
   const per = (BILL && BILL.gen_credits) || 8;
+  const sel = $('#ncand');
+  // 下拉里直接把「张数 + 要花多少积分」一起写清楚，不用再猜
+  sel.innerHTML = opts.map(n =>
+    `<option value="${n}">${n} 张 · ${per * n} 积分</option>`).join('');
+  sel.value = String(NCAND);
+  sel.onchange = () => {
+    const v = parseInt(sel.value, 10);
+    NCAND = opts.includes(v) ? v : 1;
+    localStorage.setItem('ncand', NCAND);
+    renderN(); sync();
+  };
   $('#nHint').innerHTML = `本次共 <b style="color:var(--cy)">${per * NCAND}</b> 积分` +
     (NCAND > 1 ? '（多张会自动挑脸最像、发际线最自然的一张）' : '');
   sync();
