@@ -812,10 +812,17 @@ REASON = {
 
 
 @app.get("/api/providers")
-def api_providers(request: Request, x_admin_token: str = Header(default="")):
+def api_providers(request: Request, x_admin_token: str = Header(default=""),
+                  openid: str = Header(default="")):
     """后端就绪状态 + 没接通的原因（含缺哪个 KEY）—— 管理员专属。
-    用户端永远不该知道店里接了哪几家云。"""
-    _need_admin(x_admin_token, request)
+    用户端永远不该知道店里接了哪几家云。
+
+    以前这里只认 X-Admin-Token：云上部署（DEPLOY=1）关掉了「本机免密」之后，
+    老板用 admin 账号登录前台反而 401 → 前端初始化链在这里抛错 → 发型库一张都不渲染。
+    """
+    m = me(request, openid)
+    if not _is_admin_ctx(m) and not _need_admin(x_admin_token, request, soft=True):
+        raise HTTPException(403, "要管理员账号（或本机带 X-Admin-Token）")
     items = {}
     for k in PROVIDERS:
         ok = prov_available(k)
