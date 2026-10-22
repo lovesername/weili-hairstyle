@@ -1,0 +1,40 @@
+# 后端自动部署：push 到 main（只动 backend/ 或 Dockerfile）→ 调 Render 部署 API。
+# 为什么不用 Render 自带的那套？这个服务是拿 API 建的，GitHub 上没有 Render 的 webhook
+# （仓库 hooks = 0），所以 push 根本不会触发重建。这里补上这条链。
+#
+# 需要的仓库配置：
+#   Secret   RENDER_API_KEY      = Render 后台 Account Settings → API Keys 建的那把
+#   Variable RENDER_SERVICE_ID   = srv-xxxxxxxx（Render 服务详情页 URL 里那一段）
+name: deploy-backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+jobs:
+  trigger-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 触发 Render 重建
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          SERVICE_ID: ${{ vars.RENDER_SERVICE_ID }}
+        run: |
+          if [ -z "$RENDER_API_KEY" ] || [ -z "$SERVICE_ID" ]; then
+            echo "::warning::没配 RENDER_API_KEY / RENDER_SERVICE_ID，跳过（后端不会自动更新）"
+            exit 0
+          fi
+          code=$(curl -sS -o resp.json -w '%{http_code}' --max-time 60 \
+            -X POST "https://api.render.com/v1/services/${SERVICE_ID}/deploys" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache":"do_not_clear"}')
+          echo "HTTP $code"
+          head -c 400 resp.json; echo
+          [ "$code" = "201" ] || { echo "::error::Render 没接受这次部署"; exit 1; }
