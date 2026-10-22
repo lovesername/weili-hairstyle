@@ -114,6 +114,20 @@
   .drop .t1{font-size:13px;color:var(--sub)}
   .drop .t2{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;color:var(--dim)}
   .drop img{max-width:100%;max-height:420px;display:block}
+  /* 已经有照片了就别再摆「＋」和格式说明，干干净净一张图 */
+  .drop.has .up,.drop.has .t2{display:none}
+  .drop.has{padding:0}
+  .drop.busy{opacity:.72;cursor:progress}
+  .drop.busy .up{animation:spin 1.1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  /* 上传失败就写在框里：手机端控制台在下面老远，报错在上面根本看不见 */
+  .uperr{margin-top:2px;font-size:11.5px;line-height:1.7;color:var(--err);text-align:center;
+    max-width:34ch;padding:0 6px}
+  /* 照片区下方的小字提示：电脑 / 手机都显示 */
+  .phototip{margin:-2px 0 10px;font-size:11.5px;line-height:1.8;color:var(--dim);letter-spacing:.2px}
+  .phototip b{color:rgba(227,193,100,.92);font-weight:600}
+  /* 手机端顶栏的标语：桌面隐藏，手机跟在「微粒 · WEILI」右边 */
+  .bslogan{display:none}
 
   .cmp{
     position:relative;overflow:hidden;border-radius:12px;user-select:none;min-height:300px;
@@ -652,6 +666,16 @@
     .slogan{margin-bottom:13px;gap:9px}
     .slogan span{font-size:13px;letter-spacing:.24em;text-indent:.24em}
     .mclose{width:32px;height:32px;font-size:16px}
+    /* 手机端首屏是关掉的，标语挂到顶栏标题右边 */
+    .bslogan{
+      display:inline-block;margin-left:1px;padding-left:9px;
+      border-left:1px solid rgba(227,193,100,.34);
+      font-family:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC","SimSun",serif;
+      font-size:11.5px;font-weight:600;letter-spacing:.1em;white-space:nowrap;line-height:1.3;
+      background:linear-gradient(92deg,#fff6de,#f2ce72 46%,#6ee8d8);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .phototip{font-size:11px;margin:-4px 0 8px;line-height:1.75}
     .hwrap{gap:8px;padding:10px 12px}
     .brand b{font-size:14px;letter-spacing:1.6px}
     .brand small{font-size:8.5px}
@@ -826,6 +850,7 @@
         <b>微粒 · WEILI</b>
         <small>AI HAIRSTYLE ENGINE</small>
       </div>
+      <span class="bslogan">发型预演 · 引领新时尚</span>
     </div>
     <div class="hbar">
       <span class="pill" id="api">CONNECTING…</span>
@@ -870,13 +895,15 @@
   <div class="work">
     <section class="card">
       <div class="chead">
-        <span class="idx">01</span><b>本人照片</b><em>正脸 · 光线均匀 · 头发不挡脸</em>
+        <span class="idx">01</span><b>预演形象</b><em>正脸 · 光线均匀 · 头发不挡脸</em>
       </div>
+      <p class="phototip">温馨提示：为了更贴合的设计效果，请提供<b>正面形象照</b> —— 正对镜头、五官清晰、光线均匀、头发不遮住脸。</p>
       <div class="drop" id="drop">
         <div class="up">＋</div>
         <div class="t1" id="ph">点击选择 / 拖入图片</div>
         <div class="t2">JPG · PNG · WEBP</div>
         <img id="prev" class="hidden">
+        <div class="uperr hidden" id="upErr"></div>
       </div>
       <input type="file" id="file" accept="image/*" class="hidden">
       <div class="rowline"><span class="hint" id="faceInfo"></span></div>
@@ -1178,7 +1205,7 @@ async function j(url, opt = {}) {
   try {
     r = await fetch(API + url, opt);
   } catch (e) {
-    throw new Error('连不上后端 ' + (API || location.origin) + '，先跑 start.bat（默认 8899）');
+    throw new Error('连不上服务器，检查网络后重试');
   }
   const d = await r.json().catch(() => ({}));
   if (!r.ok) throw Object.assign(new Error(d.error || d.detail || ('HTTP ' + r.status)),
@@ -2085,24 +2112,91 @@ $('#tags').onclick = e => {
 
 $('#q').oninput = e => { Q = e.target.value; render(); };
 
-$('#drop').onclick = () => $('#file').click();
+$('#drop').onclick = () => { if (!$('#drop').classList.contains('busy')) $('#file').click(); };
 $('#drop').ondragover = e => e.preventDefault();
 $('#drop').ondrop = e => { e.preventDefault(); if (e.dataTransfer.files[0]) upload(e.dataTransfer.files[0]); };
-$('#file').onchange = e => e.target.files[0] && upload(e.target.files[0]);
+/* 选完必须清空 value：否则再选同一张（或重拍同一角度）不触发 change，
+   表现就是「点了 ✓ 照片没出现」—— 手机拍照尤其容易撞上这个 */
+$('#file').onchange = e => {
+  const f = e.target.files && e.target.files[0];
+  if (f) upload(f);
+  e.target.value = '';
+};
+
+function upErr(msg) {
+  const el = $('#upErr');
+  if (!el) return;
+  el.textContent = msg || '';
+  el.classList.toggle('hidden', !msg);
+}
+
+/* 手机原图 5~10MB、iPhone 还常是 HEIC：直接传会超 12MB 或被后端判「解析失败」。
+   先在浏览器里缩到最长边 1600 并转 JPEG —— 画质对换发型毫无影响，体积掉到几百 KB。 */
+async function shrink(f, maxSide = 1600, q = 0.92) {
+  if (!f || !/^image\//i.test(f.type || '')) return f;
+  const heic = /hei[cf]/i.test(f.type) || /\.hei[cf]$/i.test(f.name || '');
+  if (!heic && f.size <= 1.6 * 1024 * 1024) return f;
+  try {
+    const img = await new Promise((res, rej) => {
+      const im = new Image(), url = URL.createObjectURL(f);
+      im.onload = () => { URL.revokeObjectURL(url); res(im); };
+      im.onerror = () => { URL.revokeObjectURL(url); rej(new Error('读不出这张图')); };
+      im.src = url;
+    });
+    const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+    if (!w || !h) return f;
+    const k = Math.min(1, maxSide / Math.max(w, h));
+    const cv = document.createElement('canvas');
+    cv.width = Math.max(1, Math.round(w * k));
+    cv.height = Math.max(1, Math.round(h * k));
+    cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+    const blob = await new Promise(r => cv.toBlob(r, 'image/jpeg', q));
+    if (!blob) return f;
+    return new File([blob], ((f.name || 'photo').replace(/\.[^.]+$/, '') || 'photo') + '.jpg',
+                    {type: 'image/jpeg', lastModified: Date.now()});
+  } catch (e) {
+    return f;   // 转不了就原样传，让后端把话说清楚
+  }
+}
 
 async function upload(f) {
-  const fd = new FormData(); fd.append('file', f);
+  const drop = $('#drop'), t1 = $('#ph'), up = drop && drop.querySelector('.up');
+  upErr('');
+  if (drop) drop.classList.add('busy');
+  if (up) up.textContent = '⟳';
+  const hadPhoto = !!PHOTO;
+  if (!hadPhoto && t1) t1.textContent = '处理中…';
   setConsole('上传中…');
   try {
+    const small = await shrink(f);
+    if (small.size > 12 * 1024 * 1024) {
+      throw new Error('照片太大（' + (small.size / 1048576).toFixed(1) + 'MB），换一张或先截屏再传');
+    }
+    const fd = new FormData();
+    fd.append('file', small, small.name || 'photo.jpg');
     const d = await j('/api/upload', {method: 'POST', body: fd});
     PHOTO = d.photo_id;
-    $('#prev').src = API + d.preview; $('#prev').classList.remove('hidden');
-    $('#ph').classList.add('hidden');
+    /* 先用本地图秒显：手机网络慢，等服务端裁切图常常是一片空白，
+       用户就会以为「照片没传上去」。服务端图加载好了再替换（构图与生成一致）。 */
+    const local = URL.createObjectURL(small);
+    $('#prev').src = local;
+    $('#prev').classList.remove('hidden');
+    if (t1) t1.classList.add('hidden');
+    if (drop) drop.classList.add('has');
+    const srv = new Image();
+    srv.onload = () => { if (PHOTO === d.photo_id) $('#prev').src = API + d.preview; };
+    srv.src = API + d.preview;
+    setTimeout(() => URL.revokeObjectURL(local), 60000);
     showFaceQuality(d);
     setConsole('照片已就绪 · 选一款发型');
     sync();
   } catch (e) {
+    upErr(e.message || '上传失败，重试一次');
+    if (t1 && !hadPhoto) t1.textContent = '点击选择 / 拖入图片';
     setConsole('上传失败：' + e.message, true);
+  } finally {
+    if (up) up.textContent = '＋';
+    if (drop) drop.classList.remove('busy');
   }
 }
 
