@@ -28,6 +28,81 @@ def detect_face(im: Image.Image):
     return facedet.biggest(im)
 
 
+# ---------------- 正脸质检 + 轻微歪头扶正 ----------------
+# 为什么要做：整头重画这条路是「模型照着脸重新长头发」，脸一旦是侧脸/歪头，
+# 模型会自己把另一半脸「脑补」成正脸 —— 五官位置被掰、下颌线被重画，
+# 出来的图就是用户说的「有点假、不太像自己」。能扶正的扶正，扶不了的老实提示重拍。
+def _grade(roll: float, yaw: float, span: float, score: float):
+    """给出等级 + 一句人话。yaw 是鼻尖相对两眼中点的偏移/眼距，正脸≈0。"""
+    a, ya = abs(roll), abs(yaw)
+    if span < 0.085:
+        return "small", "脸在画面里太小，靠近一点拍，发型细节才出得来"
+    if ya > 0.30:
+        return "side", "这张偏侧脸，AI 会脑补另一半脸、容易不像本人；正对镜头重拍一张最准"
+    if ya > 0.19:
+        return "half", "有点偏侧，效果会打点折；能正对镜头会更贴合"
+    if a > 9:
+        return "tilt", "头歪得有点多，没敢硬掰（会裁掉画面）；拍正一点会更自然"
+    if score and score < 0.80:
+        return "blur", "脸不太清楚，换一张对焦在脸上的"
+    return "good", ""
+
+
+def quality(im: Image.Image):
+    """正脸质检。返回 roll(°)/yaw/人脸占比/等级/hint，全部给前端提示用。"""
+    import math
+    box, pts, score = facedet.detect_full(im)
+    W, H = im.size
+    if not box:
+        return {"face": False, "ok": False, "roll": 0.0, "yaw": 0.0, "span": 0.0,
+                "level": "none", "rotated": 0.0, "score": 0.0,
+                "hint": "没检测到正脸：换一张光线均匀、头发不挡脸、正对镜头的照片"}
+    x, y, w, h = box
+    roll = yaw = 0.0
+    if pts:
+        le, re_, nose = pts[0], pts[1], pts[2]
+        dx, dy = re_[0] - le[0], re_[1] - le[1]
+        if abs(dx) >= 1:
+            roll = math.degrees(math.atan2(dy, dx))
+        ed = math.hypot(dx, dy) or 1.0
+        yaw = (nose[0] - (le[0] + re_[0]) / 2.0) / ed
+    span = h / float(H or 1)
+    level, hint = _grade(roll, yaw, span, score)
+    return {"face": True, "ok": level in ("good", "tilt"), "roll": round(roll, 2),
+            "yaw": round(yaw, 3), "span": round(span, 3), "level": level,
+            "rotated": 0.0, "score": round(score, 3), "hint": hint}
+
+
+def upright(im: Image.Image, max_deg: float = 10.5):
+    """把轻微歪头（|roll| ≤ max_deg）旋正，返回 (新图, 质检 dict)。
+
+    超过 max_deg 不旋：硬掰 20° 背景会歪、裁切丢太多，看起来比原来更怪。
+    旋转前先放大 1/(cos+sin)，转完从中心裁回原尺寸 —— 四角不会露黑边。
+    转完复检一次，越转越歪（关键点噪声）就回退原图。
+    """
+    import math
+    q = quality(im)
+    roll = q.get("roll") or 0.0
+    if not q.get("face") or abs(roll) < 1.2 or abs(roll) > max_deg:
+        return im, q
+    W, H = im.size
+    r = math.radians(abs(roll))
+    k = math.cos(r) + math.sin(r) + 0.02
+    big = im.resize((max(W + 2, int(round(W * k))), max(H + 2, int(round(H * k)))),
+                    Image.LANCZOS)
+    # PIL 正角度 = 逆时针；roll>0 表示画面右侧的眼更低，逆时针正好把它抬回水平
+    big = big.rotate(roll, resample=Image.BICUBIC)
+    cx, cy = big.width // 2, big.height // 2
+    left, top = cx - W // 2, cy - H // 2
+    out = big.crop((left, top, left + W, top + H))
+    q2 = quality(out)
+    if not q2.get("face") or abs(q2["roll"]) > abs(roll) - 0.8:
+        return im, q                      # 没转好就别转，宁可不动
+    q2["rotated"] = round(roll, 2)
+    q2["ok"] = q2["level"] in ("good", "tilt")
+    return out, q2
+
+
 def _crown_top(im, x_center, half_band, dark=92):
     """头部竖带里最上面那撮深色（头发）像素的行号；找不到返回 None。
 
@@ -118,6 +193,8 @@ def prepare(data: bytes, size: int = 768, pad_color=(255, 255, 255)):
     pad_img  整图补边成正方形（云端整头重画用），pad 为四边补了多少像素
     """
     orig = load_image(data)
+    # 先质检再扶正：轻微歪头旋正后模型看得见「正脸」，五官不会被重画成陌生人
+    orig, qa = upright(orig)
     face = detect_face(orig)
     rect = head_crop_rect(orig, face)
     crop = orig.crop((rect[0], rect[1], rect[0] + rect[2], rect[1] + rect[3]))
@@ -125,7 +202,7 @@ def prepare(data: bytes, size: int = 768, pad_color=(255, 255, 255)):
     sq, pad = _pad_square(orig)
     return {"img": crop, "rect": rect, "face": face, "orig": orig,
             "pad_img": sq.resize((size, size), Image.LANCZOS),
-            "pad": pad, "side": max(orig.size)}
+            "pad": pad, "side": max(orig.size), "quality": qa}
 
 def to_bytes(im: Image.Image, fmt="JPEG", q=95) -> bytes:
     b = io.BytesIO()
