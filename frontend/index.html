@@ -1246,8 +1246,9 @@ function switchAuth(mode) {
   $('#ap').placeholder = (reg || reset) ? '至少 6 位，记好' : '至少 6 位';
   $('#ap').setAttribute('autocomplete', reg || reset ? 'new-password' : 'current-password');
   $('#codeRow').classList.toggle('hidden', !(reg || reset) || !AUTH_POLICY.need_code);
-  // 「忘记密码」只在登录态出现：注册时不需要，重置态自己就是这个流程
-  $('#forgotLink').parentNode.style.display = (mode === 'login') ? 'block' : 'none';
+  // 「忘记密码」只在真能收码时出现：没配邮箱/短信时点它只会报错，不如藏掉
+  $('#forgotLink').parentNode.style.display =
+    (mode === 'login' && (AUTH_POLICY.email || AUTH_POLICY.phone)) ? 'block' : 'none';
   $('#authErr').textContent = '';
 }
 
