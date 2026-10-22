@@ -333,9 +333,7 @@
   .picked .spec i b .shot s{width:5px;height:5px;border-radius:99px;background:var(--cy);opacity:.75;text-decoration:none}
 
   .ctrlgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.4fr);gap:14px;margin-top:14px}
-  /* 普通用户只有一个「张数」控制在，别让它拉成一条 440px 的空旷横条 */
-  .ctrlgrid.solo{grid-template-columns:minmax(0,320px)}
-  @media(max-width:860px){.ctrlgrid,.ctrlgrid.solo{grid-template-columns:1fr}}
+  @media(max-width:860px){.ctrlgrid{grid-template-columns:1fr}}
   .field label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;color:var(--dim);margin-bottom:7px}
   .field label span{color:var(--cy);letter-spacing:1.2px}
   .hint{font-size:10.5px;color:var(--dim);margin-top:6px;line-height:1.5}
@@ -998,7 +996,7 @@
       </div>
       <div class="field">
         <label>BATCH <span>一次出几张</span></label>
-        <select class="sel" id="ncand"></select>
+        <div class="chips" id="ncand"></div>
         <div class="hint" id="nHint">多张会自动挑脸最像、发际线最自然的一张</div>
       </div>
       <div class="field adminonly hidden" id="fProv">
@@ -1267,8 +1265,6 @@ function renderAcct() {
   }
   // 普通用户只看得到：选款 / 发色 / 出几张 / 生成；模型和后端是管理员的
   $$('.adminonly').forEach(el => el.classList.toggle('hidden', !IS_ADMIN));
-  const cg = document.querySelector('.ctrlgrid');
-  if (cg) cg.classList.toggle('solo', !IS_ADMIN);
   $('#adminLink').classList.toggle('hidden', !IS_ADMIN);
   $('#resetq').classList.toggle('hidden', !IS_ADMIN);
   $('#histTip').textContent = IS_ADMIN ? '全部用户记录' : '';
@@ -2272,17 +2268,13 @@ function renderN() {
   const opts = IS_ADMIN ? [1, 2, 4] : [1, 2];
   if (!opts.includes(NCAND)) NCAND = 1;
   const per = (BILL && BILL.gen_credits) || 8;
-  const sel = $('#ncand');
-  // 下拉里直接把「张数 + 要花多少积分」一起写清楚，不用再猜
-  sel.innerHTML = opts.map(n =>
-    `<option value="${n}">${n} 张 · ${per * n} 积分</option>`).join('');
-  sel.value = String(NCAND);
-  sel.onchange = () => {
-    const v = parseInt(sel.value, 10);
-    NCAND = opts.includes(v) ? v : 1;
-    localStorage.setItem('ncand', NCAND);
-    renderN(); sync();
-  };
+  $('#ncand').innerHTML = opts.map(n =>
+    `<div class="chip ${NCAND === n ? 'on' : ''}" data-n="${n}">${n} 张</div>`).join('');
+  // 事件只挂在 #ncand 内，别和 provider chip 抢
+  $$('#ncand .chip').forEach(el => el.onclick = () => {
+    NCAND = parseInt(el.dataset.n, 10);
+    localStorage.setItem('ncand', NCAND); renderN(); sync();
+  });
   $('#nHint').innerHTML = `本次共 <b style="color:var(--cy)">${per * NCAND}</b> 积分` +
     (NCAND > 1 ? '（多张会自动挑脸最像、发际线最自然的一张）' : '');
   sync();
