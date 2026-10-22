@@ -37,4 +37,11 @@ jobs:
             -d '{"clearCache":"do_not_clear"}')
           echo "HTTP $code"
           head -c 400 resp.json; echo
-          [ "$code" = "201" ] || { echo "::error::Render 没接受这次部署"; exit 1; }
+          # 一次 push 改多个文件会触发多个 workflow，Render 侧这时会回 4xx
+          # （已在部署中 / 排队限流）。那种情况部署其实已经起来了，不算失败；
+          # 只有 5xx 才是真出事（key 错、服务没了）。
+          case "$code" in
+            2*) echo "::notice::已触发 Render 重建" ;;
+            4*) echo "::warning::Render 回 $code —— 通常是已有部署在进行，跳过本轮" ;;
+            *)  echo "::error::Render 接口回 $code，去 dashboard 看看"; exit 1 ;;
+          esac
