@@ -1427,11 +1427,18 @@ async def api_upload(file: UploadFile = File(...), openid: str = Header(default=
     u = uid(openid)
     data = await file.read()
     if len(data) > 12 * 1024 * 1024:
-        raise HTTPException(400, "图片超过 12MB")
+        raise HTTPException(400, "照片超过 12MB，先在手机相册里截屏或压缩一下再传")
+    if not data:
+        raise HTTPException(400, "没收到文件，重选一次")
     try:
         p = preprocess.prepare(data, size=SIZE)
     except Exception as e:
-        raise HTTPException(400, f"图片解析失败: {e}")
+        # 最常见的就是 iPhone 的 HEIC：PIL 打不开。别回 500 让用户干瞪眼。
+        msg = str(e).lower()
+        if "hei" in msg or "cannot identify" in msg or "unsupported" in msg:
+            raise HTTPException(400, "这张图打不开：可能是 iPhone 的 HEIC 格式。"
+                                     "在相册里截图，或用「兼容格式/JPG」再传一次")
+        raise HTTPException(400, f"图片解析失败：{e}")
 
     # 文件名必须唯一：原来用 int(time.time())，同一秒连传两张会互相覆盖，
     # 结果 photo A 的 id 指向了 B 的图（测 A 却出了一张 B 的成品，排查了两小时）。
