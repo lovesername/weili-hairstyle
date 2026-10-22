@@ -1332,10 +1332,23 @@ def api_admin_mail_set(payload: dict, request: Request,
     """
     m = me(request, openid)
     _need_role(request, m)
-    allow = ("host", "port", "user", "pass", "from", "sms_provider", "sms_key",
-             "sms_secret", "sms_sign", "sms_template")
+    allow = ("host", "port", "user", "pass", "from", "http", "http_key", "http_from",
+             "sms_provider", "sms_key", "sms_secret", "sms_sign", "sms_template")
     vcode.save({k: payload[k] for k in allow if payload.get(k) not in (None, "")})
     return dict(vcode.public_cfg(), need_code=_code_required())
+
+
+@app.get("/api/admin/mail/diag")
+def api_admin_mail_diag(request: Request, openid: str = Header(default=""),
+                        x_admin_token: str = Header(default="")):
+    """从服务器本机量一遍出站端口。
+
+    部署在 Render / 阿里云函数这类地方时，"本机明明能发" 和 "线上发不出"
+    经常同时成立 —— 出站 25/465/587 被拦。这个接口就是让这件事一句话说完。
+    """
+    m = me(request, openid)
+    _need_role(request, m)
+    return vcode.diag()
 
 
 @app.post("/api/admin/mail/test")
