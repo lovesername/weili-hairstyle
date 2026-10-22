@@ -68,6 +68,7 @@ create table if not exists accounts(
   id text primary key,
   username text unique,
   phone text,
+  email text,                      -- 邮箱账号（注册时验证过的那个）
   pass_hash text,
   salt text,
   role text default 'user',        -- user | admin
@@ -76,6 +77,30 @@ create table if not exists accounts(
   status text default 'ok',        -- ok | banned
   created_at integer,
   last_at integer
+);
+-- 验证码：注册 / 改密 / 登录二次验证都走这张表。一次性的，用完置 used。
+create table if not exists vcodes(
+  id text primary key,
+  target text,                     -- 邮箱或手机号（统一小写存）
+  kind text,                       -- email | phone
+  code text,                       -- 6 位数字
+  purpose text default 'register', -- register | reset | bind
+  tries integer default 0,         -- 错了几次，到 5 直接作废
+  used integer default 0,
+  ip text,
+  created_at integer,
+  expires_at integer
+);
+-- 支付回调日志。钱的事必须留痕：用户说「我付了」而积分没到，只能靠这张表对账。
+create table if not exists pay_logs(
+  id integer primary key autoincrement,
+  channel text,                    -- alipay | wechat | epay
+  oid text,                        -- 我们的订单号
+  amount_cents integer,            -- 回调里的金额
+  trade_no text,                   -- 对方交易号
+  ok integer,                      -- 1=到账 0=拒绝
+  reason text,                     -- 拒绝原因 / already paid
+  created_at integer
 );
 create table if not exists orders(
   id text primary key,
@@ -101,6 +126,10 @@ create table if not exists ledger(
 JOB_EXTRA_COLUMNS = (("credits_spent", "integer default 0"),
                      ("free_spent", "integer default 0"),
                      ("cost_usd", "real default 0"))
+
+# accounts 原来只有 phone，没有邮箱；也没有"密码什么时候改的"
+ACCOUNT_EXTRA_COLUMNS = (("email", "text"),
+                         ("pw_at", "integer default 0"))
 
 
 # ---------------------------------------------------------------- Postgres
@@ -215,11 +244,21 @@ SCHEMA_PG = _pg_ddl(SCHEMA)
 
 
 def migrate():
+    _add_columns("jobs", JOB_EXTRA_COLUMNS)
+    _add_columns("accounts", ACCOUNT_EXTRA_COLUMNS)
+
+
+def _add_columns(table, cols):
+    """老库补列。SQLite 走 pragma，Postgres 走 information_schema（翻译层负责）。
+    只加缺的，加过的跳过 —— 每次启动都跑，必须幂等。"""
     with _lock, conn() as c:
-        cols = [r["name"] for r in c.execute("pragma table_info(jobs)")]
-        for name, ddl in JOB_EXTRA_COLUMNS:
-            if name not in cols:
-                c.execute("alter table jobs add column %s %s" % (name, ddl))
+        have = [r["name"] for r in c.execute("pragma table_info(%s)" % table)]
+        for name, ddl in cols:
+            if name not in have:
+                try:
+                    c.execute("alter table %s add column %s %s" % (table, name, ddl))
+                except Exception as e:
+                    print("补列失败 %s.%s: %s" % (table, name, e))
 
 def free_per_day():
     """每天免费次数。读环境变量要放到函数里 —— db 比 app 先 import，
