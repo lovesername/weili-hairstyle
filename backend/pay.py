@@ -300,6 +300,42 @@ def epay_notify(params):
             "trade_no": params.get("trade_no")}
 
 
+def epay_query(oid):
+    """主动查单：回调丢了（容器重启 / 出站抖动 / 网关重试耗尽）时的兜底。
+
+    没有这个，用户付了钱、回调没到，就只能在后台手动点确认 —— 那不叫自动充值。
+    标准易支付协议：GET {gateway}/api.php?act=order&pid=&key=&out_trade_no=
+    返回 code=1、status=1 表示已支付。
+    """
+    c = cfg()["epay"]
+    if not (c.get("gateway") and c.get("pid") and c.get("key")):
+        return None
+    try:
+        r = requests.get(c["gateway"].rstrip("/") + "/api.php",
+                         params={"act": "order", "pid": c["pid"], "key": c["key"],
+                                 "out_trade_no": oid},
+                         timeout=15, proxies={"http": None, "https": None})
+        j = r.json()
+    except Exception as e:
+        print("易支付查单失败:", oid, e)
+        return None
+    if str(j.get("code")) != "1" or str(j.get("status")) != "1":
+        return None
+    try:
+        cents = int(round(float(j.get("money") or 0) * 100))
+    except (TypeError, ValueError):
+        return None
+    return {"oid": j.get("out_trade_no") or oid, "amount_cents": cents,
+            "trade_no": j.get("trade_no")}
+
+
+def query(oid):
+    """按当前通道主动查单；manual/未配置一律返回 None。"""
+    if cfg().get("mode") == "epay":
+        return epay_query(oid)
+    return None
+
+
 # ---------------- 统一下单 ----------------
 def create(oid, amount_cents, subject, channel=""):
     """返回 {mode:'auto', qr, kind} 或抛异常（调用方退回 manual）。"""
