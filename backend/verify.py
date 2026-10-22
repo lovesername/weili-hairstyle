@@ -117,7 +117,7 @@ def public_cfg():
 
 
 def _http_ready(c):
-    return bool(c["http"] in ("brevo", "resend") and c["http_key"])
+    return bool(c["http"] in ("brevo", "resend", "sendgrid") and c["http_key"])
 
 
 # ------------------------------------------------------------------ 发信
@@ -191,6 +191,14 @@ def _http_send(c, to, subject, html):
                 "to": [{"email": to}], "subject": subject, "htmlContent": html}
         hdr = {"api-key": c["http_key"], "Content-Type": "application/json",
                "Accept": "application/json"}
+    elif prov == "sendgrid":
+        url = "https://api.sendgrid.com/v3/mail/send"
+        body = {"personalizations": [{"to": [{"email": to}]}],
+                "from": {"email": frm, "name": c["from"] or "微粒 WEILI"},
+                "subject": subject,
+                "content": [{"type": "text/html", "value": html}]}
+        hdr = {"Authorization": "Bearer " + c["http_key"],
+               "Content-Type": "application/json"}
     elif prov == "resend":
         url = "https://api.resend.com/emails"
         body = {"from": "%s <%s>" % (c["from"] or "微粒 WEILI", frm),
@@ -198,7 +206,7 @@ def _http_send(c, to, subject, html):
         hdr = {"Authorization": "Bearer " + c["http_key"],
                "Content-Type": "application/json"}
     else:
-        raise RuntimeError("不认识的 HTTPS 发信通道：%s（支持 brevo / resend）" % prov)
+        raise RuntimeError("不认识的 HTTPS 发信通道：%s（支持 brevo / resend / sendgrid）" % prov)
     req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST")
     for k, v in hdr.items():
         req.add_header(k, v)
