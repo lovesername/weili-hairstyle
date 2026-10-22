@@ -590,6 +590,15 @@
     color:var(--fg);padding:11px 12px;font:inherit;font-size:13.5px;outline:none}
   .mbox input:focus{border-color:rgba(49,225,207,.6);box-shadow:0 0 0 3px rgba(49,225,207,.08)}
   .mbox .errline{color:var(--err);font-size:12px;min-height:18px;margin-top:10px}
+  .coderow{display:flex;gap:8px;align-items:stretch}
+  .coderow input{flex:1;min-width:0;letter-spacing:4px;font-size:15px}
+  .sendbtn{flex:0 0 auto;padding:0 14px;border-radius:9px;border:1px solid rgba(49,225,207,.42);
+    background:rgba(49,225,207,.09);color:var(--cy);font-size:12.5px;font-weight:600;
+    cursor:pointer;white-space:nowrap;font-family:inherit}
+  .sendbtn:disabled{opacity:.45;cursor:default;border-color:var(--line2);color:var(--dim)}
+  .authmore{margin-top:10px;text-align:right;font-size:12px;color:var(--dim)}
+  .authmore span{cursor:pointer;border-bottom:1px dashed rgba(139,147,164,.5);padding-bottom:1px}
+  .authmore span:hover{color:var(--cy);border-color:var(--cy)}
   .mbox .foot{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}
   .mbox .foot .btn{flex:1}
   .tabs{display:flex;gap:6px;background:#0a0f16;border:1px solid var(--line);border-radius:99px;padding:4px;margin-bottom:6px}
@@ -997,16 +1006,24 @@
 <div class="modal" id="authModal">
   <div class="mbox">
     <h3 id="authTitle">登录微粒</h3>
-    <p class="sub">注册即赠 <b style="color:var(--gold)">3 次</b> AI 换发体验，手机号可选填。</p>
-    <div class="tabs">
+    <p class="sub" id="authSub">注册即赠 <b style="color:var(--gold)">3 次</b> AI 换发体验</p>
+    <div class="tabs" id="authTabs">
       <div class="on" data-t="login">登录</div>
       <div data-t="reg">注册</div>
     </div>
-    <label>账号</label>
-    <input id="au" placeholder="手机号 / 用户名" autocomplete="username">
-    <label>密码</label>
+    <label id="auLabel">账号</label>
+    <input id="au" placeholder="手机号 / 邮箱 / 用户名" autocomplete="username">
+    <div id="codeRow" class="hidden">
+      <label>验证码</label>
+      <div class="coderow">
+        <input id="acode" inputmode="numeric" maxlength="6" placeholder="6 位数字" autocomplete="one-time-code">
+        <button class="sendbtn" id="sendCode" type="button">获取验证码</button>
+      </div>
+    </div>
+    <label id="apLabel">密码</label>
     <input id="ap" type="password" placeholder="至少 6 位" autocomplete="current-password">
     <div class="errline" id="authErr"></div>
+    <div class="authmore"><span id="forgotLink">忘记密码？</span></div>
     <div class="foot">
       <button class="btn" id="authOk">登录</button>
       <button class="btn ghost" id="authClose">先随便看看</button>
@@ -1193,42 +1210,131 @@ async function loadMe() {
   renderAcct(); renderPkgs(); renderN();
 }
 
-/* ---- 登录 / 注册弹窗 ---- */
+/* ---- 登录 / 注册 / 忘记密码 ---- */
+let AUTH_MODE = 'login';        // login | reg | reset
+let AUTH_POLICY = {need_code: false, email: false, phone: false, gap: 60, ttl: 600};
+let codeTimer = null, gapLeft = 0;
+
+const tgtKind = v => (String(v || '').includes('@') ? 'email' : 'phone');
+
+async function loadAuthPolicy() {
+  try { AUTH_POLICY = Object.assign(AUTH_POLICY, await j('/api/auth/policy')); } catch (e) {}
+}
+
 function openAuth(tab) {
   $('#authModal').classList.add('on');
   switchAuth(tab || 'login');
 }
-function switchAuth(tab) {
-  $$('#authModal .tabs div').forEach(d => d.classList.toggle('on', d.dataset.t === tab));
-  $('#authTitle').textContent = tab === 'reg' ? '注册微粒' : '登录微粒';
-  $('#authOk').textContent = tab === 'reg' ? '注册并送 3 次' : '登录';
+
+function switchAuth(mode) {
+  AUTH_MODE = mode;
+  const reg = mode === 'reg', reset = mode === 'reset';
+  $$('#authTabs div').forEach(d => d.classList.toggle('on',
+    d.dataset.t === (reset ? '' : mode)));
+  $('#authTabs').style.display = reset ? 'none' : 'flex';
+  $('#authTitle').textContent = reset ? '重置密码' : (reg ? '注册微粒' : '登录微粒');
+  $('#authSub').innerHTML = reset
+    ? '用注册时的邮箱或手机号收验证码，设一个新密码'
+    : (reg ? `注册即赠 <b style="color:var(--gold)">${AUTH_POLICY.free || 3} 次</b> AI 换发体验`
+           : '登录后可以继续换发型、看历史记录');
+  $('#authOk').textContent = reset ? '重置密码' : (reg ? '注册并开始' : '登录');
+  $('#auLabel').textContent = (reg || reset) ? '邮箱 / 手机号' : '账号';
+  $('#au').placeholder = (reg || reset)
+    ? (AUTH_POLICY.email ? '邮箱（推荐，验证码发到邮箱）' : '手机号')
+    : '手机号 / 邮箱 / 用户名';
+  $('#apLabel').textContent = reset ? '新密码' : (reg ? '设置密码' : '密码');
+  $('#ap').placeholder = (reg || reset) ? '至少 6 位，记好' : '至少 6 位';
+  $('#ap').setAttribute('autocomplete', reg || reset ? 'new-password' : 'current-password');
+  $('#codeRow').classList.toggle('hidden', !(reg || reset) || !AUTH_POLICY.need_code);
+  // 「忘记密码」只在登录态出现：注册时不需要，重置态自己就是这个流程
+  $('#forgotLink').parentNode.style.display = (mode === 'login') ? 'block' : 'none';
   $('#authErr').textContent = '';
 }
-$$('#authModal .tabs div').forEach(d => d.onclick = () => switchAuth(d.dataset.t));
+
+$$('#authTabs div').forEach(d => d.onclick = () => switchAuth(d.dataset.t));
+$('#forgotLink').onclick = () => switchAuth('reset');
 $('#authClose').onclick = () => $('#authModal').classList.remove('on');
 $('#authModal').onclick = e => { if (e.target.id === 'authModal') $('#authModal').classList.remove('on'); };
 
+function startGap(sec) {
+  const b = $('#sendCode');
+  gapLeft = Math.max(1, sec | 0);
+  b.disabled = true;
+  clearInterval(codeTimer);
+  const tick = () => {
+    if (gapLeft <= 0) {
+      clearInterval(codeTimer);
+      b.disabled = false;
+      b.textContent = '重新获取';
+      return;
+    }
+    b.textContent = gapLeft + ' 秒后重发';
+    gapLeft--;
+  };
+  tick();
+  codeTimer = setInterval(tick, 1000);
+}
+
+$('#sendCode').onclick = async () => {
+  const target = $('#au').value.trim();
+  if (!target) return $('#authErr').textContent = '先填邮箱或手机号';
+  const kind = tgtKind(target);
+  if (kind === 'phone' && !AUTH_POLICY.phone) {
+    return $('#authErr').textContent = '手机验证码还没开通，用邮箱注册吧';
+  }
+  if (kind === 'email' && !AUTH_POLICY.email) {
+    return $('#authErr').textContent = '邮箱发信还没配好，联系客服';
+  }
+  const b = $('#sendCode');
+  b.disabled = true;
+  b.textContent = '发送中…';
+  try {
+    const d = await j('/api/auth/sendcode', {method: 'POST',
+      body: {target, kind, purpose: AUTH_MODE === 'reset' ? 'reset' : 'register'}});
+    $('#authErr').textContent = '';
+    $('#acode').focus();
+    startGap(d.wait || AUTH_POLICY.gap || 60);
+    setConsole(kind === 'email' ? '验证码已发到邮箱，10 分钟内有效' : '验证码已发送');
+  } catch (e) {
+    b.disabled = false;
+    b.textContent = '获取验证码';
+    $('#authErr').textContent = e.message;
+  }
+};
+
 async function doAuth() {
-  const tab = ($$('#authModal .tabs div').find(d => d.classList.contains('on')) || {}).dataset || {t: 'login'};
   const u = $('#au').value.trim(), p = $('#ap').value;
-  if (!u) return $('#authErr').textContent = '填一下账号';
+  const code = $('#acode').value.trim();
+  const needCode = AUTH_MODE !== 'login' && AUTH_POLICY.need_code;
+  if (!u) return $('#authErr').textContent = AUTH_MODE === 'login' ? '填一下账号' : '填一下邮箱或手机号';
+  if (needCode && !code) return $('#authErr').textContent = '填一下验证码';
   if (p.length < 6) return $('#authErr').textContent = '密码至少 6 位';
   $('#authOk').disabled = true;
   try {
-    const d = await j(tab.t === 'reg' ? '/api/auth/register' : '/api/auth/login',
-                      {method: 'POST', body: {username: u, password: p}});
-    setToken(d.token, d.user); BILL = d.billing || BILL;
-    PKGS = (d.billing && d.billing.packages) || PKGS;
-    $('#authModal').classList.remove('on');
-    $('#ap').value = '';
-    renderPkgs(); renderN();
-    setConsole(`已登录：${esc(d.user.username)} · 免费 ${d.user.free_left} 次 + ${d.user.credits} 积分`);
-    loadHistory();
+    if (AUTH_MODE === 'reset') {
+      await j('/api/auth/reset', {method: 'POST', body: {target: u, code, password: p}});
+      switchAuth('login');
+      $('#ap').value = '';
+      $('#authErr').textContent = '';
+      setConsole('密码已重置，用新密码登录');
+    } else {
+      const d = await j(AUTH_MODE === 'reg' ? '/api/auth/register' : '/api/auth/login',
+        {method: 'POST', body: AUTH_MODE === 'reg'
+          ? {username: u, password: p, code, kind: tgtKind(u)} : {username: u, password: p}});
+      setToken(d.token, d.user); BILL = d.billing || BILL;
+      PKGS = (d.billing && d.billing.packages) || PKGS;
+      $('#authModal').classList.remove('on');
+      $('#ap').value = ''; $('#acode').value = '';
+      renderPkgs(); renderN();
+      setConsole(`已登录：${esc(d.user.username)} · 免费 ${d.user.free_left} 次 + ${d.user.credits} 积分`);
+      loadHistory();
+    }
   } catch (e) { $('#authErr').textContent = e.message; }
   $('#authOk').disabled = false;
 }
 $('#authOk').onclick = doAuth;
 $('#ap').onkeydown = e => { if (e.key === 'Enter') doAuth(); };
+$('#acode').onkeydown = e => { if (e.key === 'Enter') doAuth(); };
 
 /* ---- 套餐 / 充值 ---- */
 function renderPkgs() {
@@ -2281,6 +2387,7 @@ renderAcct();
   if (!await pickBase()) return;
   // 每一步单独兜住：某一项失败（比如管理员接口 401）不该让整个页面停在「发型库为空」。
   const step = async (fn, name) => { try { await fn(); } catch (e) { console.warn('init skip:', name, e); } };
+  await step(loadAuthPolicy, 'policy');      // 注册要不要验证码、邮箱还是手机
   await step(loadMe, 'me');                 // 先看是谁（决定能不能选模型 / 余额多少）
   await step(loadSite, 'site');             // 客服微信 / 版权 / 收款码
   await step(loadProviders, 'providers');
