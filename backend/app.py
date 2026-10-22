@@ -1125,13 +1125,28 @@ def api_order(payload: dict, request: Request, openid: str = Header(default=""))
 
 @app.get("/api/billing/order/{oid}")
 def api_order_status(oid: str, request: Request, openid: str = Header(default="")):
-    """前端轮询用：支付回调到账后这里立刻变 paid，用户端自动跳「已到账」。"""
+    """前端轮询用：支付回调到账后这里立刻变 paid，用户端自动跳「已到账」。
+
+    顺手做主动查单（25 秒一次）：网关回调可能因为容器重启/出站抖动没到达，
+    光等回调就会出现「钱扣了、积分没到」。查到已付就直接落账。
+    """
     m = need_user(request, openid)
     o = auth.get_order(oid)
     if not o:
         raise HTTPException(404, "订单不存在")
     if m["account"] and o["uid"] != m["account"]["id"] and not _is_admin_ctx(m):
         raise HTTPException(404, "订单不存在")
+    if o["status"] in ("created", "checking"):
+        now = time.time()
+        if now - _Q_LAST.get(oid, 0) > 25:
+            _Q_LAST[oid] = now
+            try:
+                got = pay.query(oid)
+                if got:
+                    _settle(got["oid"], got["amount_cents"], got.get("trade_no"), "epay-query")
+                    o = auth.get_order(oid) or o
+            except Exception as e:
+                print("主动查单异常:", oid, e)
     return {"order": o, "paid": o["status"] == "paid",
             "user": auth.public(auth.get(o["uid"])) if o["status"] == "paid" else None}
 
@@ -1155,6 +1170,9 @@ def _pay_log(channel, oid, cents, trade_no, ok, reason=""):
                        1 if ok else 0, (reason or "")[:200], int(time.time())))
     except Exception as e:
         print("pay_log 写入失败:", e)
+
+
+_Q_LAST = {}   # 订单主动查单节流：oid -> 上次查的时间戳
 
 
 def _settle(oid, cents, trade_no="", channel=""):
@@ -1424,7 +1442,8 @@ async def api_upload(file: UploadFile = File(...), openid: str = Header(default=
     prev = os.path.join(UP, f"{pid}_crop.jpg")
     p["img"].save(prev, quality=92)
     return {"photo_id": pid, "preview": f"/files/uploads/{os.path.basename(prev)}",
-            "face_found": bool(p["face"]), "rect": p["rect"]}
+            "face_found": bool(p["face"]), "rect": p["rect"],
+            "quality": p.get("quality") or {}}
 
 
 CAND = os.path.join(ROOT, "storage", "candidates")
@@ -1981,6 +2000,39 @@ def api_history(request: Request, openid: str = Header(default=""), all: str = "
     return {"items": items}
 
 
+# ---------------- 用户：删自己的预演方案（单条 / 全部） ----------------
+@app.delete("/api/history/{jid}")
+def api_history_del(jid: str, request: Request, openid: str = Header(default="")):
+    """删除自己的一张预演。别人的记录一律 403 —— 不靠前端藏按钮来保证隔离。"""
+    m = me(request, openid)
+    if m["guest"]:
+        raise HTTPException(401, "先登录")
+    with db.conn() as c:
+        row = c.execute("select * from jobs where id=?", (jid,)).fetchone()
+        if not row:
+            raise HTTPException(404, "记录不存在")
+        j = dict(row)
+        if j["openid"] != m["uid"]:
+            raise HTTPException(403, "这不是你的预演")
+        n = _purge_job_files(j)
+        c.execute("delete from jobs where id=?", (jid,))
+    return {"ok": True, "files_removed": n}
+
+
+@app.delete("/api/history")
+def api_history_clear(request: Request, openid: str = Header(default="")):
+    """清空自己的全部预演。管理员要清全站请去后台「生成记录」页，别在这里误删。"""
+    m = me(request, openid)
+    if m["guest"]:
+        raise HTTPException(401, "先登录")
+    with db.conn() as c:
+        rows = [dict(r) for r in
+                c.execute("select * from jobs where openid=?", (m["uid"],)).fetchall()]
+        n = sum(_purge_job_files(j) for j in rows)
+        c.execute("delete from jobs where openid=?", (m["uid"],))
+    return {"ok": True, "jobs_removed": len(rows), "files_removed": n}
+
+
 # ---------------- 管理员：生成记录管理（查看 / 删除） ----------------
 def _job_file_paths(j):
     """一条任务占用的所有文件：结果图 + 候选图 + 候选清单 json。"""
@@ -2006,6 +2058,17 @@ def _job_file_paths(j):
         except Exception:
             pass
     return [p for p in paths if os.path.exists(p)]
+
+
+def _purge_job_files(j):
+    """删一条任务的所有落盘文件：结果图（本地或 Supabase）+ 候选图 + 候选清单。"""
+    n = 0
+    for p in _job_file_paths(j):
+        try:
+            os.remove(p); n += 1
+        except OSError:
+            pass
+    return n
 
 
 @app.get("/api/admin/jobs")
