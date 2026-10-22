@@ -81,7 +81,8 @@
      .reel 有 min-height，遮罩内容永远装得下，不会再被卡片的 overflow:hidden 切掉半截。 */
   .gate{
     position:absolute;inset:0;z-index:6;display:grid;place-items:center;padding:14px;
-    background:linear-gradient(180deg,rgba(9,13,19,.5),rgba(9,13,19,.82));
+    background:radial-gradient(120% 90% at 50% 0,rgba(49,225,207,.07),transparent 62%),
+      linear-gradient(180deg,rgba(9,13,19,.46),rgba(9,13,19,.84));
     border-radius:12px;
   }
   .gate .gpanel{
