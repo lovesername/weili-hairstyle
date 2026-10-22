@@ -83,3 +83,28 @@ def detect(im: Image.Image):
 def biggest(im: Image.Image):
     f = detect(im)
     return f[0][:4] if f else None
+
+
+def detect_full(im: Image.Image):
+    """带 5 关键点的检测（质检/姿态矫正用）。
+
+    返回 (box, pts, score)：
+        box = (x, y, w, h)
+        pts = [(x,y) ×5] 顺序为「图像左侧眼、图像右侧眼、鼻尖、左嘴角、右嘴角」，
+              拿不到关键点（Haar 兜底 / 无模型）时为 None
+        score = YuNet 置信度
+    """
+    arr = np.array(im.convert("RGB"))[:, :, ::-1].copy()
+    d = _yunet()
+    if d is None:
+        b = biggest(im)
+        return (b, None, 0.0) if b else (None, None, 0.0)
+    h, w = arr.shape[:2]
+    d.setInputSize((w, h))
+    _, faces = d.detect(arr)
+    if faces is None or not len(faces):
+        return None, None, 0.0
+    f = max(faces, key=lambda r: float(r[2]) * float(r[3]))
+    box = (int(f[0]), int(f[1]), int(f[2]), int(f[3]))
+    pts = [(float(f[i]), float(f[i + 1])) for i in (4, 6, 8, 10, 12)]
+    return box, pts, float(f[-1])
