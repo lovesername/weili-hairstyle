@@ -694,7 +694,11 @@
     .slogan{margin-bottom:13px;gap:9px}
     .slogan span{font-size:13px;letter-spacing:.24em;text-indent:.24em}
     .mclose{width:32px;height:32px;font-size:16px}
-    /* 手机端首屏是关掉的，标语挂到顶栏品牌名下当第二行 */
+    /* 手机端首屏是关掉的，标语挂到顶栏：
+       未登录——名字下面第二行（右边还有登录按钮，同行会挤）；
+       已登录——名字同一行靠后（操作按钮整体落下一行右对齐，正好留出位置）。 */
+    header:not(.guest) .bwrap{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:8px}
+    header:not(.guest) .bslogan{margin-top:0}
     .bslogan{
       display:block;margin-top:3px;
       font-family:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC","SimSun",serif;
@@ -765,6 +769,8 @@
     .hwrap{padding:9px 11px 8px}
     .hbar{gap:6px}
     .hbar .pill{font-size:10px;padding:4px 8px}
+    /* 积分胶囊里已经带了「+ 免费 N 次」，旁边再挂一个「免费 N 次」纯属重复且挤爆一行 */
+    #quota{display:none!important}
     #resetq{display:none!important}
     .brand small{display:none}
     .brand .mark{width:26px;height:26px;font-size:13px}
