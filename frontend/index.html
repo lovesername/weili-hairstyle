@@ -647,6 +647,131 @@
   #mbar .mtxt b{color:var(--cy);font-family:var(--mono)}
   #mbar .btn{padding:11px 18px;font-size:13.5px}
   @media(min-width:641px){#mbar{display:none!important}}
+  /* ================= 手机端精简版 =================
+     目标：少滚动、少字、少按钮。一屏一件事：
+     拍照 → 滑选款 → 发色/张数 → 出图。
+     桌面端一律不受影响（全部关在 max-width:640px 里）。 */
+  .reel{position:relative}
+  .reelArrow{display:none}
+  .reelPos{display:none}
+  .ctrig{display:none}
+  .ctlabel{display:none}
+  .sheet{display:contents}
+  .sheetHead{display:none}
+  .sheetMask{display:none}
+  /* 后端一个都没接上时，不要留一个空壳「ENGINE」标签 */
+  #fProv:has(#prov:empty){display:none}
+
+  @media(max-width:640px){
+    /* ---- 顶部：首屏那段介绍直接不要，进页面就是能点的东西 ---- */
+    .hero{display:none!important}
+    #api{display:none!important}
+    .hwrap{padding:9px 11px 8px}
+    .hbar{gap:6px}
+    .hbar .pill{font-size:10px;padding:4px 8px}
+    #resetq{display:none!important}
+    .brand small{display:none}
+    .brand .mark{width:26px;height:26px;font-size:13px}
+    .brand b{font-size:14px}
+
+    /* ---- 顺序：照片 → 选款 → 控制台 → 结果 → 历史 ---- */
+    main{display:flex;flex-direction:column;gap:11px}
+    .work{display:contents}
+    .hero{order:0}
+    .work > section:nth-child(1){order:1}
+    #libCard{order:2}
+    .console{order:3}
+    .work > section:nth-child(2){order:4}
+    #histCard{order:5}
+
+    .card{padding:12px 11px;border-radius:14px}
+    .chead{margin-bottom:8px;gap:6px}
+    .chead em{display:none}
+    .chead b{font-size:13.5px;letter-spacing:.2px}
+    .chead .idx{font-size:9px;padding:1px 5px}
+
+    /* ---- 01 本人照片：矮一点，别占半屏 ---- */
+    #drop{padding:14px 10px!important;min-height:150px}
+    #drop .up{font-size:19px;margin-bottom:3px}
+    #drop .t2{margin-top:4px;font-size:10px}
+    #prev{max-height:180px;object-fit:contain}
+
+    /* ---- 04 发型库：标签一行横滑，款式一屏两张 ---- */
+    #libCard .tags{flex-wrap:nowrap;overflow-x:auto;gap:6px;padding:0 0 5px;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    #libCard .tags::-webkit-scrollbar{display:none}
+    #libCard .tag{flex:0 0 auto;padding:6px 12px;font-size:11.5px}
+    #libCard .chead .right{width:100%;margin-left:0;gap:6px}
+    #libCard .search{flex:1;min-width:0}
+    #libCard .grid{display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
+      scroll-snap-type:x mandatory;max-height:none;padding:2px 2px 7px;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    #libCard .grid::-webkit-scrollbar{display:none}
+    #libCard .item{flex:0 0 calc(50% - 5px);scroll-snap-align:start;padding:6px}
+    #libCard .item .nm{font-size:11.5px}
+    #libCard .item .cardinfo{font-size:9.5px}
+    .reelArrow{display:grid;place-items:center;position:absolute;top:calc(50% - 9px);
+      transform:translateY(-50%);width:31px;height:31px;border-radius:99px;
+      border:1px solid rgba(49,225,207,.45);background:rgba(8,11,17,.88);color:var(--cy);
+      font-size:18px;line-height:1;cursor:pointer;z-index:8;padding:0 0 3px}
+    .reelArrow.l{left:-5px}
+    .reelArrow.r{right:-5px}
+    /* 未登录遮罩别把整张卡糊死，压缩一点，箭头仍可点（z-index 8 在遮罩之上） */
+    #libCard{position:relative}
+    #gateLib{padding:14px 10px;gap:6px;background:rgba(8,11,17,.55)}
+    #gateLib .gi{font-size:20px}
+    #gateLib .gt{font-size:13px}
+    #gateLib .gs{font-size:11.5px}
+    .reelPos{display:block;font-family:var(--mono);font-size:10px;color:var(--dim);
+      text-align:right;letter-spacing:1px;margin-top:1px}
+
+    /* ---- 03 控制台：规格表收起来，只留「选中哪一款」 ---- */
+    .picked{padding:9px 10px;min-height:0;border-radius:11px}
+    .picked .spec,.picked .pcode{display:none}
+    .picked .phead{gap:9px}
+    .picked .pthumb{width:44px;height:44px;border-radius:8px}
+    .picked .ptitle{font-size:12.5px;gap:6px}
+    .picked .pempty{font-size:11.5px;line-height:1.5}
+    .stdout{display:none}
+    .gobar{margin-top:10px;padding-top:9px;gap:7px}
+    .gobar .btn{padding:10px 14px;font-size:13px}
+    #progbox2{display:none!important}
+    .prog{margin-top:10px}
+
+    /* ---- 换发色：一个框，点开抽屉 ---- */
+    .colorrow{padding:0;border:none;background:none;margin-top:11px;display:block}
+    .colorrow .cl{display:none}
+    .ctlabel{display:block;font-family:var(--mono);font-size:9px;letter-spacing:1.8px;
+      color:var(--dim);margin:0 0 5px}
+    #pvOpen{display:none!important}
+    .ctrig{display:flex;width:100%;align-items:center;gap:9px;padding:11px 13px;border-radius:11px;
+      border:1px solid var(--line2);background:#0a0f16;color:var(--fg);
+      font-family:inherit;font-size:13px;cursor:pointer}
+    .ctrig s{width:16px;height:16px;border-radius:99px;flex:none;text-decoration:none;
+      border:1px solid rgba(255,255,255,.28);background:linear-gradient(135deg,#31e1cf,#e3c164)}
+    .ctrig b{flex:1;min-width:0;text-align:left;font-weight:500;font-size:13px;
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .ctrig i{font-style:normal;color:var(--dim);font-size:11px}
+    .sheet{display:block;position:fixed;left:0;right:0;bottom:0;z-index:140;background:#0b1119;
+      border-top:1px solid rgba(49,225,207,.22);border-radius:18px 18px 0 0;
+      padding:14px 14px calc(18px + env(safe-area-inset-bottom));
+      transform:translateY(115%);transition:transform .26s cubic-bezier(.22,.9,.28,1);
+      max-height:64vh;overflow:auto;box-shadow:0 -18px 40px -20px #000}
+    .sheet.open{transform:none}
+    .sheetHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .sheetHead b{font-size:13.5px;letter-spacing:.3px}
+    .sheetHead span{font-family:var(--mono);font-size:11.5px;color:var(--cy);
+      padding:4px 11px;border:1px solid rgba(49,225,207,.4);border-radius:99px;cursor:pointer}
+    .sheet .chips{gap:8px}
+    .sheet .cchip{padding:8px 12px;font-size:12.5px}
+    .sheetMask{display:none;position:fixed;inset:0;background:rgba(3,5,9,.6);z-index:135}
+    .sheetMask.on{display:block}
+
+    /* ---- 02 结果：别让空状态占一大块 ---- */
+    #cmp{min-height:200px}
+    #tip{padding:44px 14px!important}
+  }
+
 </style>
 </head>
 <body>
@@ -784,8 +909,17 @@
         <label>HAIR COLOR <span>换发色</span></label>
         <div class="hint" id="colorHint">默认跟随款式主色</div>
       </div>
-      <div class="chips" id="colors"></div>
+      <!-- 手机端：一个框，点开才出色板（桌面端隐藏这个按钮，直接平铺） -->
+      <div class="ctlabel">HAIR COLOR · 换发色</div>
+      <button class="ctrig" id="colorTrig" type="button">
+        <s id="colorDot"></s><b id="colorName">跟随款式</b><i>▾</i>
+      </button>
+      <div class="sheet" id="colorSheet">
+        <div class="sheetHead"><b>换发色</b><span id="sheetClose">完成</span></div>
+        <div class="chips" id="colors"></div>
+      </div>
     </div>
+    <div class="sheetMask" id="colorMask"></div>
 
     <div class="hint adminonly hidden" id="provOff" style="margin-top:10px"></div>
 
@@ -806,7 +940,7 @@
     </div>
   </section>
 
-  <section class="card">
+  <section class="card" id="libCard">
     <div class="chead">
       <span class="idx">04</span><b>发型库</b><em id="cnt"></em>
       <div class="right">
@@ -817,7 +951,12 @@
     </div>
     <div class="tags" id="tags"></div>
     <div id="refBox" class="hidden"></div>
-    <div class="grid" id="grid"></div>
+    <div class="reel">
+      <div class="grid" id="grid"></div>
+      <button class="reelArrow l" id="reelPrev" type="button" aria-label="上一款">‹</button>
+      <button class="reelArrow r" id="reelNext" type="button" aria-label="下一款">›</button>
+    </div>
+    <div class="reelPos" id="reelPos"></div>
     <div class="gate hidden" id="gateLib">
       <div class="gi">◈</div>
       <div class="gt">发型库共 <b id="gateCnt">259</b> 款真人发型</div>
@@ -1549,6 +1688,10 @@ function renderColors() {
   $('#colorHint').innerHTML = COLOR
     ? `本次出图染 <b style="color:var(--gold)">${COLOR}</b>`
     : (s && s.color ? `款式原色 <b style="color:var(--fg)">${s.color}</b>` : '默认跟随款式主色');
+  // 手机端那个「一个框」：只显示当前色名 + 色点，色板收在抽屉里
+  const tn = $('#colorName'), td = $('#colorDot');
+  if (tn) tn.textContent = COLOR || '跟随款式';
+  if (td) td.style.background = (COLOR && CHEX[COLOR]) || 'linear-gradient(135deg,#31e1cf,#e3c164)';
 }
 
 /* 上面那块「已选发型」：产品编号 / 款式编号 / 分类 / 长度 / 卷度 / 发量 / 主色 / 可选色 / 实拍图 全部摊开，
@@ -2085,19 +2228,66 @@ async function loadHistory() {
 }
 $('#histRefresh').onclick = loadHistory;
 
+/* ---------------- 手机端交互：发型横向滑 / 发色抽屉 ----------------
+   桌面端这些元素是 display:none / display:contents，逻辑跑着也不影响布局。 */
+(function () {
+  const grid = $('#grid');
+  const prev = $('#reelPrev'), next = $('#reelNext'), pos = $('#reelPos');
+
+  const stepW = () => {
+    const it = grid && grid.querySelector('.item');
+    return it ? it.getBoundingClientRect().width + 10 : 0;
+  };
+  if (grid && prev && next) {
+    prev.onclick = () => grid.scrollBy({ left: -stepW() * 2, behavior: 'smooth' });
+    next.onclick = () => grid.scrollBy({ left: stepW() * 2, behavior: 'smooth' });
+    const upd = () => {
+      if (!pos) return;
+      const total = grid.querySelectorAll('.item').length;
+      if (!total) { pos.textContent = ''; return; }
+      const w = stepW() || 1;
+      const i = Math.min(total, Math.round(grid.scrollLeft / w) + 1);
+      pos.textContent = i + ' / ' + total;
+    };
+    let t = null;
+    grid.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(upd, 80); }, { passive: true });
+    new MutationObserver(upd).observe(grid, { childList: true });
+    window.addEventListener('resize', upd);
+    upd();
+  }
+
+  const trig = $('#colorTrig'), sheet = $('#colorSheet'), mask = $('#colorMask');
+  const closeSheet = () => { if (sheet) sheet.classList.remove('open'); if (mask) mask.classList.remove('on'); };
+  if (trig && sheet && mask) {
+    trig.onclick = () => {
+      const tt = $('#toast'); if (tt) tt.classList.remove('on');   // 提示条别糊在色板上
+      sheet.classList.add('open'); mask.classList.add('on');
+    };
+    mask.onclick = closeSheet;
+    const sc = $('#sheetClose');
+    if (sc) sc.onclick = closeSheet;
+    // 点中某个色（.cchip 的 onclick 在原逻辑里，这里只负责收抽屉）
+    sheet.addEventListener('click', e => {
+      if (e.target.closest('.cchip')) setTimeout(closeSheet, 110);
+    });
+  }
+})();
+
 renderN();
 sync();
 renderAcct();
 
 (async () => {
   if (!await pickBase()) return;
-  await loadMe();                 // 先看是谁（决定能不能选模型 / 余额多少）
-  await loadSite();               // 客服微信 / 版权 / 收款码
-  await loadProviders();
-  await loadModels();
-  await loadStyles();
-  await loadRefs();
-  await loadHistory();
+  // 每一步单独兜住：某一项失败（比如管理员接口 401）不该让整个页面停在「发型库为空」。
+  const step = async (fn, name) => { try { await fn(); } catch (e) { console.warn('init skip:', name, e); } };
+  await step(loadMe, 'me');                 // 先看是谁（决定能不能选模型 / 余额多少）
+  await step(loadSite, 'site');             // 客服微信 / 版权 / 收款码
+  await step(loadProviders, 'providers');
+  await step(loadModels, 'models');
+  await step(loadStyles, 'styles');
+  await step(loadRefs, 'refs');
+  await step(loadHistory, 'history');
   sync();
 })();
 </script>
