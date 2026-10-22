@@ -56,8 +56,22 @@ PHONE_RE = re.compile(r"^1[3-9]\d{9}$")
 
 DEFAULT = {
     "host": "", "port": 465, "user": "", "pass": "", "from": "",
+    # HTTPS 发信通道（云主机封 SMTP 端口时用这个，见 send_email 的注释）
+    "http": "", "http_key": "", "http_from": "",
     "sms_provider": "", "sms_key": "", "sms_secret": "",
     "sms_sign": "", "sms_template": "",
+}
+
+# 字段 -> 环境变量名。以前是靠 if/else 猜前缀，加了 http_* 之后必须显式写，
+# 否则 WEILI_MAIL_HTTP_KEY 会被拼成 WEILI_SMS_HTTP_KEY 而永远读不到。
+ENV_OF = {
+    "host": "WEILI_MAIL_HOST", "port": "WEILI_MAIL_PORT", "user": "WEILI_MAIL_USER",
+    "pass": "WEILI_MAIL_PASS", "from": "WEILI_MAIL_FROM",
+    "http": "WEILI_MAIL_HTTP", "http_key": "WEILI_MAIL_HTTP_KEY",
+    "http_from": "WEILI_MAIL_HTTP_FROM",
+    "sms_provider": "WEILI_SMS_PROVIDER", "sms_key": "WEILI_SMS_KEY",
+    "sms_secret": "WEILI_SMS_SECRET", "sms_sign": "WEILI_SMS_SIGN",
+    "sms_template": "WEILI_SMS_TEMPLATE",
 }
 
 
@@ -70,9 +84,7 @@ def cfg():
         d = {}
     out = dict(DEFAULT)
     for k in DEFAULT:
-        env = "WEILI_MAIL_" + k.upper() if k in ("host", "port", "user", "pass", "from") \
-            else "WEILI_SMS_" + k.replace("sms_", "").upper()
-        v = os.environ.get(env, "").strip()
+        v = os.environ.get(ENV_OF.get(k, ""), "").strip()
         if v:
             out[k] = int(v) if k == "port" else v
         elif d.get(k) not in (None, ""):
@@ -95,11 +107,17 @@ def public_cfg():
     c = cfg()
     return {"host": c["host"], "port": c["port"], "user": c["user"],
             "from": c["from"], "pass_set": bool(c["pass"]),
-            "email_ready": bool(c["host"] and c["user"] and c["pass"]),
+            "http": c["http"], "http_key_set": bool(c["http_key"]),
+            "http_from": c["http_from"],
+            "email_ready": bool(_http_ready(c) or (c["host"] and c["user"] and c["pass"])),
             "sms_provider": c["sms_provider"], "sms_sign": c["sms_sign"],
             "sms_ready": bool(c["sms_provider"] and c["sms_key"] and c["sms_secret"]
                               and c["sms_sign"] and c["sms_template"]),
             "sms_template": c["sms_template"]}
+
+
+def _http_ready(c):
+    return bool(c["http"] in ("brevo", "resend") and c["http_key"])
 
 
 # ------------------------------------------------------------------ 发信
@@ -157,13 +175,69 @@ class _SMTP4_SSL(smtplib.SMTP_SSL):
         return self.context.wrap_socket(s, server_hostname=self._host)
 
 
+def _http_send(c, to, subject, html):
+    """走 HTTPS 发信（Brevo / Resend）。443 永远通，云主机封 SMTP 时的正解。
+
+    Render 免费实例会拦掉出站 25/465/587（防垃圾邮件），本地能发、线上超时，
+    报出来是 "连不上 SMTP 服务器：timed out"。这两个服务商都有免费额度，
+    并且只要把发件地址验证一次，就能发给任意收件人（不像 Resend 不给域名时
+    只能发给自己）。
+    """
+    prov = c["http"]
+    frm = c["http_from"] or c["user"]
+    if prov == "brevo":
+        url = "https://api.brevo.com/v3/smtp/email"
+        body = {"sender": {"email": frm, "name": c["from"] or "微粒 WEILI"},
+                "to": [{"email": to}], "subject": subject, "htmlContent": html}
+        hdr = {"api-key": c["http_key"], "Content-Type": "application/json",
+               "Accept": "application/json"}
+    elif prov == "resend":
+        url = "https://api.resend.com/emails"
+        body = {"from": "%s <%s>" % (c["from"] or "微粒 WEILI", frm),
+                "to": [to], "subject": subject, "html": html}
+        hdr = {"Authorization": "Bearer " + c["http_key"],
+               "Content-Type": "application/json"}
+    else:
+        raise RuntimeError("不认识的 HTTPS 发信通道：%s（支持 brevo / resend）" % prov)
+    req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST")
+    for k, v in hdr.items():
+        req.add_header(k, v)
+    try:
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        with opener.open(req, timeout=20) as r:
+            return {"http": prov, "status": r.status}
+    except urllib.error.HTTPError as e:
+        raise RuntimeError("%s 回 %s：%s" % (prov, e.code, e.read().decode()[:200]))
+
+
+def diag():
+    """后台「通道自检」：从服务器本机视角量一遍端口，避免"本地能发、线上发不出"。"""
+    out = []
+    for host, port in [("smtp.qq.com", 465), ("smtp.qq.com", 587),
+                       ("api.brevo.com", 443), ("api.resend.com", 443)]:
+        t = time.time()
+        try:
+            s = _conn4(host, port, 8)
+            s.close()
+            out.append({"target": "%s:%d" % (host, port), "ok": True,
+                        "ms": int((time.time() - t) * 1000)})
+        except Exception as e:
+            out.append({"target": "%s:%d" % (host, port), "ok": False,
+                        "err": "%s: %s" % (type(e).__name__, str(e)[:90])})
+    return {"probes": out, "cfg": public_cfg()}
+
+
 def send_email(to, code, purpose="register"):
     c = cfg()
+    what = {"register": "注册", "reset": "重置密码", "bind": "绑定"}.get(purpose, "验证")
+    subject = "【微粒】%s验证码 %s" % (what, code)
+    html = _mail_body(code, purpose)
+    if _http_ready(c):
+        return _http_send(c, to, subject, html)
     if not (c["host"] and c["user"] and c["pass"]):
         raise RuntimeError("邮箱验证码还没配置（缺 SMTP 服务器/账号/授权码）")
-    what = {"register": "注册", "reset": "重置密码", "bind": "绑定"}.get(purpose, "验证")
-    msg = MIMEText(_mail_body(code, purpose), "html", "utf-8")
-    msg["Subject"] = Header("【微粒】%s验证码 %s" % (what, code), "utf-8")
+    msg = MIMEText(html, "html", "utf-8")
+    msg["Subject"] = Header(subject, "utf-8")
     # formataddr 第 2 个参数必须是纯邮箱地址（中文显示名放第 1 个），
     # 参数写反会直接抛 UnicodeEncodeError ascii codec。
     msg["From"] = formataddr((c["from"] or "微粒 WEILI", c["user"]))
