@@ -30,6 +30,8 @@ import os
 import re
 import secrets
 import smtplib
+import socket
+import ssl
 import time
 import urllib.parse
 import uuid
@@ -115,6 +117,46 @@ font-size:34px;font-weight:700;letter-spacing:10px;color:#0a7d72">%s</div>
 </div>""" % (what, code))
 
 
+def _conn4(host, port, timeout, source_address=None):
+    """只用 IPv4 建 TCP 连接。
+
+    为什么不用 socket.create_connection：它会按 getaddrinfo 的顺序试，
+    smtp.qq.com 有 AAAA 记录，而 Render 这类云主机**没有 IPv6 出口**，
+    第一个 AAAA 就连不上，抛 "[Errno 101] Network is unreachable"，
+    表现成"发验证码 500"，其实邮件服务器本身是通的。
+    """
+    infos = socket.getaddrinfo(host, port, socket.AF_INET, socket.SOCK_STREAM)
+    last = None
+    for fam, typ, proto, _, sa in infos:
+        s = None
+        try:
+            s = socket.socket(fam, typ, proto)
+            s.settimeout(timeout)
+            if source_address:
+                s.bind(source_address)
+            s.connect(sa)
+            return s
+        except OSError as e:
+            last = e
+            if s is not None:
+                try:
+                    s.close()
+                except Exception:
+                    pass
+    raise last or OSError("解析不到 %s 的 IPv4 地址" % host)
+
+
+class _SMTP4(smtplib.SMTP):
+    def _get_socket(self, host, port, timeout):
+        return _conn4(host, port, timeout, self.source_address)
+
+
+class _SMTP4_SSL(smtplib.SMTP_SSL):
+    def _get_socket(self, host, port, timeout):
+        s = _conn4(host, port, timeout, self.source_address)
+        return self.context.wrap_socket(s, server_hostname=self._host)
+
+
 def send_email(to, code, purpose="register"):
     c = cfg()
     if not (c["host"] and c["user"] and c["pass"]):
@@ -127,24 +169,36 @@ def send_email(to, code, purpose="register"):
     msg["From"] = formataddr((c["from"] or "微粒 WEILI", c["user"]))
     msg["To"] = to
     port = int(c["port"] or 465)
-    if port == 465:
-        srv = smtplib.SMTP_SSL(c["host"], port, timeout=15)
-    else:
-        srv = smtplib.SMTP(c["host"], port, timeout=15)
+    # 先按配置的端口试；不通再试另一个（云主机经常只放行 587 或只放行 465）。
+    plan = [(465, "ssl"), (587, "starttls")]
+    plan.sort(key=lambda x: 0 if x[0] == port else 1)
+    errs = []
+    for p, mode in plan:
+        srv = None
         try:
-            srv.starttls()
-        except Exception:
-            pass
-    try:
-        srv.login(c["user"], c["pass"])
-        # envelope sender 必须是纯地址 —— 传显示名（"微粒 WEILI"）会在
-        # smtplib 里 ascii 编码时直接抛 UnicodeEncodeError。显示名只放头里。
-        srv.sendmail(c["user"], [to], msg.as_string())
-    finally:
-        try:
-            srv.quit()
-        except Exception:
-            pass
+            if mode == "ssl":
+                srv = _SMTP4_SSL(c["host"], p, timeout=15)
+            else:
+                srv = _SMTP4(c["host"], p, timeout=15)
+                try:
+                    srv.starttls(context=ssl.create_default_context())
+                except Exception:
+                    pass
+            srv.login(c["user"], c["pass"])
+            # envelope sender 必须是纯地址 —— 传显示名（"微粒 WEILI"）会在
+            # smtplib 里 ascii 编码时直接抛 UnicodeEncodeError。显示名只放头里。
+            srv.sendmail(c["user"], [to], msg.as_string())
+            return {"port": p, "mode": mode}
+        except Exception as e:
+            errs.append("%s/%s: %s" % (p, mode, _mail_err(e)))
+        finally:
+            if srv is not None:
+                try:
+                    srv.quit()
+                except Exception:
+                    pass
+    # 两个端口都失败：抛出第一条（通常最贴近真因）＋另一条的简述
+    raise RuntimeError("；".join(errs))
 
 
 def _sms_sign(params, secret):
