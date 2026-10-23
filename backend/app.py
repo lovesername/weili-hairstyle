@@ -1924,6 +1924,10 @@ def api_generate(payload: dict, request: Request, openid: str = Header(default="
     photo = db.get_photo(pid)
     if not photo:
         raise HTTPException(404, "photo 不存在")
+    # 老记录的原图可能已经不在了（换机器 / 清过盘）。别让它变成 500，
+    # 给一句人话：重新传一张就行，成品图本身还在「预演方案」里。
+    if not os.path.exists(photo["path"]):
+        raise HTTPException(400, "这张照片的原图已经不在了，重新上传一张再试（之前的成品图还在预演方案里）")
 
     # 张数：管理员 4 张，普通用户 USER_MAX_N（默认 2）—— 每多一张就是多一次 API 钱
     n = max(1, min(int(payload.get("n") or 1), billing.ADMIN_MAX_N if admin else billing.USER_MAX_N))
